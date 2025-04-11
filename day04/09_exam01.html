@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .p-box{
+      width: 100%;
+      border: 1px solid black;
+      border-right: none;
+      position: relative;
+    }
+    .p-box::after{
+      content: "";
+      clear: both;
+      display: block;
+    }
+    .box{
+      float: left;
+      position: relative;
+
+      width: calc(25% - 1px);
+      height: 40px;
+
+      border-right: 1px solid black;
+      
+      text-align: center;
+      line-height: 40px;
+    }
+    .box:hover{
+      background-color: yellow;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="p-box">
+    <div class="box">메뉴1</div>
+    <div class="box">메뉴2</div>
+    <div class="box">메뉴3</div>
+    <div class="box">메뉴4</div>
+  </div>
+</body>
+</html>

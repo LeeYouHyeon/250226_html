@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    div 3개를 만들어
+    naver, google, daum 사이트로 연결이 되게 하고,
+    naver는 초록색, google, daum엔 글자색, 글꼴 스타일을 다르게 추가
+
+    atag는 링크를 클릭한 후의 글꼴색이 달라짐 -> 가상선택자(의사선택자)
+    a:visited : 링크를 누른 후의 색
+    a:link    : 방문 전
+
+    :first-child, :last-child
+    :after : ~뒤에 가상요소를 삽입
+    :before : ~앞에 가상요소를 삽입
+  -->
+  <style>
+    div button {
+      width: 60px;
+      height: 25px;
+    }
+    #naver button {
+      color: green;
+    }
+    #google button {
+      color: blue;
+    }
+    #daum button {
+      color: black;
+    }
+
+    ol>li {
+      font-size: 20px;
+      list-style: none; /* 리스트의 스타일을 없앰 */
+      display: inline; /* block tag의 성격을 inline으로 변경*/
+      margin-right: 20px;
+    }
+    ol>li:nth-child(2n) {
+      color: red;
+    }
+    ol>li:nth-child(3n) {
+      color:green;
+    }
+    ol>li:nth-child(9n+1) { /* ol>li:first-child, li:last-child */
+      font-weight: bold; /* 600 < bold < 700 */
+    }
+    ol>li::after {
+      content: "번";
+    }
+    ol>li::before {
+      content: "li ";
+    }
+  </style>
+</head>
+<body>
+  <div id="naver"> 
+    <a href="https://www.naver.com/" target="_blank"><button>네이버</button></a>
+  </div><br>
+  <div id="google">
+    <a href="https://www.google.com/" target="_blank"><button>Google</button>
+    </a>
+  </div><br>
+  <div id="daum">
+    <a href="https://www.daum.net/" target="_blank"><button>Daum</button></a>
+  </div>
+
+  <!-- 
+    전체 글자 크기 20px
+    짝수 : 빨간색
+    3, 6, 9 : 초록색
+    1, 10 : 굵게 설정
+   -->
+  <ol>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+    <li>10</li>
+  </ol>
+</body>
+</html>

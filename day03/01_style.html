@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    스타일 파일을 링크로 연결(.css)
+    스타일은 여러 개 연결 가능
+  -->
+  <link rel="stylesheet" href="02_style.css">
+  <style>
+    /* 스타일 안은 css 영역. 주석도 html과 달리 /**/
+    /*
+      선택자 { 속성:값; 속성:값; ... }
+    */
+    img {
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    스타일 : html의 정렬, 크기, 색 등 여러가지 모양을 꾸며주는 기능
+    스타일 적용 방법
+    1. <style> 태그 : head 태그 안에 선언
+    2. 각 태그에 style 속성을 직접 적용하는 방법
+    3. link를 이용하여 이미 만들어져 있는 css 파일을 연결하는 방법
+
+    3번은 일반 실무에서 가장 많이 사용하는 방법. <head> 태그 안에 <link> 태그로 연결
+    수업시에는 1번을 사용
+    2번은 거의 안 씀 => 특별한 케이스에만 사용
+
+    스타일은 같은 선택자는 같은 스타일을 가진다.
+  -->
+  
+  <img src="../image/강아지2.jpg" alt="강아지그림" style="width: 100px;"> <br>
+  <input type="text" id="input1">
+</body>
+</html>

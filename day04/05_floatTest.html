@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    p-box : 500*500
+    box*3 => 부모 안에 3등분으로 채우기
+   -->
+  <style>
+    .p-box{
+      width: 500px;
+      height: 500px;
+      border: 1px solid black;
+    }
+    .p-box::after{
+      content: "";
+      clear: both;
+      display: block;
+    }
+    /*
+      calc(수식)
+      - 단위가 다른 값들을 계산할 때 사용
+      - 연산자 앞뒤로 띄어쓰기를 해야 함
+    */
+    .box{
+      width: calc(100% / 3);
+      height: calc(100%);
+      float: left;
+    }
+    .box:first-of-type{
+      background-color: yellow;
+    }
+    .box:nth-of-type(2) {
+      background-color: green;
+    }
+    .box:last-of-type{
+      background-color: brown;
+    }
+  </style>
+</head>
+<body>
+  <div class="p-box">
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+  </div>
+</body>
+</html>

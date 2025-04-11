@@ -1,0 +1,50 @@
+.total{
+  width: 100%;
+  position: relative;
+}
+.p-box{
+  width: 200px;
+}
+.p-box::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+a{
+  text-decoration: none;
+}
+.box{
+  width: 200px;
+  height: 30px;
+  border: 1px solid black;
+  border-top: none;
+  text-align: center;
+  line-height: 30px;
+  font-size: 20px;
+  color: black;
+  font-family: Lora, serif;
+}
+.box:first-of-type{
+  border-top: 1px solid black;
+}
+.box:hover, .now{
+  background-color: azure;
+  font-weight: 700;
+}
+
+.img{
+  float: left;
+  position: absolute;
+  left: 210px;
+  top: 0px;
+}
+img{
+  max-width: 70%;
+  max-height: 70%;
+}
+
+.title, .title:hover{
+  font-size: 24px;
+  font-family: "Permanent Marker", serif;
+  font-weight: 500;
+}

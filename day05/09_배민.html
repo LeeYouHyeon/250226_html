@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>배달의 민족</title>
+  <style>
+    /* font link */
+    @font-face {
+      font-family: Jua;
+      src: url(../fonts/Jua/Jua-Regular.ttf);
+    }
+
+    body{
+      background-color: rgb(120, 225, 225);
+      font-family: Jua, seif;
+    }
+    .container{
+      margin: 0 auto;
+      width: 500px;
+      text-align: center;
+    }
+    .header>h1{
+      font-size: 50px;
+    }
+    .header>h3{
+      font-size: 35px;
+    }
+    .menu{
+      width: 300px;
+      margin: 0 auto 50px;
+    }
+    .img{
+      width: 300px;
+      height: 200px;
+      margin: 0 auto;
+      border-radius: 10px 10px 0 0;
+      background-size: 100%;
+    }
+    #sushi{
+      background-image: url("../image/초밥.jpg");
+    }
+    #chicken{
+      background-image: url("../image/치킨.jpg");
+    }
+    #hamburger{
+      background-image: url("../image/햄버거.jpg");
+    }
+    #curtlet{
+      background-image: url("../image/돈가스.jpg");
+    }
+    #pizza{
+      background-image: url("../image/피자.png");
+    }
+    .desc{
+      width: 300px;
+      background-color: white;
+      padding-bottom: 20px;
+      padding-top: 20px;
+      border-radius: 0 0 5px 5px;
+    }
+    .desc>p{
+      font-size: 16px;
+      font-weight: 600;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    .desc>p:last-child{
+      color: blue;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>배달의 민족</h1>
+      <h3>넌 배달할 때가 가장 멋있어</h3>
+    </div>
+    <!-- 하나의 메뉴 박스-->
+    <div class="menu">
+      <div class="img" id="sushi"></div>
+      <div class="desc">
+        <h2>맛있는 초밥</h2>
+        <p>주머니가 가벼운 당신의 마음까지 생각한 착한 가격!</p>
+        <p><del>25,000원</del> 15,000원</p>
+        <p>바로결제</p>
+      </div>
+    </div>
+    <!-- 5개 생성 -->
+    <div class="menu">
+      <div class="img" id="hamburger"></div>
+      <div class="desc">
+        <h2>맛있는 햄버거</h2>
+        <p>주머니가 가벼운 당신의 마음까지 생각한 착한 가격!</p>
+        <p><del>25,000원</del> 15,000원</p>
+        <p>바로결제</p>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="img" id="chicken"></div>
+      <div class="desc">
+        <h2>맛있는 치킨</h2>
+        <p>주머니가 가벼운 당신의 마음까지 생각한 착한 가격!</p>
+        <p><del>25,000원</del> 15,000원</p>
+        <p>바로결제</p>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="img" id="pizza"></div>
+      <div class="desc">
+        <h2>맛있는 피자</h2>
+        <p>주머니가 가벼운 당신의 마음까지 생각한 착한 가격!</p>
+        <p><del>25,000원</del> 15,000원</p>
+        <p>바로결제</p>
+      </div>
+    </div>
+    <div class="menu">
+      <div class="img" id="curtlet"></div>
+      <div class="desc">
+        <h2>맛있는 돈가스</h2>
+        <p>주머니가 가벼운 당신의 마음까지 생각한 착한 가격!</p>
+        <p><del>25,000원</del> 15,000원</p>
+        <p>바로결제</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

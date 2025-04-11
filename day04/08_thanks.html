@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .p-box{
+      position: relative;
+      width: 650px;
+      height: 100px;
+    }
+    .box{
+      background-color: crimson;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+    }
+    .T{
+      left: 5px;
+    }
+    .H{
+      left: 110px;
+    }
+    .A{
+      left: 215px;
+    }
+    .N{
+      left: 320px;
+    }
+    .K{
+      left: 425px;
+    }
+    .S{
+      left: 530px;
+    }
+    .box:hover{
+      transform: translate(10%, 10%);
+      background-color: rgb(255, 55, 55);
+      z-index: 10;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="p-box">
+    <div class="box T">T</div>
+    <div class="box H">H</div>
+    <div class="box A">A</div>
+    <div class="box N">N</div>
+    <div class="box K">K</div>
+    <div class="box S">S</div>
+  </div>
+</body>
+</html>

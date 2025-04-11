@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    구글폰트 : https://fonts.google.com/
+   -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
+  <!-- 
+    폰트 지정
+    - font-family : 폰트를 묶어서 설정
+      : 브라우저마다 지원하는 폰트가 달라서 생긴 기능
+      - 지정하려는 폰트를 ,로 나열
+      - 한글폰트의 경우 한글이름과 영문이름을 같이 사용
+      - 마지막 폰트는 기본형으로 지정(serif)
+      - 폰트명에 띄어쓰기가 있으면 "나눔 고딕"처럼 묶어줘야 함
+      예시)"나눔 고딕",굴림,...
+    - font-size : 글자 크기
+    - font-style : 글자 스타일 (기울임꼴)
+    - font-weight : 글자 굵기 100~900 100단위로 지정. (보통 700)
+    
+    폰트 속성 한 번에 지정(패밀리가 길기 때문에 보통 별도로 지정)
+    font [style] [weight] size family 순으로 지정
+  -->
+  <style>
+    .font{
+      font-family: "Nanum Pen Script", serif;
+      font-size: 50px;
+      font-weight: 300;
+      font-style: normal;
+    }
+  </style>
+</head>
+<body>
+  <div class="font">안녕하세요</div>
+</body>
+</html>

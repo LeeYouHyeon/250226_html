@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <!-- 
+    width : 컨텐츠의 가로길이
+    box-sizing : box의 크기를 지정하는 속성(컨텐츠만? 패딩? 보더? 마진까지? 보통 보더까지)
+    box-sizing에 따라 width의 크기가 컨텐츠의 가로길이가 될 수도 있고, 박스 전체의 가로 길이가 될 수도 있음
+    - border-box : width = 컨텐츠 + 패딩 + 테두리
+    - content-box : width = 컨텐츠 (기본값)
+      width = 100px / padding = 5px / border = 1px
+      border-box : 5*2 + 1*2 + content(88px) = 100px
+      content-box : 100px + 5*2 + 1*2 = 112px
+   -->
+   <style>
+    .box1{
+      /* 양쪽 패딩 20, 선 1px */
+      width: 100px;
+      height: 100px;
+      background-color: azure;
+      padding: 0 20px;
+      border: 1px solid black;
+      box-sizing: border-box;
+      margin-left: 21px;
+    }
+    .box2{
+      width: 100px;
+      height: 100px;
+      background-color: azure;
+      padding: 0 20px;
+      border: 1px solid black;
+    }
+    a{
+      display: inline-block;
+      text-decoration: none;
+      font-size: 20px;
+      font-family: "Work Sans", "Nanum Gothic" serif;
+    }
+    .box{
+      width: 380px;
+      height: 55px;
+      line-height: 54px;
+      text-align: center;
+      color: white;
+
+      background-color: rgb(3, 199, 90);
+      padding: 0 20px;
+      box-sizing: border-box;
+
+      border-radius: 3px;
+    }
+    .box:hover{
+      background-color: rgb(23, 183, 94);
+    }
+    .naver{
+      display: inline-block;
+      font-weight: 1000;
+      font-size: 20px;
+    }
+    .login{
+      display: inline-block;
+      font-size: 16px;
+    }
+   </style>
+</head>
+<body>
+  <div class="box1"></div>
+  <br>
+  <div class="box2"></div>
+  <br>
+  <a href="https://www.naver.com/" target="_blank">
+    <div class="box">
+      <div class="naver">NAVER</div> <div class="login">로그인</div>
+    </div>
+  </a>
+</body>
+</html>

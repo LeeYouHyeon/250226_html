@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=search" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=keyboard" />
+  <style>
+    .searchform{
+      width: 700px;
+      height: 3.5rem;
+      position: relative;
+      border: 1px solid rgb(3, 199, 90);
+    }
+    .searchform>div{
+      position: absolute;
+    }
+    .input{
+      width: 627px;
+      height: 100%;
+    }
+    input{
+      width: 82%;
+      font-size: 24px;
+      margin: 13px 10px;
+      border: none;
+      outline: 0;
+      left: 0px;
+      top: 0px;
+      line-height: 100%;
+    }
+    input::placeholder{
+      color: white;
+    }
+    input:focus::placeholder{
+      color: rgb(238, 238, 238);
+    }
+
+    .keyboard{
+      position: absolute;
+      height: 30px;
+      right: 40px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .keyboard>svg{
+      height: 100%;
+    }
+
+    .triangle{
+      position: absolute;
+      height: 25px;
+      right: 0px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .triangle>svg{
+      height: 100%;
+      fill: rgb(3, 199, 90);
+    }
+
+    .searchbutton{
+      right: 0px;
+      top: 0px;
+      height: 100%;
+    }
+    .searchbutton>button{
+      background-color: rgb(3, 199, 90);
+      border: none;
+      height: 100%;
+    }
+    .searchbutton>button:hover{
+      cursor: pointer;
+    }
+    .searchbutton svg{
+      height: 95%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <div class="searchform">
+      <div class="input">
+        <div class="text">
+          <input type="text" name="search" placeholder="검색어를 입력해 주세요.">
+        </div>
+        <div class="keyboard icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#afafaf"><path d="M160-200q-33 0-56.5-23.5T80-280v-400q0-33 23.5-56.5T160-760h640q33 0 56.5 23.5T880-680v400q0 33-23.5 56.5T800-200H160Zm0-80h640v-400H160v400Zm160-40h320v-80H320v80ZM200-440h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80ZM200-560h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80Zm120 0h80v-80h-80v80ZM160-280v-400 400Z"/></svg>
+        </div>
+        <div class="triangle icon">
+          <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+            <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+          </svg>
+        </div>
+      </div>
+  
+      <div class="searchbutton">
+        <button type="submit">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#FFFFFF"><path d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"/></svg>
+        </button>
+      </div>
+    </div>
+  </form>
+</body>
+</html>

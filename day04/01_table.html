@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    테이블의 선을 한줄로 : border-collapse: collapse
+   -->
+  <style>
+    table{
+      font-size: 20px;
+      /* 테이블의 선을 한줄로 만들기*/
+      border-collapse: collapse;
+    }
+    #score{
+      width: 250px;
+    }
+    #board{
+      width: 100%;
+    }
+    table th, td{
+      text-align: center;
+      height: 30px;
+    }
+    table caption{
+      font-weight: 600;
+    }
+    table thead th, table tfoot td{
+      background-color: rgb(225, 247, 238);
+    }
+    /* tbody의 짝수 tr만 bg-color 변경 */
+    table tbody>tr:nth-child(odd) {
+      background-color: azure;
+    }
+    /* 마우스를 올리면 bg-color 변경*/
+    table tbody>tr:hover{
+      background-color: rgb(200, 255, 255);
+    }
+    table>thead th, table>tfoot td{
+      border-top: 3px solid green;
+      border-bottom: 3px solid green;
+    }
+    /*
+      내용물들의 %의 합이 div/table 전체의 사이즈와 같게 지정
+    */
+    .num{
+      width: 5%;
+    }
+    .title{
+      width: 65%;
+    }
+    .writer{
+      width: 10%;
+    }
+    .date{
+      width: 20%;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    성적표 테이블 생성 : 5명
+  -->
+  <table id="score">
+    <caption>성적표</caption>
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>이름</th>
+        <th>성적</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>hong</td>
+        <td>78</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>kim</td>
+        <td>89</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>lee</td>
+        <td>85</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>choi</td>
+        <td>65</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>park</td>
+        <td>75</td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">합계</td>
+        <td>?</td>
+      </tr>
+    </tfoot>
+  </table>
+  <br>
+  <table id="board">
+    <thead>
+      <tr>
+        <th class="num">번호</th>
+        <th class="title">제목</th>
+        <th class="writer">작성자</th>
+        <th class="date">날짜</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="num">1</td>
+        <td class="title">게시글입니다.</td>
+        <td class="writer">홍길동</td>
+        <td class="date">2020-11-15</td>
+      </tr>
+      <tr>
+        <td class="num">2</td>
+        <td class="title">게시글입니다.</td>
+        <td class="writer">홍길동</td>
+        <td class="date">2020-11-15</td>
+      </tr>
+      <tr>
+        <td class="num">3</td>
+        <td class="title">게시글입니다.</td>
+        <td class="writer">홍길동</td>
+        <td class="date">2020-11-15</td>
+      </tr>
+      <tr>
+        <td class="num">4</td>
+        <td class="title">게시글입니다.</td>
+        <td class="writer">홍길동</td>
+        <td class="date">2020-11-15</td>
+      </tr>
+      <tr>
+        <td class="num">5</td>
+        <td class="title">게시글입니다.</td>
+        <td class="writer">홍길동</td>
+        <td class="date">2020-11-15</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

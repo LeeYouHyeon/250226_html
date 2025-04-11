@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #ptag {
+      color:brown;
+    }
+    .hong {
+      font-size: 20px;
+    }
+    p {
+      font-style: italic; /* 기울임꼴 */
+    }
+    #ptag:hover {
+      color:blueviolet;
+    }
+    p:nth-child(even) {
+      color:blue;
+    }
+    /*
+    body>p {
+
+    }
+    p#ptag{
+
+    }
+    html p{
+
+    }
+    */
+  </style>
+</head>
+<body>
+  <p id="ptag" class="hong">Hello~!! HongGilDong ...</p>
+  <p class="hong">Hello~!! HongGilDong ...</p>
+  <p >Hello~!! HongGilDong ...</p>
+  <p>Hello~!! HongGilDong ...</p>
+  <p>Hello~!! HongGilDong ...</p>
+
+  <!-- 
+    선택자(selector)
+    - 요소(태그요소 : 엘리먼트 element)를 선택하게 하는 것
+    1) id 선택자    : #아이디명 => 한 페이지에 최대 1개
+    2) class 선택자 : .클래스명 => 한 페이지에 여러 개 가능
+      - 같은 클래스는 같은 선택자 스타일에 영향을 받음
+    3) tag 선택자   : 태그명    => 같은 태그명에 같은 스타일을 적용
+    4) 가상클래스 선택자 : 가상클래스명
+      - 어떤 조건이나 상황에서 스타일을 적용하도록 만든 선택자
+      - 앞에 대상의 선택자가 나오고, 뒤에 가상클래스 선택자가 나옴
+      - :hover : 요소에 마우스를 올렸을 때 적용
+      - :focus : 요소가 포커스를 받고 있을 때 적용(tab)
+      - :nth-child(a) / :nth-of-type(a) : a번째에 해당하는 요소
+        - 1 : 첫번째 요소
+        - even / odd : 홀짝번째 요소
+        - 2n = even / 3n : 3의 배수 / 4n ...
+        - 3n - 1처럼 연산도 가능
+  -->
+  <!--
+    선택자 조합
+    - 여러 선택자를 이용하여 요소를 선택
+      - 자식관계 : > 
+        - 부모선택자 > 자식선택자 (table > tr > td)
+        - 부모선택자 : 바로 위에 있는 부모
+      - 자손관계 : 공백(띄어쓰기)
+        - 조상선택자 자손선택자 (table td)
+        - 조상선택자는 부모 포함
+      - 형제 : 선택자를 붙여서 나열
+        - 선택자1선택자2
+        - 선택자1과 선택자2를 모두 만족하는 요소
+        - #ptag.hong(o) p.hong(o) divp(x)
+        - 안 되는 조합
+          1. 붙여썼을 때 발생하는 상황(띄어쓰기가 없어서 구분이 안 되는 경우 등)
+            divp(x) div.p(o) .pdiv(x)
+          2. 태그 선택자들로만 구성되어 있는 경우 (1의 대표적인 예시)
+          3. id 선택자 여러 개 #input1#input2 => 한 요소의 id는 최대 하나
+        - 선택자 우선순위 : 여러 선택자가 겹쳐져 있는 상황일 경우
+          - 아이디 선택자(1000) > 클래스 선택자(100) > 태그(10)
+          - 우선순위가 같은 경우 아래에 있는 것이 적용
+  -->
+</body>
+</html>

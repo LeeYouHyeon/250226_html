@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    display 속성
+    - block : 새 라인에서 시작
+      - 한 컨텐츠가 한 라인을 차지
+      - width, height 크기 조절 가능
+      - 여백 조절 가능(margin, padding)
+    - inline : 현재 라인에서 이어서 시작 
+      - 한 컨텐츠가 자신의 컨텐츠 만큼만 차지
+      - 크기 조절이 불가능
+      - margin 불가능, padding 가능
+    - inlineblock : 현재 라인에서 시작
+      - 크기 조절 가능
+      - 여백 조절 가능
+    
+    display 속성 : 태그가 가지고 있는 기본 속성을 변경 가능
+
+    - flex (추가) : 자신의 명령어를 사용하기 위해 추가된 형태
+    - grid (추가) : 자신의 명령어를 사용하기 위해 추가된 형태
+   -->
+  <style>
+    div{
+      width: 200px;
+      height: 50px;
+      background-color: aqua;
+      margin: 10px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+    span{
+      width: 200px;
+      height: 50px;
+      background-color: beige;
+      margin: 10px;
+      padding: 10px;
+      display: block;
+      box-sizing: border-box;
+    }
+    button{
+      width: 200px;
+      height: 50px;
+      background-color: bisque;
+      margin: 10px;
+      padding: 10px;
+    }
+    a{
+      width: 200px;
+      height: 50px;
+      background-color: brown;
+      margin: 10px;
+      padding: 10px;
+      display: block;
+      box-sizing: border-box;
+    }
+  </style>
+</head>
+<body>
+  <div>block 속성</div>
+  <span>inline 속성</span>
+  <button>inlineblock 속성</button>
+  <a href="https://www.naver.com/">inline 속성</a>
+
+</body>
+</html>

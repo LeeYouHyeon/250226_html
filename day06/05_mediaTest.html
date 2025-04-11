@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <!-- 
+    800px, 1200px
+   -->
+
+  <style>
+    body{
+      margin: 0;
+      padding: 0;
+    }
+    body>div{
+      width: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    .header{
+      background-color: gray;
+      background-repeat: no-repeat;
+      padding: 10px;
+      padding-left: 30px;
+      font-weight: 700;
+      font-size: 24px;
+    }
+    .img{
+      height: 400px;
+    }
+    .main-img{
+      background-image: url(../image/비행기.jpg);
+    }
+    .description{
+      height: 200px;
+    }
+    .description>p{
+      margin-top: 20px;
+      margin-left: 20px;
+    }
+    .description>.subtitle{
+      color: gray;
+      font-weight: 600;
+    }
+    .description>.title{
+      font-weight: 700;
+      font-size: 24px;
+    }
+    .sub1{
+      background-image: url(../image/핸드백.jpg);
+    }
+    .sub2{
+      position: relative;
+      background-image: url(../image/서울.jpg);
+    }
+    .link{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border: 3px solid white;
+      width: 200px;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      font-weight: 500;
+    }
+    .link:hover{
+      cursor: pointer;
+    }
+    .link>a{
+      color: white;
+      text-decoration: none;
+    }
+    .sub3{
+      background-image: url(../image/파리.jpeg);
+    }
+
+    @media screen and (min-width: 800px) {
+      .sub2{
+        float: left;
+        width: 50%;
+      }
+      .sub3{
+        float: right;
+        width: 50%;
+      }
+    }
+
+    @media screen and (min-width: 1200px) {
+      .main-img{
+        width: 50%;
+        float: left;
+        height: 1000px;
+      }
+      .description{
+        width: 50%;
+        float: right;
+        height: 500px;
+      }
+      .sub1{
+        width: 25%;
+        float: left;
+        height: 500px;
+      }
+      .sub2{
+        width: 25%;
+        float: right;
+        height: 250px;
+      }
+      .sub3{
+        width: 25%;
+        float: right;
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header" id="top">IN'O</div>
+  <div class="img main-img"></div>
+  <div class="description">
+    <p class="subtitle">Portfolio</p>
+    <p class="title">Make Hardware Soft</p>
+    <p class="content">The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also</p>
+  </div>
+  <div class="img sub1"></div>
+  <div class="img sub2">
+    <div class="link"><a href="#top">VIEW MORE</a></div>
+  </div>
+  <div class="img sub3"></div>
+</body>
+</html>

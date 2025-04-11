@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .outer{
+      background-color: beige;
+      position: relative;
+      width: 50%;
+      height: 120px;
+    }
+    .inner{
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 10px;
+    }
+    .in1{
+      background-color: lightcyan;
+      left: 10px;
+    }
+    .in2{
+      background-color: red;
+      left: 50%;
+      /* transform: translate(x축, y축);
+         transform: translate(x축);
+       */
+      transform: translate(-50%);
+    }
+    .in3{
+      background-color: purple;
+      right: 10px;
+    }
+
+    .p-box{
+      width: 300px;
+      height: 300px;
+      background-color: aquamarine;
+      position: relative;
+    }
+    .box {
+      width: 100px;
+      height: 100px;
+      background-color: azure;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  </style>
+</head>
+<body>
+  <div class="outer">
+    <div class="inner in1"></div>
+    <div class="inner in2"></div>
+    <div class="inner in3"></div>
+  </div>
+
+  <div class="p-box">
+    <div class="box"></div>
+  </div>
+</body>
+</html>

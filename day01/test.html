@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- 주석은 항상 Ctrl + /로
+   <head> : html 문서의 속성을 지정하기 위한 태그 -->
+  <meta charset="UTF-8">
+  <!-- 인코딩 방식 설정 : 한글 깨짐 방지 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 화면 비율 설정 : 내 모니터 화면의 비율에 맞게 처리 -->
+  <title>test1</title>
+  <!-- 제목 :  -->
+</head>
+<body>
+  <!-- 실제 화면에 보여지는 내용을 작성 -->
+  나는 body입니다.<br>
+  줄바꿈
+  <!-- h 태그 : 제목을 표현할 때 사용. h1~h6
+    h 태그는 크기와 두께가 정해져 있고, 브라우저마다 다를 수 있음 -->
+  <h1>제목 1 입니다.</h1>
+  <h2>제목 2 입니다.</h2>
+  <h3>제목 3 입니다.</h3>
+  <h4>제목 4 입니다.</h4>
+  <h5>제목 5 입니다.</h5>
+  <h6>제목 6 입니다.</h6>
+
+  <!-- html에서 enter는 줄바꿈이 아니라 공백 하나(띄어쓰기 1칸) 
+   <br> : 줄바꿈 태그. 많이 사용하지 않음
+   태그는 block / inline / inlineblock로 구분
+   block : tag 하나가 한 줄을 차지하는 태그 
+   block 태그는 옆에 다른 태그가 올 수 없음
+   h 태그가 대표적
+   inline : tag 하나가 본인이 가지고 있는 글자만큼의 영역을 가짐
+   inline 태그 옆에 다른 태그가 올 수 있음. (옆에도 lnline 태그)
+   span 태그 : 대표적인 inline 태그. 글자를 쓸 때 많이 사용-->
+  <span>span tag...</span>
+  <span>span tag...</span>
+
+  <!-- <p> : 한 문단을 나타내는 태그
+    block 태그이며, 위/아래 여백도 가지고 있음 -->
+  <p>p tag...</p>
+  <p>p tag...</p>
+
+  <!-- <b>, <strong> : 글자를 굵게 만드는 태그 -> inline -->
+  <b>b tag...</b>
+  <strong>strong tag...</strong>
+  <hr>
+
+  <p>
+    <b>Hello~!!</b> 안녕하세요 <br>
+    <strong>감사합니다</strong>
+  </p>
+  <!-- ins : 밑줄, del : 취소선, i : 기울임꼴, mark : 형광펜-->
+  <p>
+    <ins>Hello</ins>
+    <del>hello</del>
+    <i>hello</i>
+    <mark>hello</mark>
+  </p>
+  <!-- sup 윗첨자 / sub 아래첨자 -->
+  <p>
+    10<sup>2</sup>
+    log<sub>10</sub>
+  </p>
+</body>
+</html>

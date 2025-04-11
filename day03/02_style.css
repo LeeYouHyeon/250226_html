@@ -1,0 +1,11 @@
+/*
+  자체가 style 태그 안
+*/
+#input1 {
+  /*
+    # => id 선택자
+    . => class 선택자
+  */
+  font-size: 20px;
+  width: 300px;
+}

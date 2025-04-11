@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      background-color: cornflowerblue;
+      text-align: center;
+    }
+    .login-box{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 450px;
+      margin: auto;
+      background-color: paleturquoise;
+      border-radius: 10px;
+    }
+    .login-box>input, .login-box>button{
+      width: calc(100% - 40px);
+      height: 45px;
+      border: none;
+      margin: 7px auto;
+      border-radius: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
+      outline: none;
+      padding: 12px;
+    }
+    .login-box>input:first-of-type{
+      margin-top: 20px;
+    }
+    .login-box>.pwfind{
+      height: 30px;
+      padding-top: 40px;
+      padding-bottom: 10px;
+    }
+    button{
+      background-color: green;
+      color: white;
+      font-weight: 500;
+    }
+    button:hover{
+      cursor: pointer;
+    }
+    .pwfind>a{
+      color: black;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    <div class="login-box">
+      <input type="text" name="id" placeholder="아이디" required>
+      <input type="password" name="pw" placeholder="비밀번호" required>
+      <button type="submit">로그인</button>
+      <div class="pwfind"><a href="">비밀번호를 잊어버리셨나요?</a></div>
+    </div>
+  </form>
+</body>
+</html>

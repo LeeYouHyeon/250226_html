@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,opsz,wght@0,18..144,300..900;1,18..144,300..900&display=swap" rel="stylesheet">
+  <!-- 
+    border : 테두리
+    border[-??]-style : 테두리 선 모양
+    border[-??]-width : 테두리 두께
+    border[-??]-color : 테두리 색
+    border[-??-??]-radius : 테두리 둥글게. 모서리기 때문에 상하좌우 중 2개를 지정해줘야 함
+
+    border width style color
+    테두리는 상하좌우를 따로 설정 가능
+
+    box-shadow : 그림자
+    box-shadow 수평 수직 [번짐정도 그림자크기] 색상 [방향]
+    inset : 안쪽 방향 그림자
+   -->
+  <style>
+    .box{
+      width: 100px;
+      height: 100px;
+      background-color: rgb(216, 252, 255);
+      border: 3px solid black;
+      box-shadow: 5px 5px 5px gray;
+
+      text-align: center;
+      line-height: 100px;
+      -webkit-text-fill-color: rgb(99, 168, 96);
+      font-family: "Merriweather", serif;
+      font-optical-sizing: auto;
+      font-style: oblique;
+      font-size: 20px;
+    }
+
+    .box1{
+      border-bottom: none;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+    .box2{
+      border-top: none;
+      border-bottom: none;
+    }
+    .box3{
+      border-top: none;
+      border-bottom-right-radius: 20px;
+      border-bottom-left-radius: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box box1">hello</div>
+  <div class="box box2">hello</div>
+  <div class="box box3">hello</div>
+</body>
+</html>

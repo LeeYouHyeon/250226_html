@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    input 속성 정리
+    모든 태그는 자신의 속성값을 가지고 있음
+    <태그명 속성="값" 속성="값" ... 속성 속성 ...>
+    참조 : https://developer.mozilla.org/ko
+    name : 서버로 전송할 때 변수명으로 사용
+    value : 서버로 전송할 때 값으로 사용
+      => ?name=value
+      type="text" : 적힌 값이 value
+    id : 한 페이지에 중복값 불가능 - js에서 태그 구분용도로 사용
+      중복되도 에러는 안 나나, 작동을 하지 않을 수 있음
+    class : css / js에서 구분자 역할을 하는 속성. 중복, 여러 개 가능
+      class="a b ab abc" => 총 4개의 클래스
+    readonly : 읽기 전용. 서버로 값을 보냄
+    disabled : 비활성화. 서버로 값을 보내지 않음
+    tabindex : Tab 키를 눌렀을 때 input 선택 순서를 정할 수 있음.
+      없으면 위에서부터 기본값
+      tabindex가 있어도 disabled는 무시
+    checked : radio, checkbox에서 기본값으로 지정
+    required : 필수
+   -->
+  
+  <form action="">
+    <input type="text" name="a" value="name" required tabindex="4">
+    <input type="text" name="b" value="age" readonly tabindex="2">
+    <input type="text" name="c" value="dis" disabled tabindex="3">
+    <input type="text" name="d" placeholder="test" tabindex="1"><br><br>
+    <!-- checkbox, radio : value 값이 없으면 on으로 전송 -->
+    <input type="checkbox" name="e" checked> check1
+    <input type="checkbox" name="e"> check2 <br><br>
+
+    <textarea name="content" id="" rows="10" cols="50"></textarea><br>
+    <small>작은글씨</small><br>
+    <!-- pre : 들여쓰기를 실제 텍스트로 인지 -->
+    <pre>
+작은글씨를 쓸 경우
+    </pre><br>
+    <input type="submit" value="submit">
+  </form>
+</body>
+</html>

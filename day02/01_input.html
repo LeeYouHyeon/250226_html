@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input tag</title>
+</head>
+<body>
+  <!-- 
+    input tag : 단일 태그
+    속성값이 다양하기 때문에, 여러 가지 기능에 활용할 수 있음
+    form 태그를 같이 사용하는 경우가 많음
+    form 태그는 input 태그 안의 값을 form이 지정한 위치로 전송
+    <input type="속성명" 속성들...>
+   -->
+  <!-- input type="text" : 가장 많이 사용. 한글, 영어, 특수문자 등을 처리 -->
+   <!-- placeholder : 흐리게 표시, 입력창에 안내문구 같은 것을 입력할 때 사용
+      문자를 입력하면 사라짐 -->
+    <!-- name : 변수명, id : 태그를 구분할 수 있는 값
+    필수는 아니며, 없앨 수 있음 -->
+  <input type="text" name="" id="" value="기본값">
+  <input type="text" placeholder="미리보기">
+  <br>
+
+  <!--
+    type="button" : 일반버튼
+    type="submit" : 전송버튼 - form 태그 안의 값을 서버로 전송
+    type="reset" : 취소버튼 - form 태그 안에 있는 값을 리셋
+   -->
+  <hr>
+  <input type="button" value="button">
+  <input type="submit" value="submit">
+  <input type="reset" value="reset">
+
+  <hr>
+  <!-- form tag : 태그 안의 정보를 서버로 전송. action="" : 서버의 주소 -->
+    <!-- 데이터를 전송하는 방식(method) 2가지
+    get(기본값) : ? 주소 표시줄에 붙여서 (쿼리 스트링)
+    post : 데이터를 숨겨서 가는 방식 -->
+    <!-- request : 보낼 때, response : 받을 때
+    name = "변수명", value = "값"
+    action?변수명=값&변수명=값&.... : 쿼리 스트링은 띄어쓰기, 따옴표를 허용하지 않음
+      -->
+  <form action="">
+    <input type="text" name="name" placeholder="이름"><br>
+    <input type="text" name="age" placeholder="나이"><br>
+    <input type="text" name="password" placeholder="password"><br>
+    <input type="button" value="button">
+    <input type="submit" value="submit"> 
+    <input type="reset" value="reset">
+  </form>
+
+  <hr>
+  <!-- type="password" : 비밀번호 입력시 *로 가려줌 -->
+  <input type="password">
+
+  <hr>
+  <!-- type="checkbox" : 다중선택을 이용할 때 사용 -->
+    <input type="checkbox"> 사과
+    <input type="checkbox"> 오렌지
+    <input type="checkbox"> 바나나
+
+    <br>
+    <hr>
+    <form action="" method="get">
+      <input type="checkbox" name="fruit" value="apple"> 사과
+      <input type="checkbox" name="fruit" value="orange"> 오렌지
+      <input type="checkbox" name="fruit" value="banana"> 바나나
+      <input type="submit" value="submit">
+    </form>
+    <br><hr>
+
+    <!-- label : 다른 태그의 제목 역할을 하는 태그 
+     (lable)for="값" == (태그)id="값" => 해당 태그의 제목. 체크박스의 경우 lable을 클릭해도 체크박스가 선택됨
+     id : 하나의 html의 유일한 구분자
+     class : 중복 가능한 구분자 => js, css에서 사용
+    -->
+    <!-- checked : 기본 체크 옵션(radio, checkbox 공통) -->
+    <form action="" method="get">
+      <input type="checkbox" name="fruit" value="apple" id="apple" checked>
+      <label for="apple">사과</label>
+      <label for="orange">
+        <input type="checkbox" name="fruit" value="orange" id="orange"> 오렌지
+      </label>
+      <label for="banana">
+        <input type="checkbox" name="fruit" value="banana" id="banana"> 바나나
+      </label>
+
+      <!-- type:radio : name이 같은 값 중 하나만 선택 가능 -->
+      <label for="radioBanana">
+        <input type="radio" name="fruit2" value="banana" id="radioBanana"> 바나나
+      </label>
+      <label for="radioApple">
+        <input type="radio" name="fruit2" value="apple" id="radioApple"> 사과
+      </label>
+      <input type="submit" value="submit">
+    </form>
+    <hr>
+
+  <!--
+    form, lable, radio 버튼을 이용하여
+    10대, 20대, 30대, 40대 이상 중 하나를 선택할 수 있는 값을 생성
+    전송가능
+    -->
+  <form action="" method="get">
+    <input type="radio" name="age" value="10" id="10">
+    <label for="10"> 10대 </label>
+    <input type="radio" name="age" value="20" id="20" checked>
+    <label for="20">20대</label>
+    <input type="radio" name="age" value="30" id="30">
+    <label for="30">30대</label>
+    <input type="radio" name="age" value="40" id="40">
+    <label for="40">40대 이상</label>
+    <input type="submit" value="submit">
+  </form>
+  <hr>
+
+  <!-- type="color" : 색상을 선택할 때 사용. 색상정보는 16진수로 사용 
+   주소창에는 %23(16진수 6자리)-->
+  <form action="" method="get">
+    <input type="color" name="color">
+    <input type="submit" value="submit">
+  </form>
+  <hr>
+  <!-- 
+    type="month" : 년 월 일
+    type="week" : 1년의 몇째주
+    type="date" : 년월일
+    type="datetime-local" : 년월일시분초 (일반적으로 보는 달력)
+    type="time" : 시분초
+    jquery, 부트스트랩 datepicker를 주로 사용
+  -->
+  <input type="month"><br>
+  <input type="week"><br>
+  <input type="date"><br>
+  <input type="datetime-local"><br>
+  <input type="time"><br>
+
+  <!-- type="email" : email 형식 체크. 형식이 맞지 않으면 알림표시 -->
+  <form action="" method="get">
+    <input type="email" name="email">
+    <input type="submit" value="submit">
+  </form>
+
+  <hr>
+  <!-- type="search" : 문자열 뒤에 x 버튼이 생김 -->
+  <input type="search">
+  <!-- type="file" : 첨부파일 선택 -->
+  <input type="file"><br>
+  <!-- type="number" : 위아래 버튼이 생김. 숫자만 가능 -->
+  <input type="number" min="0", max="10"><br>
+  <!-- type="hidden" : 화면에서 안 보이게 숨김. 백엔드 개발 시 많이 사용 -->
+  <input type="hidden"><br>
+  <form action="">
+    <input type="hidden" name="name" value="영이">
+    <input type="text" name="nick">
+    <input type="submit" value="submit">
+  </form>
+  <br><hr>
+  <!-- 
+    type="image" : 그림을 넣어줌
+    src="그림위치(경로)" alt="그림이 표시되지 않았을 때의 대체문자"
+    <img> : 대체가능
+   -->
+  <input type="image" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTAyMjBfMjMg%2FMDAxNzQwMDMzOTA1NDMz.FezNa9QtuTLTr9hUONH6S-CgX5h78wb2Zt2MqFfOxM8g.-rZlXDGnv17TBYY6eb_Fm2gx2tXYH3JmJQfCB1mIB3Yg.PNG%2F10.png&type=a340" alt="강아지 그림">
+  <br>
+  <!-- 상대경로, 절대경로 
+   절대경로 : 드라이브부터 파일까지의 경로 
+   상대경로 : 내 파일부터 상대적인 경로
+    상위 폴더 : ../ -->
+  <input type="image" src="../image/고양이.jpg" alt="고양이 그림"><br>
+  <br>
+
+  <!-- type="url" : http:// 형식인지 체크 -->
+  <form action="">
+    <input type="url" name="url">
+    <input type="submit" value="submit">
+  </form>
+  <br>
+  <!-- type="range" : 상태바를 이요하여 범위값을 나타냄 -->
+  <label for="vol"> Volumn </label> <br>
+  0 <input type="range" id="vol" max="10" min="0" step="1"> 10
+  
+</body>
+</html>

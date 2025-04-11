@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>회원가입</title>
+</head>
+<body>
+  <form action="">
+    <table border="1">
+      <caption><h2>회원가입</h2></caption>
+      <tr>
+        <td>아이디</td>
+        <td><input type="text" name="id" required></td>
+      </tr>
+      <tr>
+        <td>비밀번호</td>
+        <td><input type="password" name="pw" required></td>
+      </tr>
+      <tr>
+        <td>비밀번호확인</td>
+        <td><input type="password" name="pwcheck" required></td>
+      </tr>
+      <tr>
+        <td>이메일</td>
+        <td><input type="email" name="email" required></td>
+      </tr>
+      <tr>
+        <td>성별</td>
+        <td>
+          <label for="male">
+            <input type="radio" name="mf" value="male" id="male">남성
+          </label>
+          <label for="female">
+            <input type="radio" name="mf" value="female" id="female">여성
+          </label>
+        </td>
+      </tr>
+      <tr>
+        <td>전화번호</td>
+        <td>
+          <input type="number" name="te1"> - <input type="number" name="tel2"> - <input type="number" name="tel3">
+        </td>
+      </tr>
+      <tfoot>
+        <tr>
+          <th colspan="2"><button type="submit">회원가입</button></th>
+        </tr>
+      </tfoot>
+    </table>
+  </form>
+</body>
+</html>
