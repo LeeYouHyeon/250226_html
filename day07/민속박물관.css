@@ -1,0 +1,132 @@
+@font-face {
+  font-family: noto_sans_kr;
+  src: url(../fonts/Noto_Sans_KR/NotoSansKR-VariableFont_wght.ttf);
+}
+body{
+  font-family: noto_sans_kr;
+  color: black;
+}
+.wrap{
+  width: 100%;
+  min-width: 1200px;
+}
+.inner{
+  width: 1170px;
+  margin: auto;
+  box-sizing: border-box;
+}
+/* header */
+header{
+  width: 100%;
+}
+header>.inner{
+  height: 115px;
+  position: relative;
+}
+header>.inner>h1{
+  position: absolute;
+  top: 15px;
+}
+header>.inner>.top-menu{
+  display: flex;
+  justify-content: right;
+  margin-top: 10px;
+}
+header>.inner>.top-menu>li{
+  padding: 8px 10px;
+  font-size: 15px;
+}
+header>.inner li>a:hover{
+  color: rgb(49, 136, 103);
+}
+header .top-menu .bold:hover{
+  color: black;
+}
+header>.inner>.nav>ul{
+  display: flex;
+  justify-content: center;
+  height: 40px;
+  align-items: flex-end;
+}
+header>.inner>.nav>ul>li{
+  margin: 0 40px;
+}
+header>.inner>.nav>ul>li>a{
+  font-size: 18px;
+  font-weight: 600;
+}
+.bold{
+  font-weight: 700;
+  padding-left: 10px;
+  color: #585858;
+}
+.before{
+  position: relative;
+}
+.before::before{
+  position: absolute;
+  content: "";
+  background-color: #e1e1e1;
+  width: 1px;
+}
+.before13::before{
+  top: 6px;
+  left: -10px;
+  height: 13px;
+}
+/* 슬라이드 그림 */
+section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 725px;
+  background-image: url(../image/lotteworld_museum/202005111050316900.jpg);
+}
+section>ul{
+  width: 95%;
+  display: flex;
+  justify-content: space-between;
+}
+main>.con-box{
+  width: 100%;
+  padding: 120px 0;
+}
+main>.con1>.inner{
+  height: 70px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main>.con1>.inner>a{
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main>.con1>.inner>a>img{
+  margin-right: 20px;
+}
+main>.con1>.inner>a>.time{
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+main>.con1>.inner>a>.time>p{
+  margin-right: 20px;
+}
+main>.con1>.inner>a>.time>.ti{
+  display: flex;
+  justify-content: center;
+  margin-right: 30px;
+}
+main>.con1 .bold{
+  color: black;
+}
+.before19::before{
+  top: 0px;
+  left: -15px;
+  height: 19px;
+}

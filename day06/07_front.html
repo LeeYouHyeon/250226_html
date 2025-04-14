@@ -9,6 +9,9 @@
     height : 100% => 세로의 너비만큼
     vh / vw : 모니터(브라우저) 기준 높이(%)
    -->
+  <!-- 
+    reset.css : 기본속성을 초기화. 프로젝트에 맞춰서 기본값을 조절해서 사용
+  -->
   <link rel="stylesheet" href="../reset.css">
   <style>
     body{
@@ -16,6 +19,11 @@
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
+
+      -webkit-user-select:none;
+      -moz-user-select:none;
+      -ms-user-select:none;
+      user-select:none;
     }
     .header-box{
       display: flex;
