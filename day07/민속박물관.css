@@ -18,6 +18,11 @@ body{
 /* header */
 header{
   width: 100%;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 20;
+  border-bottom: 1px solid #d9d9d9;
 }
 header>.inner{
   height: 115px;
@@ -88,6 +93,9 @@ section>ul{
   display: flex;
   justify-content: space-between;
 }
+main{
+  position: relative;
+}
 main>.con-box{
   width: 100%;
   padding: 120px 0;
@@ -129,4 +137,344 @@ main>.con1 .bold{
   top: 0px;
   left: -15px;
   height: 19px;
+}
+/* con2 : 상설전시 특별전시 */
+main>.con2{
+  background-image: url(../image/lotteworld_museum/mainCon1_bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0;
+}
+main>.con2>.inner{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 870px;
+  text-align: center;
+}
+main>.con2>.inner>h1{
+  color: white;
+  font-size: 40px;
+  font-weight: 300;
+}
+main>.con2>.inner>h3{
+  color: white;
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 60px;
+}
+main>.con2>.inner>ul{
+  width: 100%;
+}
+main>.con2>.inner>ul>li{
+  position: relative;
+}
+main>.con2>.inner>ul>.inner-box1{
+  float: left;
+}
+main>.con2>.inner>ul>.inner-box2{
+  float: right;
+}
+main>.con2>.inner>ul>li::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: calc(100% - 4px);
+  height: calc(100% - 4px);
+  border: 2px solid rgba(255, 255, 255, 0); /* 미리 위치를 잡아놓고 숨겨두는 방식 */
+  transition: 0.4s;
+}
+main>.con2>.inner>ul>li:hover{
+  cursor: pointer;
+}
+main>.con2>.inner>ul>li:hover::after{
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+main>.con2>.inner>ul>li>a>.img{
+  width: 574px;
+  height: 420px;
+  margin-bottom: 25px;
+}
+main>.con2>.inner>ul>li>a>.img1{
+  background-image: url(../image/lotteworld_museum/mainCon1_img1.jpg);
+}
+main>.con2>.inner>ul>li>a>.img2{
+  background-image: url(../image/lotteworld_museum/mainCon1_img2.jpg);
+}
+main>.con2>.inner>ul>li>a>p{
+  color: white;
+  font-size: 22px;
+  font-weight: 700;
+  padding-bottom: 30px;
+}
+/* con3 : 프로그램 */
+main>.con3{
+  background-image: url(../image/lotteworld_museum/mainCon2_bg.jpg);
+  background-repeat: no-repeat;
+}
+main>.con3>.inner{
+  height: 471px;
+  text-align: center;
+}
+main>.con3>.inner>h1{
+  font-size: 40px;
+  font-weight: 300;
+}
+main>.con3>.inner>p{
+  font-size: 18px;
+  font-weight: 200;
+  margin: 30px 0 60px;
+}
+main>.con3>.inner>ul{
+  position: relative;
+}
+main>.con3>.inner>ul>li{
+  position: absolute;
+  width: 375px;
+  top: 0;
+  transition: 0.4s;
+}
+main>.con3>.inner>ul>.prog1{
+  left: 0;
+}
+main>.con3>.inner>ul>.prog2{
+  left: 50%;
+  transform: translateX(-50%);
+}
+main>.con3>.inner>ul>.prog3{
+  right: 0;
+}
+main>.con3>.inner>ul>li>a>.textarea{
+  font-size: 22px;
+  font-weight: 700;
+  background-color: white;
+  padding: 25px 0 30px;
+}
+/*
+  호버하면 다른 객체가 변경되게 할 때
+  조상 자식(띄어쓰기)
+  부모>자식
+  형제~형제
+  혹은 자신을 조상으로 갖는 요소들에 한해 내부에 css를 줄 수도 있음
+*/
+main>.con3>.inner>ul>li:hover{
+  box-shadow: 15px 15px 30px 0px rgba(0, 0, 0, 0.25);
+  .textarea{
+    background-color: rgb(19, 136, 95);
+    color: white;
+  }
+}
+/* con4 : 박물관 소식 */
+main>.con4>.inner{
+  text-align: center;
+  margin-bottom: 40px;
+  height: 500px;
+}
+main>.con4>.inner>h1{
+  font-size: 40px;
+  font-weight: 300;
+}
+main>.con4>.inner>p{
+  font-size: 18px;
+  font-weight: 300;
+  margin: 30px 0 60px;
+}
+main>.con4>.inner>.news>.left{
+  width: 574px;
+  height: 402px;
+  float: left;
+  box-sizing: border-box;
+  border: 1px solid #d9d9d9;
+  text-align: left;
+  padding: 40px;
+}
+main>.con4>.inner>.news>.left>.title{
+  display: flex;
+  justify-content: space-between;
+}
+main>.con4>.inner>.news>.left>.title>p{
+  font-size: 22px;
+  font-weight: 700;
+}
+main>.con4>.inner>.news>.left>.title>a{
+  display: flex;
+  justify-content: space-around;
+}
+main>.con4>.inner>.news>.left>.title>a>p{
+  font-size: 15px;
+  font-weight: 300;
+  display: inline-block;
+  width: 50px;
+  line-height: 20px;
+}
+main>.con4>.inner>.news>.left>a>p{
+  font-size: 20px;
+  margin-top: 25px;
+  margin-bottom: 70px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+main>.con4>.inner>.news>.left>a>span{
+  color: #888;
+}
+main>.con4>.inner>.news>.left>ul{
+  margin-top: 30px;
+  border-top: 1px solid #d9d9d9;
+  padding-top: 12px;
+  height: 133px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+main>.con4>.inner>.news>.left>ul>li{
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+main>.con4>.inner>.news>.left>ul>li>a{
+  font-size: 17px;
+  font-weight: 400;
+  width: 400px;
+  height: 28px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  line-height: 28px;
+}
+main>.con4>.inner>.news>.left>ul>li>span{
+  font-size: 16px;
+  font-weight: 300;
+}
+main>.con4>.inner>.news>.right{
+  width: 574px;
+  height: 402px;
+  float: right;
+}
+main>.con4>.inner>.news>.right>.top>a{
+  width: 276px;
+  height: 188px;
+  font-size: 16px;
+  font-weight: 800;
+  border: 1px solid #d9d9d9;
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 30%;
+  line-height: 270px;
+}
+main>.con4>.inner>.news>.right>.top>.r1{
+  float: left;
+  background-image: url(../image/lotteworld_museum/mainCon3_util1_img1.png);
+}
+main>.con4>.inner>.news>.right>.top>.r2{
+  float: right;
+  background-image: url(../image/lotteworld_museum/mainCon3_util1_img2.png);
+}
+main>.con4>.inner>.news>.right>.btm{
+  position: relative;
+  clear: both;
+  float: left;
+  width: 574px;
+  height: 190px;
+  margin-top: 22px;
+  background-image: url(../image/lotteworld_museum/mainCon3_banner.jpg);
+  p, a{
+    text-align: left;
+    color: white;
+  }
+}
+main>.con4>.inner>.news>.right>.btm>p{
+  position: absolute;
+  left: 40px;
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 38px;
+}
+main>.con4>.inner>.news>.right>.btm>p:first-of-type{
+  top: 40px;
+}
+main>.con4>.inner>.news>.right>.btm>p:last-of-type{
+  font-size: 16px;
+  font-weight: 700;
+  bottom: 25px;
+}
+main>.con4>.inner>.news>.right>.btm>p>.more::after{
+  content: url(../image/lotteworld_museum/mainCon3_banner_icon.png);
+  margin-left: 10px;
+}
+footer{
+  border-top: 1px solid #d9d9d9;
+}
+footer>.inner>ul{
+  margin-top: 60px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #d9d9d9;
+}
+footer>.inner>ul>li{
+  display: inline;
+  margin-right: 20px;
+}
+footer>.inner>ul>li>a{
+  font-size: 16px;
+  font-weight: 300;
+}
+.red{
+  color: red;
+}
+footer>.inner>.footerBtm{
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 100px;
+}
+footer>.inner>.footerBtm>.left>.t>span{
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 300;
+  height: 25px;
+  margin-right: 15px;
+  line-height: 25px;
+}
+footer>.inner>.footerBtm>.left>.c{
+  font-size: 13px;
+  font-weight: 300;
+  margin-top: 30px;
+}
+footer>.inner>.footerBtm>.right>select{
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 1px solid #e0e0e0;
+  width: 210px;
+  height: 45px;
+  line-height: 45px;
+  padding-left: 20px;
+  padding-right: 35px;
+  font-size: 14px;
+  font-weight: 300;
+  appearance: none;
+  background-image: url(../image/lotteworld_museum/sel_icon.png);
+  background-repeat: no-repeat;
+  background-position: 91%, 0;
+  outline: none;
+}
+footer>.inner>.footerBtm>.right>select>option{
+  padding: 10px 10px;
+  font-size: 15px;
+  font-weight: 300;
+  color: #414141;
+}
+/* top button */
+main>.top{
+  display: block;
+  background-image: url(../image/lotteworld_museum/top_btn.png);
+  background-repeat: no-repeat;
+  width: 70px;
+  height: 40px;
+  position: absolute;
+  right: 40px;
+  bottom: 0;
 }

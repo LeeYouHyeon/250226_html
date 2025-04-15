@@ -7,9 +7,10 @@
   <link rel="stylesheet" href="../reset.css">
   <link rel="stylesheet" href="민속박물관.css">
 </head>
+<!-- https://adventure.lotteworld.com/museum/main/index.do -->
 <body>
   <!-- 전체 컨테이너 -->
-  <div class="wrap"> 
+  <div class="wrap" id="top"> 
     <header>
       <!-- 메뉴 헤더 -->
       <div class="inner">
@@ -62,20 +63,195 @@
       </div>
       <div class="con-box con2">
         <!-- 상설전시 특별전시 -->
-        <div class="inner"></div>
+        <div class="inner">
+          <h1>시대별 문화를 즐길 수 있는 전시</h1>
+          <h3>현재 진행중인 전시를 알아보세요.</h3>
+          <ul>
+            <li class="inner-box1">
+              <a href="">
+                <div class="img img1"></div>
+                <p>상설전시</p>
+              </a>
+            </li>
+            <li class="inner-box2">
+              <a href="">
+                <div class="img img2"></div>
+                <p>특별전시</p>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="con-box con3">
         <!-- 프로그램 -->
-        <div class="inner"></div>
+        <div class="inner">
+          <h1>민속박물관의 즐겁고 다양한 프로그램</h1>
+          <p>다양한 프로그램을 확인해보세요.</p>
+          <ul>
+            <li class="prog1">
+              <a href="">
+                <div class="img img1">
+                  <img src="../image/lotteworld_museum/mainCon2_img1.jpg" alt="">
+                </div>
+                <div class="textarea">
+                  <p>전통문화/역사교육</p>
+                </div>
+              </a>
+            </li>
+            <li class="prog2">
+              <a href="">
+                <div class="img img1">
+                  <img src="../image/lotteworld_museum/mainCon2_img2.jpg" alt="">
+                </div>
+                <div class="textarea">
+                  <p>전통공예체험</p>
+                </div>
+              </a>
+            </li>
+            <li class="prog3">
+              <a href="">
+                <div class="img img1">
+                  <img src="../image/lotteworld_museum/mainCon2_img3.jpg" alt="">
+                </div>
+                <div class="textarea">
+                  <p>문화행사</p>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
       <div class="con-box con4">
         <!-- 박물관 소식 -->
-        <div class="inner"></div>
+        <div class="inner">
+          <h1>민속박물관 소식을 한눈에!</h1>
+          <p>오늘의 민속박물관을 만나보세요.</p>
+          <div class="news">
+            <article class="left">
+              <div class="title">
+                <p>민속박물관 소식</p>
+                <a href="">
+                  <p>더보기</p>
+                  <img src="../image/lotteworld_museum/newsMoreBt_icon.png" alt="">
+                </a>
+              </div>
+              <a href="">
+                <p>민속박물관 K-오컬트 체험 <불청객> 운영 안내</p>
+                <span>2025.02.10</span>
+              </a>
+              <ul>
+                <li>
+                  <a href="">국가유산체험센터 오픈 안내</a>
+                  <span>2024.04.18</span>
+                </li>
+                <li>
+                  <a href="">[롯데월드X제로월드] 두번째 방탈출 <바람,우리는 그저 바람이었소> 오픈</a>
+                  <span>2022.11.09</span>
+                </li>
+                <li>
+                  <a href="">[롯데월드X제로월드] 방탈출 <아랑 餓浪 : 굶주린 이리></a>
+                  <span>2021.10.21</span>
+                </li>
+              </ul>
+            </article>
+            <article class="right">
+              <div class="top">
+                <a href="" class="r1">이용 문의</a>
+                <a href="" class="r2">오시는 길</a>
+              </div>
+              <div class="btm">
+                <p>우리 고유의 옛멋과<br>
+                  품격을 선도합니다
+                </p>
+                <p>
+                  <a href="" class="more">전통혼례 바로가기</a>
+                </p>
+              </div>
+            </article>
+          </div>
+        </div>
       </div>
+      <a href="#top" class="top"></a>
     </main>
     <footer>
       <!-- footer -->
-      <div class="inner"></div>
+      <div class="inner">
+        <ul>
+          <li><a href="">롯데월드 소개</a></li>
+          <li><a href="">제휴·입점·사업문의</a></li>
+          <li><a href="">이용약관</a></li>
+          <li><a href="" class="red">개인정보처리방침</a></li>
+          <li><a href="">사이트맵</a></li>
+        </ul>
+        <div class="footerBtm">
+          <div class="left">
+            <div class="t">
+              <span>서울특별시 송파구 올림픽로 240 호텔롯데 롯데월드</span>
+              <span class="before before13">대표자:권오상</span>
+            </div>
+            <div class="t">
+              <span>사업자등록번호 : 219-85-00014</span>
+              <span class="before before13">통신판매업신고번호 : 송파 제5513호</span>
+              <span class="before before13">대표번호 1661-2000</span>
+            </div>
+            <div class="c">COPYRIGHT 2018 LOTTEWORLD. ALL RIGHTS RESERVED.</div>
+          </div>
+          <div class="right">
+            <select id="selectFamilySite" title="계열사 관련 사이트 새창열기">
+              <option value="">계열사 관련 사이트</option>
+              <option value="https://www.lotte.co.kr/main.do">LOTTE Family</option>
+              <option value="https://www.lottewellfood.com/">롯데웰푸드</option>
+              <option value="https://mall.lottechilsung.co.kr/display/displayShop.lecs?displayNo=CF1A07A01&stonType=P">롯데칠성음료(음료BG)</option>
+              <option value="https://company.lottechilsung.co.kr/kor/main/index.do">롯데칠성음료(주류BG)</option>
+              <option value="https://www.lotteshopping.com/main">롯데백화점</option>
+              <option value="https://company.lottemart.com/">롯데마트</option>
+              <option value="https://www.lotteon.com/p/display/main/lottefresh">롯데슈퍼</option>
+              <option value="https://www.7-eleven.co.kr/">코리아세븐</option>
+              <option value="https://www.e-himart.co.kr/app/display/showDisplayShop?originReferrer=himartindex">롯데하이마트</option>
+              <option value="https://www.lottehomeshopping.com/user/main/index.lotte">롯데홈쇼핑</option>
+              <option value="https://www.lotteon.com/p/display/main/lotteon">롯데쇼핑e-커머스</option>
+              <option value="https://www.lottecinema.co.kr/NLCHS">롯데시네마</option>
+              <option value="https://store-kr.uniqlo.com/">FRL코리아</option>
+              <option value="https://www.lottecon.co.kr/">롯데건설</option>
+              <option value="https://www.lottecm.com/ko/main.do">롯데건설 CM사업본부</option>
+              <option value="https://www.lotteglogis.com/">롯데글로벌로지스</option>
+              <option value="https://www.lotterentacar.net/hp/kor/main/index.do">롯데렌탈</option>
+              <option value="http://www.lottemembers.com/">롯데멤버스</option>
+              <option value="https://kr.lottedfs.com/main/index.do">롯데면세점</option>
+              <option value="https://kr.lottedfs.com/main/index.do">롯데면세점부산</option>
+              <option value="https://kr.lottedfs.com/main/index.do">롯데면세점제주</option>
+              <option value="https://www.lottepnd.com/main.do">롯데물산</option>
+              <option value="https://www.lottemuseum.com/">롯데뮤지엄</option>
+              <option value="http://www.lotteineos.com/">롯데이네오스화학</option>
+              <option value="https://www.lotte.co.kr/csv/main.do">롯데사회공헌사이트</option>
+              <option value="https://www.lotteintl.com/">롯데상사</option>
+              <option value="https://www.lotteskyhill.com/">롯데스카이힐 C.C</option>
+              <option value="https://www.asahibeerk.com/">롯데아사히주류</option>
+              <option value="https://www.lotteal.co.kr/">롯데알미늄</option>
+              <option value="https://www.lottemcc.com/index.do">롯데엠시시</option>
+              <option value="https://www.lotteworld.com/gate.html">롯데월드</option>
+              <option value="https://www.lottelmsc.com/">롯데피플네트웍스</option>
+              <option value="https://www.lotteacademy.co.kr/login/loginForm.do">롯데인재개발원</option>
+              <option value="http://www.lottedevelop.com/">롯데자산개발</option>
+              <option value="https://www.giantsclub.com/html/">롯데자이언츠</option>
+              <option value="https://www.lottefinechem.com/">롯데정밀화학</option>
+              <option value="https://www.lotteinnovate.com/">롯데이노베이트</option>
+              <option value="https://www.lottejtb.com/">롯데제이티비</option>
+              <option value="https://www.lotternd.com/kor/main/main.html">롯데중앙연구소 </option>
+              <option value="https://www.lottegrs.com/main.jsp">롯데지알에스</option>
+              <option value="https://recruit.lotte.co.kr/">롯데채용사이트</option>
+              <option value="https://www.lottecap.com/ma/ma/MAMA00100">롯데캐피탈</option>
+              <option value="https://www.lottechem.com/">롯데케미칼</option>
+              <option value="https://www.lotteconcerthall.com/kor">롯데콘서트홀</option>
+              <option value="https://www.lottehotel.com/global/ko.html">롯데호텔</option>
+              <option value="https://www.daehong.com/">대홍기획</option>
+              <option value="https://www.lottehotel.com/busan-hotel/ko.html">부산롯데호텔</option>
+              <option value="https://kr.canon/main">캐논코리아 주식회사</option>
+              <option value="https://www.fujifilm.co.kr/main.do">한국후지필름</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </footer>
   </div>
 </body>
