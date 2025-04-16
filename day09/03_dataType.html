@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>변수나 상수에 할당할 수 있는 값의 종류</h1>
+  <ul>
+    <li>
+      숫자 : Number <br>
+      정수, 상수, NaN(not a number : 숫자가 아님)
+    </li>
+    <li>
+      문자 : String
+    </li>
+    <li>
+      boolean : true / false
+    </li>
+    <li>
+      객체 : Object => 1개 이상의 데이터가 특정한 구조를 가지고 있는 형태 <br>
+        {키 : 값} {} <br>
+        아무것도 없는 것도 하나의 데이터로 인정해 객체로 구성 가능
+    </li>
+    <li>
+      배열 :  Array => [1, 2, 3, 4] 형태의 집합<br>
+        java에서의 list <br>
+        index, length가 있음
+    </li>
+    <li>
+      알 수 없는 값 : null => 인지가 안 됨
+    </li>
+    <li>
+      미지정 : undefined => 값이 할당되지 않음
+    </li>
+  </ul>
+  <script>
+    let num = 123;
+    let str = 'hong';
+    let bool = true;
+    let obj = {
+      name:'hong',
+      age:20
+    };
+    let obj2 = new Object(); // 자바스크립트 내장 객체. 잘 사용하지 않음
+    let arr = [1, 'str', [1, 2, 3], {}];
+    let arr2 = new Array();
+    let undi = undefined;
+    let undi2;
+    let ne = null;
+
+    console.log(typeof num);
+    console.log(typeof str);
+    console.log(typeof bool);
+    console.log(typeof obj);
+    console.log(obj);
+    console.log(typeof obj2);
+    console.log(typeof arr);
+    console.log(arr);
+    console.log(typeof arr2);
+    console.log(typeof undi);
+    console.log(typeof undi2);
+    console.log(typeof ne);
+  </script>
+  <br>
+  <ol>
+    <li>
+      기본 자료형 : 값이 메모리의 주소값을 가리키는 곳에 직접 할당되는 값
+      <br>number, boolean, string(참조 자료형이지만 기본 자료형처럼 사용)
+    </li>
+    <li>
+      참조 자료형 : 값이 저장되어있는 주소를 할당
+      <br>기본 자료형 이외 전부(string, array, object, function, null, undefined)
+    </li>
+    <li>
+      == , != : 값만 비교
+      <br>123 == '123'
+      <br>===, !== : 값과 타입을 같이 비교
+      <br>123 !== '123'
+    </li>
+  </ol>
+  <script>
+    let num1 = 10;
+    let num2 = '10';
+    console.log(`num1 : ${num1} / ${typeof num1}`);
+    console.log(`num2 : ${num2} / ${typeof num2}`);
+    console.log(num1 == num2);
+    console.log(num1 === num2);
+  </script>
+</body>
+</html>
