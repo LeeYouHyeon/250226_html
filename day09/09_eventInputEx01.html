@@ -6,8 +6,8 @@
   <title>Document</title>
   <style>
     fieldset{
-      padding: 10px;
-      max-width: 250px;
+      padding: 20px;
+      max-width: 240px;
     }
   </style>
 </head>
@@ -38,9 +38,13 @@
         input += `<li>${score.id} : ${num}</li>`;
         sum += num;
       }
+
+      // 반올림 방법
+      // 1. Math.round() : 정수로 변환(소숫점이 없음)
+      // 2. Number의 .toFixed(n) 메서드
       document.getElementById('result').innerHTML = input + `
-        <li style="list-style=none">sum : ${sum}</li>
-        <li style="list-style=none">avg : ${(sum/scores.length).toFixed(2)}</li>
+        <li style="list-style:none">sum : ${sum}</li>
+        <li style="list-style:none">avg : ${(sum/scores.length).toFixed(2)}</li>
       `;
     }
   </script>

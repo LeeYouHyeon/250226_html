@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>type-convert</title>
+</head>
+<body>
+  <h1>타입 변환 casting (형변환)</h1>
+  <ul>
+    <li>
+      문자 -> 숫자 : Number("string"), parseInt("1"), parseFloat('0.5')
+    </li>
+    <li>
+      숫자 -> 문자 : 123.toString()
+    </li>
+    <li>
+      문자 -> boolean : Boolean("true")
+    </li>
+    <li>
+      boolean -> 문자 : String(true)
+    </li>
+    <li>
+      number -> boolean : Boolean(1) <br>
+      0, NaN, undefined, null은 false, 나머지는 true
+    </li>
+    <li>
+      boolean -> number : Number(true)
+    </li>
+  </ul>
+  <script>
+    console.log(typeof String(true));
+    console.log(Boolean(1), typeof Boolean(1));
+    console.log(Number(true), typeof Number(true));
+  </script>
+</body>
+</html>

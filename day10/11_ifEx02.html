@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <form action="">
+    <fieldset>
+      <legend>성적확인</legend>
+      이름: <input type="text" id="name"><br>
+      국어: <input type="text" id="kor" class="score"><br>
+      영어: <input type="text" id="eng" class="score"><br>
+      수학: <input type="text" id="math" class="score"><br>
+      과학: <input type="text" id="science" class="score"><br>
+      역사: <input type="text" id="history" class="score"><br>
+      <button type="button" id="btn" onclick="getStats()">성적계산</button>
+    </fieldset>
+  </form>
+  <ul id="result"></ul>
+  <script>
+
+    // 이름, 합계, 평균, 합격여부 (평균 60점 이상)
+    // 입력한 성적의 값이 0~100 사이의 값이 아니라면 alert 띄우기
+    function getStats(){
+      let name = document.getElementById('name').value;
+      let scores = document.getElementsByClassName('score');
+      let sum = 0;
+      for (const score of scores) {
+        let num = Number(score.value);
+        if (isNaN(num)) {
+          alert(`숫자가 아닙니다.`);
+          return;
+        }
+        if (num < 0 || num > 100) {
+          alert('0~100 사이의 값을 입력해주세요.');
+          return;
+        }
+        sum += num;
+      }
+      let avg = (sum/scores.length).toFixed(2);
+
+      let input = `<li>이름 : ${name}</li>`;
+      input += `<li>합계 : ${sum}</li>`;
+      input += `<li>평균 : ${avg}</li>`;
+      input += `<li>${avg >= 60 ? 'PASS' : 'FAIL'}</li>`;
+
+      document.getElementById('result').innerHTML = input;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    li{
+      padding: 2px 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>String : 가장 많이 다루는 데이터 타입</h1>
+  <ul>
+    <li>
+      java에서의 String method와 거의 유사함
+    </li>
+    <li>
+      문자 데이터는 index(0부터 시작)를 가지고 있음
+    </li>
+    <li>
+      문자열 값 내에 br 태그로 개행을 하는 것은 추천하지 않음
+    </li>
+    <li>
+      length : 문자열의 총 길이
+    </li>
+    <li>
+      new String() : 객체 타입으로 선언 가능 / 거의 안 씀
+    </li>
+  </ul>
+  <ul>
+    <li>
+      추출 관련 메서드 : substring(), substr(), slice()
+    </li>
+    <li>
+      문자 대체 관련 메서드 : replace(str, old, new) : 처음 찾은 값만 가능
+    </li>
+    <li>
+      trim() : 양쪽 공백 제거
+    </li>
+    <li>
+      padStart(str, 길이, 채울 문자) / padEnd() <br>
+      예 : 010104-1******(padEnd())
+    </li>
+    <li>
+      charAt(idx) / indexOf(str)
+    </li>
+    <li>
+      startWith(str, 문자) / endWith() <br>
+      문자가 str의 맨 앞/뒤에 존재하는지 확인 <br>
+      return true / false <br>
+      예 : 첨부파일 확장자 체크
+    </li>
+  </ul>
+
+  <script>
+    let str = 'Apple, Banana, Orange';
+    console.log(str.slice(0, 5)); // substring()과 같은 사용법
+    console.log(str.slice(-6)); // 끝에서부터 추출 가능
+    // slice(startIndex, endIndex);
+    // substring(startIndex, endIndex);
+    // substr(startIndex, count); << 주의
+
+    console.log(str.slice(7, 13));
+    console.log(str.substr(7, 6));
+
+    let str2 = 'Hello java World~!! java';
+    console.log(str2.replace('java', 'javascript')); // 첫 값만 변경
+    console.log(str2.replaceAll('java', 'javascript')); // 전부 변경
+    // /(찾으려는 문자열)/옵션 => i (대소문자 구분 X), g (전체 검색)
+    // 정규표현식 참고 (RegExp) : https://inpa.tistory.com/entry/JS-%F0%9F%93%9A-%EC%A0%95%EA%B7%9C%EC%8B%9D-RegExp-%EB%88%84%EA%B5%AC%EB%82%98-%EC%9D%B4%ED%95%B4%ED%95%98%EA%B8%B0-%EC%89%BD%EA%B2%8C-%EC%A0%95%EB%A6%AC
+    // https://www.regexlib.com/?AspxAutoDetectCookieSupport=1
+    console.log(str2.replace(/java/g, "javascript"));
+
+    let padText = 'abc';
+    console.log(padText.padEnd(10, "-")); //10 전체길이
+    let rNum = '010101-4234567';
+    console.log(rNum.substr(0, 8).padEnd(14, '*'));
+    if (Number(rNum.charAt(7)) % 2 == 0) {
+      console.log('여성');
+    } else {
+      console.log('남성');
+    }
+
+    let fullFileName = '20250417_javascript.string_method.html';
+    const datePicker = fileName => fileName.substring(0, fileName.indexOf("_")),
+    namePicker = fileName => fileName.substring(fileName.indexOf("_") + 1, fileName.lastIndexOf(".")),
+    extPicker = fileName => fileName.substring(fileName.lastIndexOf(".") + 1);
+    // 작성일자 추출 20250417
+    console.log(datePicker(fullFileName));
+    // 파일명만 추출 javascript.string_method
+    console.log(namePicker(fullFileName));
+    // 확장자만 추출 html
+    console.log(extPicker(fullFileName));
+  </script>
+</body>
+</html>

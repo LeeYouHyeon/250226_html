@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Date</title>
+</head>
+<body>
+  이름: <input type="text" id="name"> <br>
+  주민번호: <input type="text" id="rNum"> <br>
+  <button type="button" id="btn">확인</button>
+  <h3 id="result"></h3>
+  
+  <script>
+    document.getElementById('btn').addEventListener('click', () => {
+      let rNum = document.getElementById('rNum').value;
+      let birth = rNum.substring(0, rNum.indexOf('-'));
+      let indicator = Number(rNum.charAt(rNum.indexOf("-") + 1));
+      let mf = (indicator % 2 == 0) ? '여' : '남';
+
+      let year = Number(rNum.substring(0, 2)) + 1900;
+      if (indicator >= 3) {
+        year += 100;
+      }
+      let age = new Date().getFullYear() - year;
+
+      let input = ``;
+      input += `이름: ${document.getElementById('name').value}, `;
+      input += `생년월일: ${birth}, `;
+      input += `나이: ${age}, `;
+      input += `성별: ${mf}`;
+
+      document.getElementById('result').innerText = input;
+    });
+  </script>
+</body>
+</html>

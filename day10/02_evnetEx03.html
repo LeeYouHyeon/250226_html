@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ol, li{
+      list-style: square;
+      font-weight: 400;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <form action="">
+    가격 : <input type="text" id="price">원 <br>
+    할인율 : <input type="text" id="rate">% <br>
+    <button type="button" onclick="showPrice()">할인가격 계산</button>
+  </form>
+  <!-- 가격, 할인율, 할인금액, 지불금액 -->
+  <h3 id="result"></h3>
+  <script>
+    // getElementById : 값이 1개 => 단일 값
+    // getElementByClassName : 값이 여러개일 수 있음 => 실제 갯수에 상관없이 배열로 들어옴
+
+    function showPrice() {
+      let price = Number(document.getElementById('price').value);
+      let rate = Number(document.getElementById('rate').value);
+      if (isNaN(price) || isNaN(rate) || rate > 100 || price < 0 || rate < 0) {
+        document.getElementById('result').innerHTML = `잘못된 입력`;
+        return;
+      }
+
+      document.getElementById('result').innerHTML = `
+      <ol id="showPrice"><li>가격 : ${price}원</li>
+        <li>할인율 : ${rate}%</li>
+        <li>할인금액 : ${Math.round(price*rate/100)}원</li>
+        <li>지불금액 : ${Math.round(price*(1 - rate/100))}원</li>
+      </ol>`;
+    }
+  </script>
+</body>
+</html>

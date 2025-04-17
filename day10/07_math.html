@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math</title>
+</head>
+<body>
+  <h1>수학 관련 함수</h1>
+  <ul>
+    <li>
+      java와 비슷한 함수 사용
+    </li>
+    <li>
+      Math.round(), Math.ceil(), Math.floor(), Math.random(), Math.max(), Math.min(), ...
+    </li>
+    <li>
+      Math.random() : [0, 1)
+    </li>
+    <li>
+      시작값부터 갯수만큼 난수 생성 : Math.floor(Math.random()*갯수) + 시작값
+    </li>
+  </ul>
+  <script>
+    const random = (min, max) => Math.floor(Math.random()*(max - min + 1) + min);
+    const printRandom = (min, max) => {
+      console.log(random(min, max));
+    }
+
+    // 1~10까지의 난수 생성
+    console.log(random(1, 10));
+
+    // 범위의 난수 발생
+    // 시작값이 1이 아닐 경우 
+    // 파라미터 값이 min, max 10~20 난수
+    printRandom(10, 20);
+    printRandom(100, 200);
+  </script>
+</body>
+</html>

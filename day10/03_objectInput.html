@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #table td:first-of-type{
+      text-align: center;
+      font-weight: 600;
+    }
+    li{
+      list-style: inside;
+    }
+  </style>
+</head>
+<body>
+  <h1>구조에 따른 자바스크립트 객체 생성</h1>
+  <form action="">
+    이름: <input type="text" id="name"><br>
+    주소: <input type="text" id="addr"><br>
+    좋아하는 리스트<br>
+    리스트1: <input type="text" class="favor"><br>
+    리스트2: <input type="text" class="favor"><br>
+    리스트3: <input type="text" class="favor"><br>
+    이메일: <input type="text" id="email"><br>
+    내가 가장 좋아하는 것: <input type="text" id="wanna"><br>
+    <button type="button" onclick="getData()">객체로 전송</button>
+    <button type="button" id="printBtn">표로 출력</button>
+  </form>
+  <table id="table"></table>
+
+  <script>
+    const createUser = (name, addr, favors, email, wanna) => {
+      return {
+        'name': name,
+        'addr': addr,
+        favors: {
+          favor1: favors[0].value,
+          favor2: favors[1].value,
+          favor3: favors[2].value
+        },
+        'email' : email,
+        'wanna' : wanna
+      };
+    };
+
+    function getUser() {
+      return createUser(
+        document.getElementById('name').value,
+        document.getElementById('addr').value,
+        document.getElementsByClassName('favor'),
+        document.getElementById('email').value,
+        document.getElementById('wanna').value
+      );
+    }
+    function getData() {
+      console.log(getUser());
+    }
+    document.getElementById('printBtn').addEventListener('click', () => {
+      let user = getUser();
+      document.getElementById('table').innerHTML = `
+      <tbody>
+      <tr>
+        <td>이름</td>
+        <td>${user.name}</td>
+      </tr>
+      <tr>
+        <td>거주지</td>
+        <td>${user.addr}</td>
+      </tr>
+      <tr>
+        <td>좋아하는 리스트</td>
+        <td>
+            <ol>
+              <li>${user.favors.favor1}</li>
+              <li>${user.favors.favor2}</li>
+              <li>${user.favors.favor3}</li>
+            </ol>
+        </td>
+      </tr>
+      <tr>
+        <td>이메일</td>
+        <td>${user.email}</td>
+      </tr>
+      <tr>
+        <td>가장 좋아하는 것</td>
+        <td>${user.wanna}</td>
+      </tr>
+    </tbody>
+    <style>
+      #table, #table td{
+        border : 1px solid black;
+      }
+    </style>
+    `;
+    })
+  </script>
+</body>
+</html>

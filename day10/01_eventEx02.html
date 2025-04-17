@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>Hello World~!!</h1>
+  <h3 id="h3"></h3>
+
+  <script>
+    // alert : 안내문을 띄워주는 창 => 확인버튼
+    // confirm : 확인(true) / 취소 (false)
+    // prompt : 값을 입력받을 수 있음 => alert + input
+    alert("Hello~!!");
+    let con = confirm("pass?");
+    console.log(con);
+
+    let pro = prompt('이름을 입력해주세요.');
+    document.getElementById('h3').innerText = pro;
+  </script>
+</body>
+</html>

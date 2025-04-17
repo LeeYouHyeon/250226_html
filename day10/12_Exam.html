@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습문제</title>
+  <style>
+    table{
+      display: none;
+    }
+    table.listen {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>구조에 따라 자바스크립트 객체를 만들어 보자</h1>
+  <form action="">
+    가수명 : <input type="text" id="name"> <br>
+    나이 : <input type="text" id="age"> <br>
+    플레이리스트 <br>
+    리스트1 : <input type="text" id="list1"> <br>
+    리스트2 : <input type="text" id="list2"> <br>
+    리스트3 : <input type="text" id="list3"> <br>
+    <button type="button" id="btn">객체로 전송</button>
+  </form>
+  <table border="1" id="table"></table>
+
+  <script>
+    const musician = (name, age, song1, song2, song3) => {
+      return {
+        name : name,
+        age : age,
+        playlist : {
+          first : song1,
+          second : song2,
+          third : song3
+        }
+      }
+    }; // 생성자
+
+    document.getElementById('btn').addEventListener('click', () => {
+      let singer = musician(
+      document.getElementById('name').value,
+      Number(document.getElementById('age').value),
+      document.getElementById('list1').value,
+      document.getElementById('list2').value,
+      document.getElementById('list3').value
+      );
+
+      if (isNaN(singer.age) || singer.age < 0 || !Number.isInteger(singer.age)) {
+        alert('잘못된 입력');
+        return;
+      }
+
+      let input = '';
+      input += `<caption>가수 정보</caption>`;
+      input += `<tr><td>이름</td><td>${singer.name}</td></tr>`;
+      input += `<tr><td>나이</td><td>${singer.age}</td></tr>`;
+      input += `<tr><td>플레이리스트</td><td><ul>`;
+      input += `<li>${singer.playlist.first}</li>`;
+      input += `<li>${singer.playlist.second}</li>`;
+      input += `<li>${singer.playlist.third}</li>`;
+      input += `</ul></td></tr>`;
+      
+      document.getElementById('table').className = 'listen';
+      document.getElementById('table').innerHTML = input;
+    });
+  </script>
+</body>
+</html>
