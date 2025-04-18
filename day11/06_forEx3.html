@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>exam</title>
+  <style>
+    h3{
+      display: none;
+    }
+    .clicked{
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    가위바위보를 10번 하여 승률 출력
+  </h1>
+  <button type="button" id="btn">승률 출력</button>
+  <h3 id="h3">
+    10번 한 결과 <span id="result"></span>
+  </h3>
+  <script>
+    // 가위바위보 게임
+    // com = random / player = random
+    // 1 = 가위, 2 = 바위, 3 = 보
+    // 승률 계산 (승 / (10 - 무))*100. 소숫점 2자리까지 표현
+    // 콘솔에 컴퓨터와 플레이어에 대한 값을 출력
+
+    const choice = ['가위', '바위', '보'];
+    const resultText = ['무', '승', '패'];
+    function winLose(com, user) { // 이기면 1, 지면 -1, 비기면 0
+      let indicator = user - com;
+      if (indicator < 0) indicator += 3;
+
+      return indicator;
+    }
+
+    document.getElementById('btn').addEventListener('click', () => {
+      let count = 1, table = [0, 0, 0];
+      while (count <= 10) {
+        let com = Math.floor(Math.random()*3), user = Math.floor(Math.random()*3);
+        let result = winLose(com, user);
+        table[result]++;
+        console.log(`${count}. ${choice[com]} vs ${choice[user]} : ${resultText[result]}`);
+        count++;
+      }
+      let stat = '';
+      stat += table[1] + '승 ';
+      stat += table[2] + '패 ';
+      stat += table[0] + '무';
+      console.log(stat);
+
+      let input;
+      if (table[2] == 10) {
+        input = '전부 비겼습니다.';
+      } else {
+        input = `승률은 ${(table[1]/(table[1] + table[2])*100).toFixed(2)}%입니다.`;
+      }
+
+      document.getElementById('result').innerText = input;
+      document.getElementById('h3').className = 'clicked';
+    });
+    
+  </script>
+</body>
+</html>

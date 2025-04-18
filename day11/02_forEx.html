@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .printAllTables{
+      width: 880px;
+      border-top: 1px solid black;
+    }
+    .printAllTables>.row{
+      display: block;
+      width: 880px;
+      border-left: 1px solid black;
+      border-bottom: 1px solid black;
+    }
+    .printAllTables>.row>.item{
+      font-size: 15px;
+      display: inline-block;
+      width: 110px;
+      box-sizing: border-box;
+      text-align: center;
+      padding: 5px 0;
+      border-right: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <!-- 구구단 -->
+  <input type="text" id="dan">단 구구단
+  <button type="button" onclick="printTable()">출력</button>
+  <h3 id="h3"></h3>
+
+  <hr>
+  <button type="button" onclick="printAllTables()">구구단 전체 출력</button>
+  <div id="gugu"></div>
+
+  <script>
+    function printTable() {
+      let dan = Number(document.getElementById('dan').value);
+      if (isNaN(dan)) {
+        alert('숫자가 아닙니다.');
+        document.getElementById('dan').value = null;
+        return;
+      }
+      if (dan <= 1 || dan > 9) {
+        alert('2~9 사이의 수를 입력해주세요.');
+        document.getElementById('dan').value = null;
+        return;
+      }
+      let count = 1, input = '<ul>';
+      while (count < 10) {
+        input += `<li>${dan}*${count} = ${dan*count}</li>`;
+        count++;
+      }
+      input += `</ul>`;
+
+      document.getElementById('h3').innerHTML = input;
+    }
+
+    function printAllTables() {
+      let input = '<div class="printAllTables">';
+      for (let count = 1; count <= 9; count++) {
+        input += '<div class="row">';
+        for (let dan = 2; dan <= 9; dan++) {
+          input += `<div class="item">${dan}*${count}=${dan*count}</div>`;
+        }
+        input += '</div>';
+      }
+      input += '</div>';
+
+      document.getElementById('gugu').innerHTML = input;
+    }
+  </script>
+</body>
+</html>

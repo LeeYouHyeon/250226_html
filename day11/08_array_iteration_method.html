@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    Array Iteration Method : 순환 구조에서 사용하는 메서드들
+  </h1>
+  <ul>
+    <li>
+      arrray.reduce(callback function(total, value, index, self), [init value]); <br>
+      연산의 누적값을 리턴
+    </li>
+    <li>
+      array.every((value, index, self) => boolean) <br>
+      콜백 함수의 리턴 조건에 모든 배열의 값이 만족하면 true
+    </li>
+    <li>
+      array.some((v, i, s) => boolean) <br>
+      or에 해당
+    </li>
+    <li>
+      array.indexOf('str', [start index]); <br>
+      해당 문자열이 존재하는 index를 리턴
+    </li>
+    <li>
+      array.lastIndexOf('str', [start index]);
+    </li>
+    <li>
+      array.find((v, i, s) => boolean); <br>
+      조건에 맞는 첫번째 값을 리턴
+    </li>
+    <li>
+      array.findIndex((v, i, s) => boolean); <br>
+      조건에 맞는 첫 값의 index를 리턴
+    </li>
+    <li>
+      array.form('객체') : 순서가 있거나 순환구조를 가지고 있는 객체를 배열로 변환
+    </li>
+    <li>
+      array.keys() : 배열에서 사용중인 index를 새로운 배열로 리턴 <br>
+      주로 object에서 사용
+    </li>
+    <li>
+      array.entries() : index: value의 구조로 새로운 배열을 만들어서 리턴
+    </li>
+    <li>
+      array.includes('str') : 배열에 str이 있는지 체크하여 boolean으로 리턴
+    </li>
+  </ul>
+  <script>
+    const fruits = ['apple', 'banana', 'orange', 'apple', 'mango'];
+    let f = fruits.entries(); // array iterator
+    console.log(f);
+    for (let g of f) {
+      console.log(g);
+    }
+    
+    let find = fruits.indexOf('apple', 1);
+    console.log(find);
+
+    let k = fruits.keys();
+    console.log(k);
+    for(let g of k) {
+      console.log(g);
+    }
+
+    const arr = [2, 7, 5, 4, 8, 9];
+    // reduce()
+    let sum = arr.reduce((total, value) => total + value, 100);
+    console.log(sum);
+
+    let fi = arr.find(v => v > 5);
+    console.log(fi);
+    let fi2 = arr.find(v => v > 10);
+    console.log(fi2);
+    console.log(arr.some(n => n%2 == 0));
+  </script>
+</body>
+</html>

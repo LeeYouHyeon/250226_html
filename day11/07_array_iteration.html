@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    배열의 순환할 수 있는 구조를 이용하여 특정 기능을 수행하는 메서드
+  </h1>
+  <ul>
+    <li>
+      array.forEach(callback function) <br>
+      일반 반복문과 유사한 형태
+    </li>
+    <li>
+      array.map(callback function) <br>
+      forEach의 결과를 리턴하여 새로운 배열을 생성
+    </li>
+    <li>
+      array.filter(callback function) <br>
+      map처럼 수행하면서 true 값만 필터링하여 배열로 return
+    </li>
+  </ul>
+  <script>
+    const numArr = [3, 5, 1, 4, 2, 6, 7, 8];
+    const strArr = 'achltr'.split('');
+    console.log("---forEach(value, index, array)---");
+    numArr.forEach(function (v, i, a){
+      console.log(v, i, a);
+    });
+    console.log("---forEach(value, index)---");
+    let sum = 0;
+    numArr.forEach((v, i) => {
+      console.log(`${i}. ${v}`);
+      sum += v;
+    });
+    console.log(sum);
+    console.log('---strArr---');
+    let str = '';
+    strArr.forEach((v, i) => {
+      console.log(i); // index만 출력
+    });
+
+    function printNumber(v, i, a) {
+      console.log(i, v);
+    }
+    console.log('--invoke callback function--');
+    numArr.forEach(printNumber);
+    strArr.forEach(printNumber);
+
+    console.log('---map---');
+    console.log(numArr.map(v => 2*v));
+
+    const newStrArr2 = strArr.forEach((v, i) => `%${i}, ${v}`);
+    console.log(newStrArr2);
+
+    console.log('---filter---');
+    const odds = numArr.filter(v => v%2 == 1);
+    console.log(odds);
+
+    // filter를 이용하여 짝수만 출력
+    console.log('---numArr에서 짝수만---');
+    numArr.filter(n => n%2 == 0).forEach(v => console.log(v));
+    strArr.filter(str => str.length%2 == 0).forEach(v => console.log(v));
+  </script>
+</body>
+</html>

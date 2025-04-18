@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>향상된 for</h1>
+  <ul>
+    <li>
+      for of / for in
+    </li>
+    <li>
+      for of : 배열 안의 내용을 탐색할 때 사용 => java에성의 향상된 for문과 동일 <br>
+      for (let value of array) { <br>
+        code; <br>
+      }
+    </li>
+    <li>
+      for in : 객체 안의 내용을 탐색할 때 사용 <br>
+      for (let key in Object) { <br>
+        code; <br>
+      }
+    </li>
+  </ul>
+
+  <script>
+    const people = ['kim', 'lee', 'park', 'hong'];
+    console.log(people);
+    for (let i = 0; i < people.length; i++) {
+      console.log(people[i]);
+    }
+    console.log("---for of---");
+    for (let p of people){
+      console.log(p);
+    }
+
+    console.log('---for in---')
+    const kim = {
+      name:'kim',
+      age:20,
+      email:'123@123.com'
+    };
+    for (let key in kim) {
+      console.log(key, ':', kim[key]);
+    }
+
+    const member = {
+      name:'park',
+      age:35,
+      favors:['BaseBall', 'Game', 'Movie']
+    };
+
+    function printObject(object) {
+      for (let key in member) {
+        let item = '';
+        if (Array.isArray(member[key])) {
+          item = '[';
+          for (let inner of member[key]) {
+            item += inner + ', ';
+          }
+          item = item.substring(0, item.length - 2) + ']';
+        } else if (member[key] == null) {
+          item = 'null';
+        } else if (typeof member[key] == 'object') {
+          item = '{';
+          for (let objKey in member[key]) {
+            item += objKey + ':' + member[key][objKey] + ', ';
+          }
+          item = item.substring(0, item.length - 2) + '}';
+        } else {
+          item = member[key];
+        }
+        console.log(key + ' : ' + item);
+      }
+    }
+
+    printObject(member);
+  </script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    데이터 구조화
+  </h1>
+  <ul>
+    <li>
+      JSON : 많은 양의 데이터가 실시간으로 전달되어야 할 때 가장 효율적으로 데이터를 보내는 방법
+    </li>
+    <li>
+      데이터 구조화 : 구조화된 텍스트 => json
+    </li>
+    <li>
+      JSON : JavaScript Object Notation <br>
+      : javascript 객체를 구조화된 데이터로 표현하기 위한 문자 기반 표준 포맷
+    </li>
+    <li>
+      웹 서버와 화면 데이터 사이에 데이터를 전송할 때 일반적으로 사용
+    </li>
+    <li>
+      자바스크립트의 객체 형태를 띄기 때문에 구조 파악이 쉽고 제작도 쉬움
+    </li>
+    <li>
+      웹 분야에서 화면은 자바스크립트가 모든 프론트에 호환된다는 점을 활용 <br>
+      데이터 수집, 출력 용도로 거의 모든 플랫폼에서 사용되고 있음
+    </li>
+  </ul>
+  <script>
+    const tops = {
+      '거래상위':[{
+        name: '나우IB',
+        price: 1680,
+        updown: 356,
+        ratio: 26.89
+      },{
+        name: '인성정보',
+        price: 2535,
+        updown: 490,
+        ratio: 23.96
+      },{
+        name: 'KODEX 200선물인버스2X',
+        price: 2300,
+        updown: -30,
+        ratio: -1.29
+      },{
+        name: 'TS인베스트먼트',
+        price: 2400,
+        updown: 5,
+        ratio: 0.21
+      },{
+        name: '동양철관',
+        price: 1626,
+        updown: -169,
+        ratio: -9.42
+      },{
+        name: '갤럭시아에스엠',
+        price: 2910,
+        updown: 335,
+        ratio: 13.01
+      },{
+        name: '대주산업',
+        price: 2570,
+        updown: 591,
+        ratio: 29.86
+      },{
+        name: '미스터블루',
+        price: 1395,
+        updown: -94,
+        ratio: -6.31
+      },{
+        name: 'KODEX 코스닥150레버리지',
+        price: 6985,
+        updown: 140,
+        ratio: 2.05
+      },{
+        name: 'KODEX 코스닥150선물인버스',
+        price: 3935,
+        updown: -40,
+        ratio: -1.01
+      },{
+        name: '오리엔트정공',
+        price: 13040,
+        updown: 770,
+        ratio: 6.28
+      },{
+        name: '팬스타엔터프라이즈',
+        price: 811,
+        updown: 187,
+        ratio: 29.97
+      },{
+        name: 'SKAI',
+        price: 2605,
+        updown: 65,
+        ratio: 2.56
+      },{
+        name: '한국선재',
+        price: 5160,
+        updown: 1190,
+        ratio: 29.97
+      },{
+        name: '경남스틸',
+        price: 8710,
+        updown: 2010,
+        ratio: 30
+      }],
+      '상승':[{
+        name: '경남스틸',
+        price: 8710,
+        updown: 2010,
+        ratio: 30
+      },
+      {
+        name: '아이티아이즈',
+        price: 5940,
+        updown: 1370,
+        ratio: 29.98
+      },
+      {
+        name: '성신양회우',
+        price: 14700,
+        updown: 3390,
+        ratio: 29.97
+      },
+      {
+        name: '협진',
+        price: 941,
+        updown: 217,
+        ratio: 29.97
+      },{
+        name: '팬스타엔터프라이즈',
+        price: 811,
+        updown: 187,
+        ratio: 29.97
+      },
+      {
+        name: '한국선재',
+        price: 5160,
+        updown: 1190,
+        ratio: 29.97
+      },
+      {
+        name: '씨아이테크',
+        price: 1462,
+        updown: 337,
+        ratio: 29.96
+      },
+      {
+        name: '계룡건설',
+        price: 24100,
+        updown: 5550,
+        ratio: 29.92
+      },
+      {
+        name: '포바이포',
+        price: 22250,
+        updown: 5120,
+        ratio: 29.89
+      },
+      {
+        name: '나노씨엠에스',
+        price: 6390,
+        updown: 1470,
+        ratio: 29.88
+      },
+      {
+        name: '엑스페릭스',
+        price: 5500,
+        updown: 1265,
+        ratio: 29.87
+      },
+      {
+        name: '대주산업',
+        price: 2570,
+        updown: 591,
+        ratio: 29.86
+      },
+      {
+        name: '제주은행',
+        price: 11100,
+        updown: 2470,
+        ratio: 28.62
+      },
+      {
+        name: '삼일',
+        price: 2740,
+        updown: 590,
+        ratio: 27.44
+      },
+      {
+        name: '나우IB',
+        price: 1680,
+        updown: 356,
+        ratio: 26.89
+      }],
+      '하락':[{
+        name: '브릿지바이오테라퓨틱스',
+        price: 2160,
+        updown: -920,
+        ratio: -29.87
+      },{
+        name: '유니드비티플러스',
+        price: 4880,
+        updown: -820,
+        ratio: -14.39
+      },{
+        name: '티와이홀딩스우',
+        price: 4075,
+        updown: -655,
+        ratio: -13.85
+      },{
+        name: '상지건설',
+        price: 38050,
+        updown: -5350,
+        ratio: -12.33
+      },{
+        name: '동성제약',
+        price: 3810,
+        updown: -535,
+        ratio: -12.31
+      },{
+        name: '오늘이엔엠',
+        price: 1045,
+        updown: -124,
+        ratio: -10.61
+      },{
+        name: '대한제당우',
+        price: 3260,
+        updown: -365,
+        ratio: -10.07
+      },{
+        name: '동양철관',
+        price: 1626,
+        updown: -169,
+        ratio: -9.42
+      },{
+        name: '크라운해태홀딩스우',
+        price: 10050,
+        updown: -950,
+        ratio: -8.64
+      },{
+        name: '와이랩',
+        price: 6400,
+        updown: -600,
+        ratio: -8.57
+      },{
+        name: 'CMG제약',
+        price: 2735,
+        updown: -240,
+        ratio: -8.07
+      },{
+        name: 'THE E&M',
+        price: 903,
+        updown: -77,
+        ratio: -7.86
+      },{
+        name: '포메탈',
+        price: 3115,
+        updown: -230,
+        ratio: -6.88
+      },{
+        name: '스튜디오미르',
+        price: 3615,
+        updown: -265,
+        ratio: -6.83
+      },{
+        name: '서울식품우',
+        price: 1410,
+        updown: -103,
+        ratio: -6.81
+      }],
+      '시가총액 상위':[{
+        name: '삼성전자',
+        price: 55300,
+        updown: 200,
+        ratio: 0.36
+      },{
+        name: 'SK하이닉스',
+        price: 175000,
+        updown: 0,
+        ratio: 0
+      },{
+        name: 'LG에너지솔루션',
+        price: 338000,
+        updown: -4500,
+        ratio: -1.31
+      },{
+        name: '삼성바이오로직스',
+        price: 1049000,
+        updown: -10000,
+        ratio: -0.94
+      },{
+        name: '현대차',
+        price: 187200,
+        updown: 5500,
+        ratio: 3.03
+      },{
+        name: '한화에어로스페이스',
+        price: 828000,
+        updown: 12000,
+        ratio: 1.47
+      },{
+        name: '삼성전자우',
+        price: 45700,
+        updown: 100,
+        ratio: 0.22
+      },{
+        name: '셀트리온',
+        price: 157400,
+        updown: -1800,
+        ratio: -1.13
+      },{
+        name: '기아',
+        price: 87300,
+        updown: 2300,
+        ratio: 2.71
+      },{
+        name: 'KB금융',
+        price: 82400,
+        updown: 2100,
+        ratio: 2.62
+      },{
+        name: 'HD현대중공업',
+        price: 359500,
+        updown: -6500,
+        ratio: -1.78
+      },{
+        name: 'NAVER',
+        price: 187500,
+        updown: 3900,
+        ratio: 2.12
+      },{
+        name: '한화오션',
+        price: 78400,
+        updown: 500,
+        ratio: 0.64
+      },{
+        name: '신한지주',
+        price: 47650,
+        updown: 500,
+        ratio: 1.06
+      },{
+        name: '현대모비스',
+        price: 243500,
+        updown: 5000,
+        ratio: 2.10
+      }]
+    };
+
+    // 환전고시환율 / 금 시세
+    const exs = {
+      exchange: [{
+        name: '미국USD',
+        price: 1423,
+        updown: 3.50
+      },{
+        name: '일본JPY (100엔)',
+        price: 999.82,
+        updown: 2.95
+      },{
+        name: '유럽연합EUR',
+        price: 1617.88,
+        updown: 3.77
+      },{
+        name: '중국CNY',
+        price: 194.87,
+        updown: 0.43
+      }],
+      gold: [{
+        name: '국제금(04.17)',
+        price: 3328.40,
+        updown: -18
+      },{
+        name: '국내금(04.18)',
+        price: 152232.96,
+        updown: 1029.5
+      }]
+    };
+  </script>
+</body>
+</html>

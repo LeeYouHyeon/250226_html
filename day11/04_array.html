@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Array</title>
+</head>
+<body>
+  <h1>
+    JavaScript에서 배열은 유동 배열 : 크기, 데이터 변경 가능
+  </h1>
+  <li>
+    const myArray = [1, 2, 3, 'a', 'b', {}, []];
+  </li>
+  <li>
+    배열의 데이터 타입을 다르게 넣어도 가능 <br>
+    그러나 처리가 복잡해지기 때문에 일반적이진 않음 <br>
+    배열은 같은 타입으로 채우는 것이 일반적
+  </li>
+  <li>
+    const members = [{}, {}, {}, {}];
+  </li>
+  <li>
+    let myArray = [];처럼 빈 배열을 만든 후 데이터를 추가하는 게 일반적
+  </li>
+  <li>index를 가짐 => 0부터 시작</li>
+  <li>length : 배열의 총 길이</li>
+  <li>
+    const arr = new Array(1, 2, 3); 가능은 하나 잘 쓰지 않음
+  </li>
+  <script>
+    const myArray = [1, 2, 3, 'a', "b", `c`];
+    console.log(myArray);
+    console.log(myArray.length);
+    console.log(myArray[0]);
+    console.log(myArray[myArray.length - 1]);
+
+    myArray[myArray.length] = 6;
+    console.log(myArray);
+    myArray[10] = 10; // 번지를 건너뛰고 없는 자리에 값을 추가 가능
+    console.log(myArray); // 건너뛴 자리는 undefined로 채움
+    myArray[9] = 9;
+    console.log(myArray);
+
+    // const로 선언한 배열은 배열 안의 값은 변경 가능
+    // 배열 자체를 다른 배열이나 다른 값으로 교체는 불가능
+    // myArray = []; 불가능
+
+    for (let i = 0; i < myArray.length; i++) {
+      console.log(myArray[i]);
+    }
+    console.log("-----");
+    for (let item of myArray) {
+      console.log(item);
+    }
+  </script>
+</body>
+</html>

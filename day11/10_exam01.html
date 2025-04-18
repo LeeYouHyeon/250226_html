@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    ol, li{
+      list-style: none;
+    }
+    ol{
+      display: flex;
+    }
+    ol>li{
+      margin-right: 10px;
+    }
+    button{
+      background-color: transparent;
+      cursor: pointer;
+      width: 400px;
+      height: 500px;
+      position: relative;
+    }
+    button>p{
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+  <ol>
+    <li>
+      <button type="button" id="scissor" onclick="play(1)">
+        <img src="../image/가위바위보/가위.png" alt="">
+        <p>가위(1)</p>
+      </button>
+    </li>
+    <li>
+      <button type="button" id="rock" onclick="play(2)">
+        <img src="../image/가위바위보/바위.png" alt="">
+        <p>바위(2)</p>
+      </button>
+    </li>
+    <li>
+      <button type="button" id="paper" onclick="play(3)">
+        <img src="../image/가위바위보/보.png" alt="">
+        <p>보(3)</p>
+      </button>
+    </li>
+  </ol>
+  <h4 id="result"></h4>
+  <script>
+    const result = [0, 0, 0]; // 무, 승, 패;
+    const playText = ['', '가위', '바위', '보']; // index로 1~3을 쓰기 위해 앞에 빈자리를 놔둠
+
+    function judge(com, user) { // 무, 승, 패를 index로 리턴
+      let ind = user - com;
+      if (ind < 0) ind += 3;
+      return ind;
+    }
+
+    function play(user) {
+      let com = Math.floor(Math.random()*3 + 1);
+      let ind = judge(com, user);
+      result[ind]++;
+
+      let input = '';
+      input += `player : ${playText[user]} / com : ${playText[com]}<br>`;
+      switch (ind) {
+        case 0:
+          input += '비겼습니다.';
+          break;
+        case 1:
+          input += 'player가 이겼습니다.';
+          break;
+        case 2:
+          input += 'com이 이겼습니다.';
+      }
+      input += '<br>';
+      input += `${result[1]}승 ${result[0]}무 ${result[2]}패<br>`;
+      if (result[1] + result[2] > 0) {
+        input += `승률 : ${((result[1]/(result[1] + result[2]))*100).toFixed(2)}`;
+      }
+      
+      document.getElementById('result').innerHTML = input;
+    }
+
+    /*
+    document.getElementById('scissor').addEventListener('click', () => {play(1)});
+    document.getElementById('rock').addEventListener('click', () => {play(2)});
+    document.getElementById('paper').addEventListener('click', () => {play(3)});
+    */
+
+  </script>
+</body>
+</html>

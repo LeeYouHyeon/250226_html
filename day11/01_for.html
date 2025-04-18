@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>반복문</title>
+</head>
+<body>
+  <h1>
+    반복문 : for, while, do~while => java와 동일한 문법
+  </h1>
+  <ul>
+    <li>
+      for : 반복 횟수가 명확할 때 사용 <br>
+      for(초기값; 조건식; 증감식) {코드 ... ;}
+    </li>
+    <li>
+      while, do~while : 반복 횟수가 명확하지 않을 때 <br>
+      while(조건식) {실행문;} <br>
+      do {실행문;} while(조건식);
+    </li>
+    <li>
+      모든 조건은 참(true)일 때 반복
+    </li>
+    <li>
+      조건문이 계속 true라면 무한루프에 빠질 수 있음. <br>
+      조건문 안에서 조건값이 false가 될 수 있는 구문이 반드시 있어야 함.
+    </li>
+    <li>
+      break;를 통해 나갈 수 있음. <br>
+      조건식을 동반한 값으로 처리
+    </li>
+  </ul>
+
+  <script>
+    for (let i = 1; i <= 10; i++) {
+      console.log(i);
+    }
+    console.log("------------");
+
+    let count = 0;
+    while (count < 10) {
+      count++;
+      console.log(count);
+    }
+
+    // 구구단 3단 출력
+    let dan = 3;
+    let incre = 1;
+    while (incre < 10) {
+      console.log(`${dan}*${incre} = ${dan*incre}`);
+      incre++;
+    }
+  </script>
+</body>
+</html>

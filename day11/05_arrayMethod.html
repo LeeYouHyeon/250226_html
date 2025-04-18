@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ArrayMethod</title>
+</head>
+<body>
+  <h1>
+    배열 관련 메서드 : 유사 배열에서는 사용이 제한될 수 있음 <br>
+    const myArray = [1, 2, 3, 'a', 'b', {}, []]; : 유사 배열(혼합 배열)
+  </h1>
+  <ul>
+    <li>
+      array.push(value) : 배열의 끝에 value 추가 <br>
+      return : 배열의 길이
+    </li>
+    <li>
+      array.pop() : 배열의 마지막 요소를 제거 <br>
+      return : 제거한 요소
+    </li>
+    <li>
+      array.shift() : 배열의 첫 요소를 제거(pop과 반대) <br>
+      return : 제거한 요소
+    </li>
+    <li>
+      array.unshift(value) : 배열의 첫 요소에 value를 추가 <br>
+      return : 배열의 길이
+    </li>
+    <li>
+      array.join(value) : 배열의 값들 사이사이에 value를 추가해서 하나의 문자열로 리턴
+    </li>
+  </ul>
+  <script>
+    const ourClass = [];
+    ourClass.push('홍길동');
+    ourClass.push('김순이');
+    ourClass.push('박철수');
+    console.log(ourClass.join(', '));
+
+    console.log(ourClass.push('이순신'));
+    ourClass.push('강감찬');
+    console.log(ourClass);
+    console.log(ourClass.pop());
+    console.log(ourClass);
+
+    // 배열의 첫 요소 삭제
+    console.log(ourClass.shift());
+    console.log(ourClass);
+    // 배열에 첫 요소 삽입
+    console.log(ourClass.unshift('홍길동'));
+    console.log(ourClass);
+
+    let str = ourClass.join('/');
+    console.log(str);
+
+    // split() : 배열을 특정 키워드 기준으로 나눔
+    let strArr = str.split("/");
+    console.log(strArr);
+  </script>
+</body>
+</html>
