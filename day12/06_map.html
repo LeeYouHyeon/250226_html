@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    Map <br>
+    key : value 형태의 데이터를 하나의 배열로 만들어서 다시 배열에 저장
+  </h1>
+  <ul>
+    <li>
+      new Map() <br>
+      new Map([[key, value], [key, value], ...]);
+    </li>
+    <li>
+      map은 기본적으로 중첩 구조 <br>
+      key는 중복 불가능
+    </li>
+    <li>
+      key를 식별자로 하는 get(key), set(key, value) 메서드를 제공
+    </li>
+    <li>
+      key는 문자로 하는 것을 원칙으로 함
+    </li>
+    <li>
+      delete() / has() / forEach() / keys() / values() / entries() / size / clear() <br>
+      forEach(v, k, self) : 파라미터 순서에 유의 <br>
+      keys(), values(), entries() : MapIterator
+    </li>
+  </ul>
+  <script>
+    const myMap = new Map();
+
+    myMap.set('html', 90);
+    myMap.set('css', 78);
+    myMap.set('js', 56);
+    console.log(myMap);
+    console.log(myMap.get('html'));
+    
+    myMap.forEach((v, k) => console.log(k, ':', v));
+
+    console.log(myMap.delete('html'));
+    console.log(myMap);
+    console.log(myMap.entries()); // v, idx, self
+    console.log(myMap.keys());
+    console.log(myMap.values());
+    
+    myMap.keys().forEach(v => console.log(v));
+    myMap.entries().forEach(v => console.log(v[0], v[1]));
+
+    myMap.clear();
+    console.log(myMap);
+  </script>
+</body>
+</html>

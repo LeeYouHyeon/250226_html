@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .green{
+      color: green;
+    }
+    .red{
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  파일명 : <input type="text" id="fileName">
+  <button type="button" id="btn">전송</button>
+  <h3 id="result"></h3>
+  <script>
+    // input 태그에 파일명.확장자 형태로 입력하여 전송 버튼을 클릭하면
+    // 이미지 파일인지 아닌지 검사
+    // 이미지 파일이면 '정상 파일입니다. - green'
+    // 아니면 '이미지 파일만 가능합니다. - red'
+    // 이미지 파일 : jpg(JPG), png(PNG), gif(GIF), jpeg(JPEG)
+
+    // 정규식에 맞는지 확인하기 : match, test
+    // 문자열.match(정규식) : 맞는 항목들을 배열로 리턴
+    // 정규식.test(문자열) : 문자열이 정규식과 매칭되는지를 boolean으로 리턴
+
+    // 정규식 : 
+
+    document.getElementById('btn').addEventListener('click', () => {
+      let message;
+      if (/.(jpg|png|gif|jpeg)$/i.test(
+        document.getElementById('fileName').value
+      )) {
+        message = ['green', '정상파일입니다.'];
+      } else {
+        message = ['red', '이미지 파일만 가능합니다.'];
+      }
+
+      document.getElementById('result').innerHTML = `<span class="${message[0]}">${message[1]}</span>`;
+    })
+  </script>
+</body>
+</html>

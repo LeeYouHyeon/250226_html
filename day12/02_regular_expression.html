@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>정규표현식</title>
+</head>
+<body>
+  <h1>
+    정규표현식(Regular Expression) <br>
+    문자 내에서 특정 내용을 찾거나 대체, 발췌하는데 사용
+  </h1>
+  <ul>
+    <li>
+      regExp로 많이 사용
+    </li>
+    <li>
+      특정 데이터를 탐색, 확인, 존재여부를 쉽게 파악하기 위한 규칙
+    </li>
+    <li>
+      웹 분야에서는 password, 첨부파일 규칙 등에 사용 <br>
+      회원가입 외에는 자주 쓰이지 않음
+    </li>
+    <li>
+      데이터 분석과 관련된 일을 할 땐 꼭 알고 있어야 함
+    </li>
+    <li>
+      다른 언어에서도 거의 비슷한 방식으로 활용됨
+    </li>
+  </ul>
+  <hr>
+  <ul>
+    <li>
+      /regExp/flag <br>
+      // : 시작기호, 종료기호 <br>
+      regExp : 패턴, flag : 옵션
+    </li>
+    <li>
+      str.match(/regExp/flag) : str에서 매칭되는 부분들을 배열로 return. 없으면 null
+    </li>
+    <li>
+      str.replace(/regExp/flag, str2) : str에서 매칭되는 부분들을 str2로 변환
+    </li>
+    <li>
+      str.split(/regExp/flag) : 매칭되는 항목들을 기준으로 쪼개서 배열로 return
+    </li>
+    <li>
+      /regExp/flag.test(str) : 매칭되는 부분이 있는지 boolean으로 return
+    </li>
+  </ul>
+  <hr>
+  <ul>
+    <li>
+      정규표현식에 사용되는 플래그
+    </li>
+    <li>
+      i : 대소문자 구분 X <br>
+      g : 전역 검색 <br>
+      m : 줄바꿈 포함
+    </li>
+    <li>
+      패턴 문자열
+    </li>
+    <li>
+      a-zA-Z : 영어 알파벳 <br>
+      ㄱ-ㅎ가-힇 : 한글 <br>
+      0-9 : 숫자
+    </li>
+    <li>
+      . : 모든 문자열(숫자, 한글, 영어, 특수문자, 공백 포함 모든 것) : 줄바꿈은 제외
+    </li>
+    <li>
+      <table>
+        <tr>
+          <td>\d : 숫자</td>
+          <td>\D : 숫자가 아닌 것</td>
+        </tr>
+        <tr>
+          <td>\s : 공백</td>
+          <td>\S : 공백이 아닌 것</td>
+        </tr>
+        <tr>
+          <td width="120px">\w : 영숫자</td>
+          <td>\W : 영숫자가 아닌 것</td>
+        </tr>
+        <tr>
+          <td colspan="2">\특수기호 : \! \@ ...</td>
+        </tr>
+      </table>
+    </li>
+    <li>
+      검색 패턴 : | or (|)
+    </li>
+    <li>
+      [] : or의 묶음 / 문자들 중 하나 <br>
+      [jpg] : j or p or g <br>
+      /abc/ => 'abc'를 포함하는 <br>
+      /[abc]/ => 'a', 'b', 'c' 중 하나를 포함하는 <br>
+      /[a-z]/ => 알파벳 소문자를 포함하는
+    </li>
+    <li>
+      [^문자] : 각 문자를 전부 제외한 것 <br>
+      [^abcd] : a, b, c, d는 제외
+    </li>
+    <li>
+      {min, max} : min~max개. 글자수 제한
+    </li>
+    <li>
+      ^ : 시작, $ : 끝
+    </li>
+  </ul>
+  <script>
+    let testText = 'This is Javascript Regular Expression';
+    console.log(testText.match(/is/g));
+
+    const fileName = ['abc.jpg', 'main.GIF', 'test.txt', 'doc.pdf', 'code.js'];
+
+    // 이미지 파일 : abc.jpg, main.gif
+    for (let file of fileName) {
+      if (/.(jpg|gif|png|jpeg)$/i.test(file)) {
+        console.log(file + ' : 이미지 파일');
+      } else {
+        console.log(file + ' : 기타 파일');
+      }
+    }
+  </script>
+</body>
+</html>

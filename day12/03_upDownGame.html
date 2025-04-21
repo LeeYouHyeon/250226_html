@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UpDownGame</title>
+  <style>
+    .invisible {
+      display: none;
+    }
+    #logs>span{
+      display: block;
+    }
+    button:focus{
+      border-width: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 1~99의 숫자 중 하나를 랜덤으로 선택하여 해당 숫자를 맞추는 게임 -->
+  <h1>
+    <button type="button" id="random" onclick="generate()">랜덤 숫자 생성</button>
+  </h1>
+  <h3 id="printMsg"></h3>
+  <h1>
+    <div id="submit-btn" class="invisible">
+      <input type="number" id="myNum" min="1" max="99">
+      <button type="button" id="compareNum">제출!</button>
+    </div>
+    <h3 id="logs"></h3>
+  </h1>
+  <script>
+    // 횟수. 내 숫자 : up/down
+    let rand = -1, tryCount = 1, isDone = false;
+    let randBtn = document.getElementById('random'),
+    tryBtn = document.getElementById('compareNum'),
+    logs = document.getElementById('logs'),
+    printMsg = document.getElementById('printMsg')
+    submit = document.getElementById('submit-btn');
+
+    function generate() {
+      if (rand > -1 && !isDone) {
+        if (!confirm('아직 숫자를 맞추지 못했습니다. 다시 시작하시겠습니까?')) {
+          return;
+        }
+      }
+
+      submit.className = '';
+      rand = Math.floor(Math.random()*99 + 1);
+      tryCount = 1;
+      randBtn.innerText = '다시 시도';
+      printMsg.innerText = '컴퓨터가 랜덤 수(1~99)를 생성했습니다.';
+      tryBtn.className = '';
+      logs.innerHTML = '';
+      isDone = false;
+      clearNum();
+    }
+
+    function clearNum() {
+      document.getElementById('myNum').value = '';
+      document.getElementById('myNum').focus();
+    }
+
+    document.getElementById('compareNum').addEventListener('click', () => {
+      if (isDone) {
+        return;
+      }
+
+      let myNum = document.getElementById('myNum').value;
+      clearNum();
+      if (myNum > 99 || myNum < 1) {
+        alert('1~99 사이의 숫자만 입력해주세요.');
+        return;
+      }
+
+      let input = `<span>${tryCount}. ${myNum} : `;
+      if (myNum == rand) {
+        isDone = true;
+        input += '정답입니다.';
+        printMsg.innerText = `정답! 숫자는 ${rand}였습니다.`;
+        submit.className = 'invisible';
+        randBtn.innerText = '랜덤 숫자 생성';
+        randBtn.focus();
+      } else if (myNum > rand) {
+        input += 'Down!';
+      } else {
+        input += 'Up!';
+      }
+      input += '</span>';
+
+      logs.innerHTML += input;
+      tryCount++;
+    });
+  </script>
+</body>
+</html>

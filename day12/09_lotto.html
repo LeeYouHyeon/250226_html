@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>set을 이용한 로또 만들기</h1>
+  <!-- 
+    1~45 랜덤 수를 중복되지 않게 6개 추출 후 출력
+  -->
+  <button type="button" id="makeRandom">랜덤번호 6자리 생성(출력)</button>
+  <h1 id="printNum">로또번호 출력</h1>
+  <button type="button" id="makeRandom2">당첨번호 7자리 생성(출력)</button>
+  <h1 id="printNum2">당첨번호 출력</h1>
+  <button type="button" id="ranking">결과확인</button>
+  <h1 id="printResult">당첨여부</h1>
+  <script>
+    let user = [], lotto = [], bonus;
+
+    document.getElementById('makeRandom').addEventListener('click', () => {
+      /*
+      if (user.length > 0) {
+        if (!confirm('사용자의 로또 번호를 다시 뽑으시겠습니까?')) {
+          return;
+        }
+      }
+        */
+
+      let userSet = new Set();
+      while (userSet.size < 6) {
+        userSet.add(Math.floor(Math.random()*45) + 1);
+      }
+      user = Array.from(userSet);
+      user.sort((a, b) => a - b);
+
+      document.getElementById('printNum').innerText = user.join(', ');
+    });
+
+    document.getElementById('makeRandom2').addEventListener('click', () => {
+      /*
+      if (lotto.length > 0) {
+        if (!confirm('당첨 번호를 다시 뽑으시겠습니까?')) {
+          return;
+        }
+      }
+        */
+
+      let lottoSet = new Set();
+      while (lottoSet.size < 7) {
+        lottoSet.add(Math.floor(Math.random()*45) + 1);
+      }
+      lotto = Array.from(lottoSet);
+      bonus = lotto.pop();
+      lotto.sort((a, b) => a - b);
+
+      document.getElementById('printNum2').innerText = lotto.join(', ') + ' / ' + bonus;
+    });
+
+    document.getElementById('ranking').addEventListener('click', () => {
+      if (user.length*lotto.length == 0) {
+        alert('먼저 로또를 뽑아주세요.');
+        return;
+      }
+
+      let union = new Set(user);
+      for (let num of lotto) {
+        union.add(num);
+      }
+
+      let result = '';
+      switch (union.size) {
+        case 6:
+          result = '1등';
+          break;
+        case 7:
+          union.add(bonus);
+          if (union.size == 7) result = '2등';
+          else result = '3등';
+          break;
+        case 8:
+          result = '4등';
+          break;
+        case 9:
+          result = '5등';
+          break;
+        default:
+          result = '꽝';
+      }
+      document.getElementById('printResult').innerText = result;
+    });
+  </script>
+</body>
+</html>

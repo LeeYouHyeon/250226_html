@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    input{
+      width: 100px;
+    }
+    ul{
+      padding-left : 5px;
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    input 2개 생성 => 과목, 점수
+    값을 map에 추가
+    출력 => map을 ul => li 형태로 출력
+    결과 => 점수 합계, 평균, 합격여부(60 이상) => h3
+  -->
+  <form action="">
+    <ul>
+      <li>
+        과목 : <input type="text" id="subject">
+      </li>
+      <li>
+        점수 : <input type="number" id="score" min="0" max="100">
+      </li>
+    </ul>
+    <button type="button" id="input" onclick="addSubject()">점수 등록</button>
+    <button type="button" onclick="removeSubject()">과목 삭제</button>
+    <button type="button" onclick="calculate()">결과 출력</button>
+  </form>
+  <ol id="scores"></ol>
+  <h3 id="stats"></h3>
+  <script>
+    const scores = new Map();
+    let subForm = document.getElementById('subject'), scoreForm = document.getElementById('score');
+
+    function addSubject() {
+      let subject = subForm.value;
+      let score = Number(scoreForm.value);
+      if (score < 0 || score > 100) {
+        alert('점수가 잘못되었습니다.');
+        scoreForm.value = '';
+        return;
+      }
+      if (subject == '') {
+        alert('과목 이름을 입력해주세요.');
+        return;
+      }
+
+      scores.set(subject, score);
+      printScores();
+    }
+
+    function removeSubject() {
+      let subject = subForm.value;
+      if (scores.delete(subject)) {
+        printScores();
+      } else {
+        alert('등록되지 않은 과목입니다.');
+      }
+    }
+
+    function printScores() {
+      let scoresInput = ''
+      scores.forEach((v, k) => {
+        scoresInput += `<li>${k} : ${v}</li>`;
+      });
+      document.getElementById('scores').innerHTML = scoresInput;
+
+      subForm.value = '';
+      scoreForm.value = '';
+      document.getElementById('stats').innerText = '';
+    }
+
+    function calculate() {
+      let statsInput = '', sum = 0;
+      scores.forEach(v => {sum += v});
+      let avg = sum/scores.size;
+      statsInput += `합계 : ${sum} / 평균 : ${avg.toFixed(2)} / ${avg >= 60 ? 'pass' : 'fail'}`;
+
+      document.getElementById('stats').innerText = statsInput;
+    }
+  </script>
+</body>
+</html>

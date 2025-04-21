@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    set을 생성하고, 1~10까지 랜덤수를 5개 채워서 출력
+  </h1>
+  <script>
+    const randoms = new Set();
+    while (randoms.size < 5) {
+      let num = Math.floor(Math.random()*10) + 1
+      randoms.add(num);
+      console.log(num);
+    }
+    console.log(randoms);
+    for (let nums of randoms.values()) {
+      console.log(nums);
+    }
+  </script>
+</body>
+</html>
