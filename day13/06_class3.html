@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 생성자 함수 : 클래스를 함수화
+    // 일반 함수랑 생성자 함수는 별 차이가 없음
+    // 1. 반드시 new 키워드를 통해 실행
+    // 2. 함수 첫글자는 대문자일 것
+
+    class PersonClass{
+      constructor(first, last, age, addr) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.address = addr;
+      }
+
+      get personInfo() {
+        return `${this.firstName}, ${this.lastName}(${this.age}) : ${this.address}`;
+      }
+    }
+
+    let my = new PersonClass('kim', 'minji', 20, 'seoul');
+    console.log(my);
+    console.log(my.personInfo); // get 메서드는 괄호를 붙이면 안 됨. 멤버변수처럼 작동
+
+    // 위의 PersonClass를 생성자 함수로 변환
+
+    function PersonObject(first, last, age, addr) {
+      this.firstName = first;
+      this.lastName = last;
+      this.age = age;
+      this.address = addr;
+      this.getPersonInfo = function() {
+        return `${this.firstName}, ${this.lastName}(${this.age}) : ${this.address}`;
+      }
+    }
+
+    let my2 = new PersonObject('lee', 'minji', 30, 'seoul');
+    console.log(my2);
+    console.log(my2.getPersonInfo()); // get 메서드로 인정되지 않음. 괄호를 붙여야 작동
+
+    // person 객체로 생성 : get과 set에 콜론이 안 붙음
+    // set은 그다지 쓰지 않음
+    const person = {
+      firstName: '',
+      lastName: '',
+      age: '',
+      address: '',
+      
+      setInfo: function(first, last, age, addr) {
+        this.firstName = first;
+        this.lastName = last;
+        this.age = age;
+        this.address = addr;
+      },
+      get personInfo() {
+        return `${this.firstName}, ${this.lastName}(${this.age}) : ${this.address}`;
+      },
+      set setFirstName(first) {
+        this.firstName = first;
+      }
+    };
+
+    person.setInfo('park', 'minji', 25, 'seoul');
+    console.log(person.personInfo);
+
+    person.setFirstName = 'hong';
+    console.log(person.personInfo);
+  </script>
+</body>
+</html>

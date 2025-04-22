@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // class => 객체로 먼저 생성 => class로 생성
+    // 계좌 myAccount, yourAccount
+
+    // 일반 객체로 생성
+    let myAccount = {
+      name: 'hong',
+      balance: 0,
+
+      // 입금
+      deposit: amount => {
+        this.balance += amount;
+      },
+      // 출금
+      withdraw: amount => {
+        if (this.balance >= amount) {
+          this.balance -= amount;
+          return true;
+        } else {
+          console.log('잔고가 부족합니다.');
+          return false;
+        }
+      },
+      // 이체
+      transfer: (amount, otherAccount) => {
+        if (this.balance >= amount) {
+          this.balance -= amount;
+          otherAccount.balance += amount;
+          return true;
+        } else {
+          console.log('잔액이 부족합니다.');
+          return false;
+        }
+      }
+    };
+
+    let yourAccount = {
+      name: 'kim',
+      balance: 10000,
+
+      // 입금
+      deposit: amount => {
+        this.balance += amount;
+      },
+      // 출금
+      withdraw: amount => {
+        if (this.balance >= amount) {
+          this.balance -= amount;
+          return true;
+        } else {
+          alert('잔고가 부족합니다.');
+          return false;
+        }
+      },
+      // 이체
+      transfer: (amount, otherAccount) => {
+        if (this.balance >= amount) {
+          this.balance -= amount;
+          otherAccount.balance += amount;
+          return true;
+        } else {
+          console.log('잔액이 부족합니다.');
+          return false;
+        }
+      }
+    };
+
+    // 내계좌에 입금 10000
+    console.log(myAccount, yourAccount);
+    myAccount.deposit(10000);
+    console.log(myAccount, yourAccount);
+    myAccount.withdraw(10000);
+    console.log(myAccount, yourAccount);
+    myAccount.transfer(10000, yourAccount);
+    console.log(myAccount, yourAccount);
+
+    //클래스로 변경
+
+    class BankAccount {
+      constructor(name, balance) {
+        this.name = name;
+        this.balance = balance;
+      }
+      deposit(amount) {
+        this.balance += amount;
+        return this.balance;
+      }
+      withdraw(amount) {
+        if (this.balance < amount) {
+          console.log('잔액 부족');
+          return false;
+        } else {
+          this.balance -= amount;
+          return true;
+        }
+      }
+      transfer(amount, otherAccount) {
+        if (this.balance < amount) {
+          console.log('잔액 부족');
+          return false;
+        } else {
+          this.balance -= amount;
+          otherAccount.balance += amount;
+          return true;
+        }
+      }
+    }
+
+    let leeAcc = new BankAccount('lee', 10000);
+    let parkAcc = new BankAccount('park', 50000);
+    console.log(leeAcc, parkAcc);
+    console.log(leeAcc.deposit(10000));
+    console.log(leeAcc, parkAcc);
+    leeAcc.deposit(10000);
+    console.log(leeAcc, parkAcc);
+    leeAcc.withdraw(50000);
+    console.log(leeAcc, parkAcc);
+    leeAcc.transfer(20000, parkAcc);
+    console.log(leeAcc, parkAcc);
+  </script>
+</body>
+</html>

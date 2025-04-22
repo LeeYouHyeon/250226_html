@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>클래스, 객체, 생성자</h1>
+  <!-- 
+    클래스 생성 기본 문법
+    class myClass{
+      // 생성자
+      constructor(param) {
+      ...
+      }
+      // 메서드 정의
+      methodName(param) {
+      ...
+      }
+
+      // getter/setter
+      get name() {
+        return this.name;
+      }
+      set name(value) {
+        this.name = value;
+      }
+    }
+
+    new myClass(); // 생성자로 생성
+  -->
+  <script>
+    // JS에서도 class는 대문자
+    class Car{
+      //JS에서 생성자는 1개만 가능
+      constructor(name, year) {
+        this.name = name;
+        this.year = year;
+        this.model = ''; // 생성자에서 안 받는 멤버변수는 생성자에서 단독으로 선언
+      }
+    }
+    
+    let myCar1 = new Car('소나타', 2024);
+    myCar1.model = 'XG';
+    console.log(myCar1);
+
+    let myCar2 = new Car('그랜저', 2023);
+    console.log(myCar2);
+
+    let myCar3 = new Car();
+    console.log(myCar3);
+    myCar3.name = '아반떼';
+    myCar3.year = 2025;
+    myCar3.model = 'XD';
+    console.log(myCar3);
+  </script>
+</body>
+</html>

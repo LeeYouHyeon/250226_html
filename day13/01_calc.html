@@ -105,10 +105,20 @@
         oper: ''
       });
 
+      // 숫자가 하나뿐이면 그 값을 결과로 취급
+      if (numbers.length == 1) {
+        result = numbers.value;
+        clear();
+        return;
+      }
+
       // 곱셈, 나눗셈부터 계산하여 temp에 저장
-      let temp = [], last = numbers[0];
+      let temp = [], last = {
+        value: numbers[0].value,
+        oper: numbers[0].oper
+      }, item;
       for (let i = 1; i < numbers.length; i++) {
-        let item = numbers[i];
+        item = numbers[i];
         switch (last.oper) {
           case '*':
             last.value *= item.value;
@@ -123,15 +133,19 @@
             }
             last.value /= item.value;
             last.oper = item.oper;
+            break;
           default:
             temp.push(last);
             last = {
               value: item.value,
-              oper: item.value
+              oper: item.oper
             };
         }
+
+        if (i == numbers.length - 1) {
+          temp.push(last);
+        }
       }
-      temp.push(last);
 
       // 덧셈, 뺄셈 계산
       let answer = temp.shift();
