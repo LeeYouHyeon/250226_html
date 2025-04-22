@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+<!-- 
+  set => 배열을 복사하는 방법
+  1. Array.from(set) : 얕은 복사
+  2. arr = [...set] : spread 연산자(얕은 복사). react 등 다른 JS에서 자주 사용
+  3. 직접 for문을 써서 push : 방법에 따라 깊은 복사를 구현할 수 있음
+-->
+<!-- 
+  array.splice(start, count, e1, e2, ...) : start부터 count개만큼 삭제한 후 그 위치에 e1, e2, ...를 삽입
+  [e1, e2, e3, ...]처럼 배열로 넣으면 배열을 통으로 하나의 element로 인식
+-->
 <body>
   <h1>set을 이용한 로또 만들기</h1>
   <!-- 
@@ -33,8 +43,8 @@
         userSet.add(Math.floor(Math.random()*45) + 1);
       }
       user = Array.from(userSet);
-      user.sort((a, b) => a - b);
 
+      user.sort((a, b) => a - b);
       document.getElementById('printNum').innerText = user.join(', ');
     });
 
@@ -53,8 +63,8 @@
       }
       lotto = Array.from(lottoSet);
       bonus = lotto.pop();
-      lotto.sort((a, b) => a - b);
 
+      lotto.sort((a, b) => a - b);
       document.getElementById('printNum2').innerText = lotto.join(', ') + ' / ' + bonus;
     });
 
@@ -64,10 +74,7 @@
         return;
       }
 
-      let union = new Set(user);
-      for (let num of lotto) {
-        union.add(num);
-      }
+      let union = new Set(user.concat(lotto));
 
       let result = '';
       switch (union.size) {
@@ -75,9 +82,7 @@
           result = '1등';
           break;
         case 7:
-          union.add(bonus);
-          if (union.size == 7) result = '2등';
-          else result = '3등';
+          result = (user.includes(bonus)) ? '2등' : '3등';
           break;
         case 8:
           result = '4등';

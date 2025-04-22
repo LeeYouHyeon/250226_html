@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Try~catch</title>
+</head>
+<body>
+  <h1>
+    예상되는 에러를 try { code... } 영역에 배치하고, 에러가 발생하면 catch(error) { code... } 영역으로 점프하는 예외처리 프로세스
+  </h1>
+  <ul>
+    <li>
+      try 영역 : 에러가 발생할 수 있는 코드를 실행하는 곳
+    </li>
+    <li>
+      catch(error) : 에러를 처리하는 곳
+    </li>
+    <li>
+      finally 영역 : 예외처리와 상관없이 무조건 코드를 실행해야 하는 영역
+    </li>
+    <li>
+      throw new Error() : 예외를 고의적으로 발생시키는 키워드
+    </li>
+  </ul>
+  <script>
+    console.log('프로세스 시작');
+    let answer = 1;
+    try {
+      if (isNaN(answer)) {
+        throw new Error('숫자를 입력하세요');
+      }
+      console.log(answer);
+    } catch (error) {
+      console.log(error.name);
+      console.log(error.message);
+    } finally {
+      console.log('꼭 출력되어야 하는 문구');
+    }
+    console.log('프로세스 끝');
+  </script>
+</body>
+</html>

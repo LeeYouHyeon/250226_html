@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="number">
+  <button type="button" id="printBtn">print</button>
+  <h3 id="printResult"></h3>
+  <script>
+    // input에 숫자만 들어올 수 있게 try~catch로 체크
+    // 입력된 수를 printResult에 출력
+
+    document.getElementById('printBtn').addEventListener('click', () => {
+      try {
+        const num = Number(document.getElementById('number').value);
+        if (isNaN(num)) throw new Error('숫자가 아닙니다.');
+
+        document.getElementById('printResult').innerText = num*2;
+      } catch (error) {
+        alert(error.message);
+      }
+       
+    });
+  </script>
+</body>
+</html>
