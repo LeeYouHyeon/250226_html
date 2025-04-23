@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    li{
+      position: relative;
+      height: 21px;
+      margin: 2px;
+    }
+    .mark{
+      position: absolute;
+      left: 210px;
+      top: 1px;
+    }
+  </style>
+</head>
+<body>
+  <h1><button type="button" id="startBtn">문제출제</button></h1>
+  <ol id="q"></ol>
+  <h1><button type="button" id="compareBtn">정답확인</button></h1>
+  <h3 id="print"></h3>
+  <script>
+    // Question : 문제 객체. 두 숫자를 가지고 있다.
+    // get : answer, str
+    class Question {
+      constructor(n, m) {
+        this.n = n;
+        this.m = m;
+      }
+      get answer() {
+        return this.n*this.m;
+      }
+      get str() {
+        return `${this.n} * ${this.m} = `;
+      }
+    }
+
+    // questionList : 전체 문제들
+    const questionList = [], questions = [];
+    for (let i = 2; i <= 9; i++) {
+      for (let j = 1; j <= 9; j++) {
+        questionList.push(new Question(i, j));
+      }
+    }
+
+    // 1. 문제 출제
+    document.getElementById('startBtn').addEventListener('click', () => {
+      questions.splice(0, questions.length);
+      let qSet = new Set();
+      while (qSet.size < 10) {
+        qSet.add(Math.floor(Math.random()*72));
+      }
+
+      for (let i of qSet) {
+        questions.push(questionList[i]);
+      }
+      
+      let insert = '';
+
+      for (let question of questions) {
+        insert += `<li>${question.str} <input type="text" class="submit"><div class="mark"></div></li>`;
+      }
+      document.getElementById('q').innerHTML = insert;
+      document.getElementById('print').innerText = '';
+      document.getElementById('compareBtn').disabled = false;
+    });
+
+    // 2. 정답 확인
+    document.getElementById('compareBtn').addEventListener('click', () => {
+      if (questions.length == 0) {
+        alert('문제가 없습니다.');
+        return;
+      }
+
+      let correct = 0, submits = document.querySelectorAll('.submit'), marks = document.querySelectorAll('.mark');
+      for (let i = 0; i < 10; i++) {
+        submits[i].className = 'submit';
+        if (questions[i].answer == submits[i].value) {
+          marks[i].innerText = '✔️';
+          correct++;
+        } else {
+          marks[i].innerText = '❌';
+        }
+        submits[i].readOnly = true;
+      } // 이모지 : Win + .
+      document.getElementById('print').innerText = `정답 갯수 : ${correct} / 정답률 : ${correct*10}%`;
+      document.getElementById('compareBtn').disabled = true;
+    });
+  </script>
+</body>
+</html>

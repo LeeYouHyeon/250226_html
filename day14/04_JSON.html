@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    JSON(JavaScript Object Notation)
+  </h1>
+  <ul>
+    <li>
+      데이터 요청 및 응답처리에 필요한 데이터의 표준 형식을 제공하는 타입
+    </li>
+    <li>
+      백엔드(서버)의 언어 종류에 상관없이 데이터를 송수신 단말 형식으로 통일
+    </li>
+    <li>
+      서버 측에서는 무조건 String 처리 <br>
+      화면(javascript)에서는 Object로 처리
+    </li>
+    <li>
+      서버로 보낼 때 : Object > String <br>
+      JSON.stringify(객체)
+    </li>
+    <li>
+      서버에서 받을 때 : String > Object <br>
+      JSON.parse(string);
+    </li>
+  </ul>
+  <script>
+    const cake = {
+      id: '1234',
+      type: 'donut',
+      name: 'donut',
+      image: {
+        url: '../image/001.jpg',
+        width: '200',
+        height: '50'
+      },
+      thumbnail: {
+        url: '../image/th/001.jpg',
+        width: '50',
+        height: '5'
+      }
+    }
+    console.log(cake);
+    let cakeStr = JSON.stringify(cake);
+    console.log(cakeStr);
+
+    // 콘솔에 키 : 값으로 출력
+    let cakeObj = JSON.parse(cakeStr);
+    console.log(cakeObj);
+    
+    function printObj(obj, prev = '') {
+      for (let key in obj) {
+        let innerKey = (prev == '') ? key : prev + '.' + key;
+        if (Array.isArray(obj[key]) || typeof obj[key] != 'object') {
+          console.log(innerKey + ' : ' + obj[key]);
+        }
+        else {
+          console.log(innerKey);
+          printObj(obj[key], innerKey);
+        }
+      }
+    }
+    printObj(cakeObj);
+  </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    promise chain 방식
+  </h1>
+  <ul>
+    <li>
+      Promise 객체를 리턴하여 값을 가져오면 then 메서드로 실행 순서를 지정할 수 있음
+    </li>
+    <li>
+      fetch(url, [config]) : 데이터 통신을 위해 제공하는 함수 <br>
+      config : header에 적용되는 각종 정보를 설정 : 내가 보낼 때 사용
+    </li>
+    <li>
+      then : promise 객체를 리턴하는 메서드를 기다리고, <br>
+      값을 받으면 then의 파라미터로 받은 메서드 수행
+    </li>
+  </ul>
+  <button type="button" id="btn">데이터 가져오기</button>
+  <ul id="ul"></ul>
+  <script>
+    document.getElementById('btn').addEventListener('click', () => {
+      fetch('https://jsonplaceholder.typicode.com/todos?completed=true')
+      .then(response => response.json())
+      .then(json => printData(json)) // 성공시
+      .catch(error => console.log(error)); // 실패시
+    });
+
+    function printData(obj) {
+      let ul = document.getElementById('ul');
+      for (const key in obj) {
+        ul.innerHTML += `<li>${key} : ${obj[key]}</li>`;
+      }
+    }
+  </script>
+</body>
+</html>

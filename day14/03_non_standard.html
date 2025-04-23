@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Non_standard</title>
+</head>
+<body>
+  <h1>
+    비표준 속성(Non_standard attribute)
+  </h1>
+  <ul>
+    <li>
+      속성(attribute) : element에 달리는 여러가지 속성 <br>
+      예) input의 type, id, class, name, value, placeholder, readonly, disabled, required, ....
+      <input type="text" id="" class="" name="" value="" placeholder="" readonly disabled required>
+    </li>
+    <li>
+      모든 element마다 본인의 속성을 가지고 있음. = 표준 속성
+    </li>
+    <li>
+      element 속성이 제한적이고, 속성 자체가 기능을 가지고 있음. <br>
+      개발자 입장에서 필요한 속성을 직접 제공하는 방법
+    </li>
+    <li>
+      과하게 사용하면 개발 효율과 가독성 저하. 적당히 사용할 것
+    </li>
+    <li class="list" data-age = "20">
+      태그의 속성 이름을 data-변수명 = "값"; <br>
+      js에서 dataset property를 사용하여 읽어들임
+    </li>
+    <li class="list" data-nameNum = '1' data-no="list1" data-item="listItem">
+      변수명에 대문자는 허용하지 않음(정확히는 소문자로 인식) => camel case가 불가능 <br>
+      let nameNum = dataset.nameNum; (인지 불가능) <br>
+      let nameNum = dataset.namenum; (인지 가능) <br>
+    </li>
+  </ul>
+  <script>
+    let li_list = document.querySelectorAll('.list'); // querySelector: 처음 만나는 element만 return
+    console.log(li_list);
+    console.log(li_list[1].dataset.namenum);
+    console.log(li_list[1].dataset.no);
+    console.log(li_list[0].dataset.age);
+  </script>
+</body>
+</html>

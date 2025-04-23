@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parameter</title>
+</head>
+<body>
+  <h1>
+    자바스크립트의 파라미터 특징 / 기능
+  </h1>
+  <ul>
+    <li>
+      파라미터의 갯수와 상관없이 메서드명이 같다면 호출 가능
+    </li>
+    <li>
+      파라미터의 개수가 불일치하여 받지 못하는 값이 있다면 undefined 처리
+    </li>
+    <li>
+      optional parameter <br>
+      값을 받아오지 못하는 파라미터가 undefined 처리가 되는 것을 막기 위해 기본값을 설정할 수 있음
+    </li>
+    <li>
+      모든 파라미터는 arguments라는 프로퍼티를 이용해 파라미터를 관리 <br>
+      arguments는 배열로 관리됨
+    </li>
+    <li>
+      optional parameter는 저장이 안 됨
+    </li>
+    <li>
+      optional parameter는 다른 파라미터보다 뒤에 와야 함
+    </li>
+    <li>
+      rest parameter : 남는 파라미터 <br>
+      반드시 받아야 하는 파라미터는 일반 파라미터로 저장하고, 나머지 파라미터들은 통합하여 하나의 이름으로 배정
+    </li>
+    <li>
+      ... : spread 연산자 <br>
+      배열이나 객체를 복제하는 데에도 사용 (얕은 복사)
+    </li>
+  </ul>
+  <script>
+    function testFunc(p1, p2, p3, p4=0, p5=0){
+      console.log(p1, p2, p3, p4, p5);
+      console.log(arguments);
+      return p1+p2+p3+p4+p5;
+    }
+    console.log(testFunc(1, 2, 3));
+
+    function opFunc(x, px) {
+      let y = px;
+      if (y == undefined) {
+        y = 0;
+      }
+      console.log(x, y);
+    }
+    opFunc(1);
+
+    // rest parameter
+    function restFunc(a, b, ...others) {
+      let sum = 0;
+      console.log(a + b);
+      console.log(others);
+      sum = a + b;
+      
+      return others.reduce((rollup, n) => rollup + n, sum);
+    }
+    console.log(restFunc(1, 2, 3, 4, 5, 6, 7));
+    console.log('------------------------------------');
+    let oldArr = ['a', 'b', 'c', 'd', 'e', 'f'];
+    let newArr = [...oldArr];
+    console.log(newArr);
+    let newObj = {...oldArr};
+    console.log(newObj);
+
+    let num = [1, 2, 3];
+    function sum(x, y, z) {
+      return x + y + z;
+    }
+    console.log(sum(...num));
+    console.log(restFunc(...[1, 2, 3, 4, 5, 6, 7]));
+  </script>
+</body>
+</html>

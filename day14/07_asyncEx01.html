@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button type="button" id="btn">데이터 가져오기</button>
+  <ul id="ul"></ul>
+  <script>
+    // https://jsonplaceholder.typicode.com/posts
+    // 1~10까지 10개의 데이터를 ul => li로 출력
+    document.getElementById('btn').addEventListener('click', () => {
+      let ul = document.getElementById('ul');
+      ul.innerHTML = '';
+      for (let i = 1; i <= 10; i++) {
+        fetch('https://jsonplaceholder.typicode.com/users/' + i)
+        .then(resp => resp.json())
+        .then(json => {
+          ul.innerHTML += `<ul>${dataHTML(json)}</ul>`;
+          ul.innerHTML += '<br>';
+        }).catch(console.log);
+      }
+    });
+
+  
+    function dataHTML(obj) {
+      let answer = '';
+
+      for (const key in obj) {
+        answer += `<li>${key} : `;
+        
+        if (Array.isArray(obj[key])) {
+          answer += '[';
+          answer += '<ol>';
+          for (const item of obj[key]) {
+            answer += dataHTML(obj[key]);
+          }
+          answer += '</ol>]';
+        } else if (typeof obj[key] == 'object') {
+          answer += `{<ul>${dataHTML(obj[key])}</ul>}`;
+        } else {
+          answer += obj[key];
+        }
+
+        answer += '</li>';
+      }
+
+      return answer;
+    }
+  </script>
+</body>
+</html>

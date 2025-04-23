@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calc</title>
+  <style>
+    #printResult{
+      height: 150px;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      border-bottom: none;
+      width: 400px;
+      font-size: 32px;
+      overflow-y: visible;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      padding-right: 10px;
+    }
+    .buttons{
+      background-color: rgba(240, 240, 240, 0.5);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 100px);
+      width: 400px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+    button{
+      font-size: 32px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      margin: 5px;
+      border-radius: 50px;
+    }
+    button:hover{ 
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    .charBtn{
+      background-color: rgba(180, 180, 180, 0.2);
+    }
+    .red{
+      color: crimson;
+    }
+    #equalBtn{
+      font-size: 40px;
+      background-color: forestgreen;
+      color: white;
+    }
+    #equalBtn:hover{
+      background-color: rgb(30, 124, 30);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="printResult"></div>
+    <div class="buttons"></div>
+    <h3>※+/-는 개발중입니다.</h3>
+  </div>
+
+  <script>
+    const zeroDivide = new Error('0으로 나눌 수 없습니다.'),
+    wrongExpr = new Error('올바르지 않은 수식입니다.');
+    const container = document.querySelector('.container');
+    const numbers = [];
+    let result = '';
+
+    class MyNumber{
+      constructor(value, oper) {
+        this.value = value;
+        this.oper = oper;
+      }
+    }
+    class Expr{
+      constructor() {
+        this.numbers = [];
+        this.closed = false;
+        this.oper = undefined;
+      }
+
+      get last() {
+        return this.numbers[this.numbers.length - 1];
+      }
+      close() {
+        if (this.last instanceof Expr && !this.last.closed) {
+          this.last.close();
+        } else this.closed = true;
+      }
+      getLast() {
+        if (this.last instanceof Expr && !this.last.closed) {
+          return this.last.getLast();
+        } else return this;
+      }
+      insert(n) {
+        if (this.last instanceof Expr && !this.last.closed) {
+          this.last.insert(n);
+        } else {
+          insert(n, this.numbers);
+        }
+      }
+    }
+
+    // 0. 버튼 생성
+    document.addEventListener('DOMContentLoaded', () => {
+      for (let item of ['C', '()', '%', '÷', 7, 8, 9, '×', 4, 5, 6, '-', 1, 2, 3, '+', '+/-', 0, '.', '=']) {
+        let insert = `<button type="button" value="${item + ''}"`;
+        if (item == 'C') {
+          insert += 'class="charBtn red"';
+        } else if (item == '=') {
+          insert += 'id="equalBtn"';
+        } else if (item == '+/-' || item == '.') {
+          insert += 'class="numBtn"';
+        }else if (isNaN(Number(item))) {
+          insert += 'class="charBtn"';
+        } else {
+          insert += 'class="numBtn"';
+        }
+        insert += `>${item}</button`;
+        document.querySelector('.buttons').innerHTML += insert;
+      }
+    });
+    // getElementById
+    // getElementsByClassName => querySelector
+    /*document.getElementById('container').addEventListener('click', e => {
+      console.log(e);
+      insert(e);
+    })*/
+
+    // 1. 입력에 따라 적절한 메서드 실행
+    container.addEventListener('click', e => {
+      try {
+        switch (e.target.value) {
+          case undefined:
+            return;
+          case '=':
+            compute();
+            break;
+          case 'C':
+            result = '';
+            clear();
+            return;
+          case '()':
+            if (numbers.length == 0) {
+              if (result != '') {
+                numbers.push(new MyNumber(result, '×'));
+              }
+              numbers.push(new Expr());
+            } else {
+              let last = numbers[numbers.length - 1];
+              if (typeof last == 'string') {
+                if (isNaN(Number(last))) {
+                  throw wrongExpr;
+                }
+                numbers.push(new MyNumber(Number(numbers.pop()), '×'));
+                numbers.push(new Expr());
+              } else if (last instanceof Expr) {
+                if (last.closed) {
+                  if (last.oper == undefined) last.oper = '×';
+                  numbers.push(new Expr());
+                } else {
+                  addBracket(last);
+                }
+              } else {
+                numbers.push(new Expr());
+              }
+            }
+            break;
+          case '+/-':
+            switchSign();
+          default:
+            insert(e.target.value);
+        }
+        printExpr();
+      } catch (error) {
+        alert(error.message);
+        console.log(error);
+      }
+    });
+
+    function insert(v, target = numbers) {
+      let last = target[target.length - 1];
+      switch (v) {
+        case '+': case '-': case '×': case '÷': case '%':
+          if (typeof last == 'string') {
+            if (isNaN(Number(last))) {
+              throw wrongExpr;
+            }
+            last = new MyNumber(Number(target.pop()), v);
+            target.push(last);
+          } else if (last instanceof Expr) {
+            if (last.closed) {
+              last.oper = v;
+            } else {
+              last.insert(v);
+            }
+          } else if (last == undefined) {
+            if (result != '') {
+              numbers.push(new MyNumber(result, v));
+            }
+          } else {
+            last.oper = v;
+          }
+          break;
+        case '.':
+          if (typeof last == 'string') {
+            let n = Number(last + '.');
+            if (isNaN(n)) {
+              return;
+            } else {
+              target[target.length - 1] += '.';
+            }
+          } else if (last instanceof Expr) {
+            insert(v, last.numbers);
+          } else if (last == undefined) {
+            target.push('0.');
+          } else {
+            if (last.oper == undefined) {
+              last.oper = '×';
+            }
+            target.push('0.');
+          }
+          break;
+        default:
+          if (typeof last == 'string') {
+            target[target.length - 1] += v;
+          } else if (last instanceof Expr) {
+            if (last.closed) {
+              if (last.oper == undefined) last.oper = '×';
+              target.push(v);
+            } else {
+              last.insert(v);
+            }
+          } else {
+            target.push(v);
+          }
+      }
+
+      printExpr();
+    }
+
+    function addBracket(target) {
+      if (target.numbers.length == 0) {
+        target.numbers.push(new Expr());
+      } else {
+        let last = target.numbers[target.numbers.length - 1];
+        
+        if (typeof last == 'string') {
+          let v = Number(last)
+          if (isNaN(v)) {
+            throw wrongExpr;
+          }
+          target.numbers.pop();
+          target.numbers.push(new MyNumber(v));
+          target.closed = true;
+        } else if (last instanceof Expr) {
+          if (last.closed == true) {
+            target.closed = true;
+          } else {
+            addBracket(last);
+          }
+        } else {
+          target.numbers.push(new Expr());
+        }
+      }
+    }
+
+    function compute() {
+      let v = calculate(numbers);
+      if (v instanceof Error) {
+        alert(v.message);
+        return;
+      }
+      result = v;
+      clear();
+    }
+    function calculate(numbers) {
+      // numCopy : numbers에서 Expr와 string을 전부 Number로 바꾼 것
+      let numCopy = [];
+      for (let number of numbers) {
+        if (number instanceof Expr) {
+          let v = calculate(number.numbers);
+          if (v instanceof Error) {
+            return v;
+          }
+          numCopy.push(new MyNumber(v, number.oper));
+        } else if (typeof number == 'string') {
+          let v = Number(number);
+          if (isNaN(v)) {
+            return wrongExpr;
+          }
+          numCopy.push(new MyNumber(v));
+        } else {
+          numCopy.push(number);
+        }
+      }
+
+      // 숫자가 하나뿐이면 그 값을 결과로 취급
+      if (numCopy.length == 1) {
+        return numCopy[0].value;
+      }
+
+      // *, /, % 계산
+      let afterMD = [], last = numCopy[0], item;
+      for (let i = 1; i < numCopy.length; i++) {
+        item = numCopy[i];
+        switch (last.oper) {
+          case '×':
+            last.value *= item.value;
+            last.oper = item.oper;
+            break;
+          case '÷':
+            if (item.value == 0) {
+              return zeroDivide;
+            }
+            last.value /= item.value;
+            last.oper = item.oper;
+            break;
+          case '%':
+            if (item.value == 0) {
+              return zeroDivide;
+            }
+            last.value %= item.value;
+            last.oper = item.oper;
+            break;
+          default:
+            afterMD.push(last);
+            last = item;
+        }
+
+        if (i == numCopy.length - 1) {
+          afterMD.push(last);
+        }
+      }
+
+      // +- 계산
+      let answer = afterMD.shift();
+      while (afterMD.length > 0) {
+        let item = afterMD.shift();
+        if (answer.oper == '+') answer.value += item.value;
+        else answer.value -= item.value;
+        answer.oper = item.oper;
+      }
+
+      return answer.value;
+    }
+
+    function printExpr() {
+      let input = '';
+      if (numbers.length == 0) {
+        input = result;
+      } else {
+        for (let item of numbers) {
+          input += str(item);
+        }
+      }
+
+      document.getElementById('printResult').innerText = input;
+    }
+    function str(item) {
+      let answer = '';
+      if (item instanceof Expr) {
+        answer += '(' + str(item.numbers);
+        if (item.closed) answer += ')';
+        if (item.oper != undefined) answer += item.oper;
+      } else if (item instanceof MyNumber) {
+        answer += item.value;
+        if (item.oper != undefined) answer += item.oper;
+      } else if (Array.isArray(item)) {
+        for (let inner of item) {
+          answer += str(inner);
+        }
+      } else answer += item;
+
+      return answer;
+    }
+
+    function clear() {
+      numbers.splice(0, numbers.length);
+      printExpr();
+    }
+  </script>
+</body>
+</html>
