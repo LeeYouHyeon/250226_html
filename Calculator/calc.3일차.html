@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calc</title>
+  <style>
+    .printResult{
+      height: 200px;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      width: 430px;
+      font-size: 40px;
+      overflow-y: visible;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      padding-right: 10px;
+      position: relative;
+    }
+    .buttons{
+      padding: 15px;
+      background-color: rgba(240, 240, 240, 0.5);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 100px);
+      width: 400px;
+    }
+    button{
+      font-size: 32px;
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      margin: 5px;
+      border-radius: 50px;
+    }
+    button:hover{ 
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    .charBtn{
+      background-color: rgba(180, 180, 180, 0.2);
+    }
+    .red{
+      color: crimson;
+    }
+    #equalBtn{
+      font-size: 40px;
+      background-color: forestgreen;
+      color: white;
+    }
+    #equalBtn:hover{
+      background-color: rgb(30, 124, 30);
+    }
+    .backspace{
+      color: forestgreen;
+      position: absolute;
+      right: 5px;
+      bottom: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="printResult">
+      <div class="result"></div>
+      <button type="button" class="backspace" onclick="removeLast()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-backspace" viewBox="0 0 16 16">
+          <path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/>
+          <path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1z"/>
+        </svg>
+      </button>
+    </div>
+    <div class="buttons"></div>
+  </div>
+  <h3>※ %는 나머지 연산자입니다.</h3>
+  <script>
+    // 에러 상황들
+    const zeroDivide = new Error('0으로 나눌 수 없습니다.'),
+    incomplete = new Error('수식이 완성되지 않았습니다.');
+
+    const numbers = []; // 입력하는 식을 저장하는 array
+    let result = ''; // 계산 결과를 string으로 저장
+
+    /* 숫자(value)와 그 뒤에 오는 연산자(oper)를 클래스로 지정
+      value는 string으로 저장하되, Number() 메서드를 이용해 마지막 MyNumber의 유효성을 매 단계 검사
+      value엔 - 기호를 넣지 않고, 이전 MyNumber의 oper나 Expr에 저장
+    */
+    // get evaluated : string인 value를 number로 바꿔서 복사
+    class MyNumber {
+      constructor(value, oper) {
+        this.value = value;
+        this.oper = oper;
+      }
+
+      get evaluated() {
+        return new MyNumber(Number(this.value), this.oper);
+      }
+    }
+    /* 괄호를 표현하는 클래스 
+      numbers : Expr 내부의 식. MyNumber와 Expr가 들어갈 수 있음
+      closed : 이 Expr가 닫혀있는지 확인
+      oper : closed == true인 경우 MyNumber처럼 뒤에 연산자가 올 수 있음
+      sign : Expr의 첫 MyNumber의 부호. true면 +, false면 minus
+    */
+    /* 메서드들
+      get last : Expr의 마지막 숫자
+      close() : 괄호를 전부 닫고, 닫은 횟수를 반환
+      insert(n) : n을 Expr에 넣는다.
+    */
+    class Expr {
+      constructor(firstSign = true) {
+        this.numbers = [];
+        this.closed = false;
+        this.oper = undefined;
+        this.firstSign = firstSign;
+      }
+
+      get last() {
+        return this.numbers[this.numbers.length - 1];
+      }
+
+      // 마지막이 Expr인 경우 재귀적으로 계속 닫으면서 수치 증가
+      // 이미 닫혀있는 경우 0을 리턴
+      close() {
+        if (this.closed) return 0;
+
+        let answer = 1;
+        if (this.last instanceof Expr) {
+          answer += this.last.close();
+        }
+        this.closed = true;
+        return answer;
+      }
+
+      // n : 연산자, 숫자, .
+      // Expr가 닫히지 않은 경우에만 호출됨
+      insert(n) {
+        // 끝에 닫히지 않은 괄호가 있으면 그곳으로 넘김
+        if (this.last instanceof Expr && !this.last.closed) {
+          this.last.insert(n);
+          return;
+        }
+
+        switch (n) {
+          // 1. +-
+          case '+': case '-':
+            if (this.last == undefined) {
+              // 마지막이 없으면 
+              this.firstSign = (n == '+');
+            } else {
+              this.last.oper = n;
+            }
+            break;
+          case '×': case '÷': case '%':
+            if (this.last != undefined) {
+              this.last.oper = n;
+            }
+            break;
+          case '.':
+            if (this.last == undefined) {
+              this.numbers.push(new MyNumber('0.'));
+            } else if (this.last instanceof Expr) {
+              if (this.last.oper == undefined) this.last.oper = '×';
+              this.numbers.push('0.');
+            } else {
+              if (this.last.oper == undefined) {
+                let test = this.last.value + '.';
+                if (isNaN(Number(test))) return;
+                this.last.value = test;
+              } else this.numbers.push(new MyNumber('0.'));
+            }
+            break;
+          default:
+            if (this.last instanceof Expr) {
+              if (this.last.oper == undefined) this.last.oper = '×';
+              this.numbers.push(new MyNumber(n));
+            } else if (this.last == undefined || this.last.oper != undefined) {
+              this.numbers.push(new MyNumber(n));
+            } else this.last.value += n;
+        }
+      }
+    }
+
+    // 0. 버튼 생성
+    for (let item of ['C', '()', '%', '÷', '7', '8', '9', '×', '4', '5', '6', '-', '1', '2', '3', '+', '+/-', '0', '.', '=']) {
+      let insert = `<button type="button" value="${item}"`;
+      if (item == 'C') {
+        insert += 'class="charBtn red"';
+      } else if (item == '=') {
+        insert += 'id="equalBtn"';
+      } else if (item == '+/-' || item == '.') {
+        insert += 'class="numBtn"';
+      } else if (isNaN(Number(item))) {
+        insert += 'class="charBtn"';
+      } else {
+        insert += 'class="numBtn"';
+      }
+      insert += `>${item}</button`;
+      document.querySelector('.buttons').innerHTML += insert;
+    }
+
+    // 1. 입력에 따라 적절한 메서드 실행
+    // 백스페이스 입력은 별도로 관리
+    document.querySelector('.container').addEventListener('click', e => {
+      try {
+        switch (e.target.value) {
+          case undefined: // 입력 미스는 무시
+            return;
+          case '=':
+            // 계산 후 numbers 초기화
+            result = String(calculate(numbers)); // 편의상 String으로 저장
+            numbers.splice(0, numbers.length);
+            break;
+          case 'C': // numbers 초기화
+            result = '';
+            numbers.splice(0, numbers.length);
+            break;
+          case '()': // 괄호(Expr) 추가
+            if (numbers.length == 0) {
+              // 수식이 비어있으면 result를 반영한 뒤 괄호 추가
+              if (result != '') {
+                numbers.push(new MyNumber(result, '×'));
+              }
+              numbers.push(new Expr());
+            } else {
+              let last = numbers[numbers.length - 1]; // numbers의 마지막 요소
+              if (last instanceof Expr) {
+                if (last.closed) {
+                  // 닫혀있는 괄호엔 더 들어가지 않고 그 뒤에 별개의 괄호 추가
+                  if (last.oper == undefined) last.oper = '×';
+                  numbers.push(new Expr());
+                } else {
+                  // 열려있는 괄호는 안으로 들어가서 처리
+                  addBracket(last);
+                }
+              } else {
+                // 일반 숫자라면 그 뒤에 괄호 추가
+                if (last.oper == undefined) last.oper = '×';
+                numbers.push(new Expr());
+              }
+            }
+            break;
+          case '+/-':
+            // 맨 끝 요소의 부호 변경
+            switchSign();
+            break;
+          default:
+            // 연산자, ., 숫자는 insert 함수로 처리
+            insert(e.target.value);
+        }
+        // 정상적으로 처리되었으면 수식 업데이트
+        printExpr();
+      } catch (error) { // 에러 처리
+        alert(error.message);
+        console.log(error);
+      }
+    });
+
+    // v : 연산자, 점(.), 숫자
+    // v를 target array에 삽입
+    function insert(v, target = numbers) {
+      let last = target[target.length - 1];
+      // 열려있는 괄호가 있으면 넘김
+      if (last instanceof Expr && !last.closed) {
+        last.insert(v);
+      } else {
+        switch (v) {
+          case '+': case '-': case '×': case '÷': case '%':
+          // 1. 연산자
+            if (last == undefined) {
+              // 1-1. target이 비어있으면 result를 반영해보고, 없으면 무시
+              if (result != '') {
+                numbers.push(new MyNumber(result, v));
+                result = '';
+              } else {;}
+            } else {
+              // 1-2. target에 숫자나 닫힌 괄호가 있으면 그것의 oper에 v를 반영
+              last.oper = v;
+            }
+            break;
+          case '.':
+          // 2. 점
+            let newNum = new MyNumber('0.');
+            if (last instanceof Expr) {
+              // 2-1. 닫힌 괄호 뒤엔 새로운 숫자(0.)로 등록하되, 괄호에 연산자가 없으면 곱셈으로 지정
+              if (last.oper == undefined) last.oper = '×';
+              target.push(newNum);
+            } else if (last == undefined) {
+              // 2-2. 처음 들어가는 경우도 새로운 숫자로 등록
+              target.push(newNum);
+            } else {
+              // 2-3. 앞에 숫자가 있는 경우
+              if (last.oper == undefined) {
+                // 연산자를 입력하기 전이면 .을 넣어보고, 유효한 경우만 실제로 반영
+                let test = last.value + '.';
+                if (isNaN(Number(test))) {
+                  return;
+                }
+                last.value = test;
+              } else {
+                // 연산자가 있다면 새로운 숫자로 등록
+                target.push(newNum);
+              }
+            }
+            break;
+          default:
+          // 3. 숫자
+            if (last instanceof Expr) {
+              // 3-1. 닫힌 괄호가 있으면 새로운 숫자로 등록하되, 연산자가 없으면 곱셈으로 지정
+              if (last.oper == undefined) last.oper = '×';
+              target.push(new MyNumber(v));
+            } else {
+              if (last instanceof MyNumber && last.oper == undefined) {
+                // 3-2. 연산자가 입력되지 않은 숫자라면 그 뒤에 붙임
+                last.value += v;
+              } else {
+                // 3-3. 연산자가 입력된 숫자거나 비어있으면 새로운 숫자로 등록
+                target.push(new MyNumber(v));
+              }
+            }
+        }
+      }
+    }
+
+    // outer(array)의 마지막 요소의 부호 변경
+    // 연산자와는 별개로, 괄호를 통해 구현
+    function switchSign(outer = numbers) {
+      // outer가 비어있으면 괄호 안에 -를 붙이고, result가 있다면 반영
+      if (outer.length == 0) {
+        outer.push(new Expr(false));
+        if (result != '') {
+          outer[0].numbers.push(new MyNumber(result));
+          result = '';
+        }
+        return;
+      }
+
+      let target = outer[outer.length - 1];
+      if (target instanceof Expr) {
+        // 1. 맨 마지막이 괄호인 경우
+        switch (target.numbers.length) {
+          case 0:
+            // 1-1. 비어있는 괄호라면 target의 부호에 따라 결정
+            if (target.firstSign) { // +면 안에 음의 괄호를 넣음
+              target.numbers.push(new Expr(false));
+            } else { // -면 outer에서 target을 삭제
+              outer.pop();
+            }
+            break;
+          case 1:
+            // 2. target 안에 요소가 하나만 있을 경우
+            if (target.last instanceof Expr) {
+              // 2-1. 그 요소가 괄호면 target 안으로 넘김
+              switchSign(target.numbers);
+            } else {
+              // 2-2. 괄호가 아니면 target의 부호에 따라 변경
+              if (target.firstSign) {
+                // 2-2-1. +면 첫 요소를 음의 괄호로 감싼다.
+                let input = new Expr(false);
+                input.numbers.push(target.numbers.pop());
+                target.numbers.push(input);
+              } else {
+                // 2-2-2. -면 target 괄호를 부수고 그 안의 숫자를 outer에 넣음
+                let input = target.last;
+                target.numbers.pop();
+                outer.pop();
+                outer.push(input);
+              }
+            }
+            break;
+          default:
+            // 3. target에 2개 이상의 요소가 있었다면 안으로 넘김
+            switchSign(target.numbers);
+        }
+      } else {
+        // 2. 괄호가 아니면 괄호로 감싸고 음수 부호를 부여
+        let input = new Expr(false);
+        input.numbers.push(outer.pop());
+        outer.push(input);
+      }
+    }
+
+    // target(Expr)에 괄호를 넣는 함수
+    // 상황에 따라 Expr를 넣을지 괄호를 닫을지 결정
+    function addBracket(target) {
+      if (target.numbers.length == 0) {
+        // 1. 비어있다면 새 괄호를 넣음
+        target.numbers.push(new Expr());
+      } else {
+        let last = target.numbers[target.numbers.length - 1];
+        
+        if (last instanceof Expr) {
+          // 2. last가 괄호라면
+          if (last.closed) {
+            // 2-1. last가 닫혀있으면 target을 닫음
+            target.closed = true;
+          } else {
+            // 2-2. 닫혀있지 않다면 last로 들어감
+            addBracket(last);
+          }
+        } else {
+          // 3. last가 숫자로 끝나면 target을 닫고, 아니라면 새 괄호를 넣음
+          if (last.oper == undefined) {
+            target.closed = true;
+          } else {
+            target.numbers.push(new Expr());
+          }
+        }
+      }
+    }
+
+    // 값을 계산해서 숫자로 return
+    // zeroDivide나 incomplete 에러가 나올 수 있음 => click 이벤트에서 처리
+    // numbers는 calculate 이후에도 그대로 있으므로 별도로 초기화해줘야 함
+    // lastOper는 
+    function calculate(numbers, lastOper, firstSign = true) {
+      // numCopy : numbers에서 Expr을 전부 Number로 바꿔서 복사
+      let numCopy = [], answer;
+      for (let number of numbers) {
+        if (number instanceof Expr) {
+          if (number.numbers.length == 0) {
+            throw incomplete;
+          }
+          numCopy.push(new MyNumber(calculate(number.numbers, number.last.oper, number.firstSign), number.oper));
+        } else {
+          numCopy.push(number.evaluated);
+        }
+      }
+
+      if (numCopy.length == 0) return;
+
+      // 첫 숫자가 음수인지 체크한 후 반영
+      if (!firstSign) {
+        numCopy[0].value *= -1;
+      }
+
+      if (numCopy.length == 1) {
+        // 숫자가 하나뿐이면 계산 과정을 스킵
+        answer = numCopy[0];
+      } else {
+        // *, /, % 계산
+        // zeroDivide 에러가 나올 수 있음
+        let afterMD = [], last = numCopy[0], item;
+        for (let i = 1; i < numCopy.length; i++) {
+          item = numCopy[i];
+          switch (last.oper) {
+            case '×':
+              last.value *= item.value;
+              last.oper = item.oper;
+              break;
+            case '÷':
+              if (item.value == 0) {
+                throw zeroDivide;
+              }
+              last.value /= item.value;
+              last.oper = item.oper;
+              break;
+            case '%':
+              if (item.value == 0) {
+                throw zeroDivide;
+              }
+              last.value %= item.value;
+              last.oper = item.oper;
+              break;
+            default:
+              afterMD.push(last);
+              last = item;
+          }
+
+          if (i == numCopy.length - 1) {
+            afterMD.push(last);
+          }
+        }
+
+        // +- 계산
+        answer = afterMD.shift();
+        while (afterMD.length > 0) {
+          let item = afterMD.shift();
+          if (answer.oper == '+') answer.value += item.value;
+          else answer.value -= item.value;
+          answer.oper = item.oper;
+        }
+      }
+
+      if (answer.oper != lastOper) throw incomplete;
+      return answer.value;
+    }
+
+    function printExpr() {
+      let input = '';
+      if (numbers.length == 0) {
+        input = result;
+      } else {
+        input += str();
+        result = '';
+      }
+
+      document.querySelector('.result').innerText = input;
+    }
+
+    function str(item = numbers) {
+      let answer = '';
+      if (item instanceof Expr) {
+        answer += item.firstSign ? '(' : '(-';
+        for (let inner of item.numbers) {
+          answer += str(inner);
+        }
+        if (item.closed) {
+          answer += ')';
+          if (item.oper != undefined) answer += item.oper;
+        }
+      } else if (Array.isArray(item)) {
+        for (let inner of item) {
+          answer += str(inner);
+        }
+      } else {
+        answer += item.value;
+        if (item.oper != undefined) answer += item.oper;
+      }
+
+      return answer;
+    }
+    
+    function removeLast(target = numbers) {
+      if (target.length == 0) {
+        if (result.length > 1) {
+          numbers.push(new MyNumber(
+            result.substring(0, result.length - 1)
+          ));
+        }
+        result = '';
+      } else {
+        let last = target[target.length - 1];
+        
+        if (last instanceof Expr) {
+          if (last.oper != undefined) {
+            last.oper = undefined;
+          } else if (last.closed) {
+            last.closed = false;
+          } else if (last.numbers.length == 0) {
+            if (last.firstSign) {
+              target.pop();
+            } else {
+              last.firstSign = true;
+            }
+          } else removeLast(last.numbers);
+        } else {
+          if (last.oper != undefined) {
+            last.oper = undefined;
+          } else if (last.value != '') {
+            last.value = last.value.substring(0, last.value.length - 1);
+            if (last.value == '') {
+              target.pop();
+            }
+          }
+        }
+      }
+
+      printExpr();
+    }
+  </script>
+</body>
+</html>

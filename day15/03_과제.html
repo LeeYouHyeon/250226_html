@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>야구게임</title>
+  <style>
+    .invisible{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <button type="button" class="start">새 게임</button>
+  <h1 id="status"></h1>
+  <div class="input invisible">
+    숫자 입력 : 
+    <input type="text">
+    <button type="button" class="check">게임 확인</button>
+  </div>
+  <ul id="result"></ul>
+  <script>
+    const toFind = [];
+    let found = false;
+    
+    // 게임 시작
+    document.querySelector('.start').addEventListener('click', () => {
+      if (toFind.length != 0 && !found) {
+        if (!confirm('아직 진행중인 게임이 있습니다. 처음부터 다시 하시겠습니까?')) {
+          return;
+        }
+      }
+
+      let numSet = new Set();
+      while (numSet.size < 3) {
+        numSet.add(Math.floor(Math.random()*10));
+      }
+      toFind.splice(0, 3);
+      for (const num of numSet) {
+        toFind.push(num);
+      }
+
+      document.getElementById('status').innerText = '컴퓨터가 숫자를 결정하였습니다.';
+      document.querySelector('.input').classList.remove('invisible');
+      document.getElementById('result').innerHTML = '';
+      document.querySelector('input').focus();
+    });
+
+    // 게임 확인
+    document.querySelector('.check').addEventListener('click', () => {
+      let result = '<li>';
+      
+      result += '</li>';
+      document.getElementById('result').innerHTML += result;
+    });
+
+    // [strike, ball]
+    function calculate(numbers) {
+      const result = [0, 0];
+      for (const num of numbers) {
+        if (toFind.includes(num)) {
+          result[1]++;
+        }
+      }
+      for (let i = 0; i < 3; i++) {
+        if (numbers[i] == toFind[i]) {
+          result[0]++;
+          result[1]--;
+        }
+      }
+      
+      return result;
+    }
+
+    // 숫자 비교는 parseInt와 Number를 비교한 후 범위 체크
+    // 아예 숫자가 아닌 경우, parseInt와 Number가 둘 다 NaN이나 둘이 다르다고 판단하기 때문에 범위 체크까지 가지 않음
+  </script>
+</body>
+</html>

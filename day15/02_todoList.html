@@ -1,0 +1,105 @@
+<!-- form 태그는 꼭 서버에 데이터가 동기로 가는 것이 아니라도 상징적으로 사용하기도 함 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body{
+      display: flex;
+      justify-content: center;
+    }
+    .container{
+      width: 50%;
+    }
+    .container>h1{
+      text-align: center;
+    }
+    .container>.inputBox{
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      background-color: royalblue;
+    }
+    .container>.inputBox>input{
+      width: 400px;
+      height: 30px;
+      font-size: 20px;
+    }
+    .container>.inputBox>button{
+      margin-left : 5px;
+    }
+    .container>.todoList>.todo{
+      position: relative;
+      padding-left: 10px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      font-size: 18px;
+    }
+    .todo:nth-of-type(even){
+      background-color: beige;
+    }
+    .todo:nth-of-type(odd) {
+      background-color: lightblue;
+    }
+    .deleteBtn{
+      position: absolute;
+      right: 5px;
+      background-color: transparent;
+      border: none;
+      font-size: 20px;
+    }
+    .deleteBtn:hover{
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>여행 준비물 점검 목록</h1>
+    <div class="inputBox">
+      <input type="text" id="todo" autofocus="true">
+      <button type="button" id="addBtn">추가</button>
+    </div>
+    <div class="todoList"></div>
+  </div>
+  <script>
+    const todoList = [];
+    // 데이터를 화면 밖에 저장하고 싶을 때는 관리자 모드>Application>localStorage 사용
+    // https://hianna.tistory.com/697
+    // https://developer.mozilla.org/en-US/docs/Web/API/Storage/setItem
+
+    document.getElementById('addBtn').addEventListener('click', () => {
+      let insert = document.getElementById('todo');
+      if (insert.value == '') return;
+      todoList.push(insert.value);
+      insert.value = '';
+      refresh();
+    });
+
+    function refresh() {
+      let input = '';
+      for (let i = 0; i < todoList.length; i++) {
+        input += `<div class="todo">`;
+        input += todoList[i];
+        input += `<button type="button" class="deleteBtn" value="${i}">×`;
+        input += '</div>';
+      }
+      document.querySelector('.todoList').innerHTML = input;
+      document.getElementById('todo').focus();
+    }
+
+    document.querySelector('.todoList').addEventListener('click', e => {
+      let val = Number(e.target.value);
+      if (isNaN(val)) {
+        return;
+      }
+      
+      todoList.splice(val, 1);
+      refresh();
+    });
+  </script>
+</body>
+</html>

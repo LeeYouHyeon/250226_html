@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calc</title>
+  <style>
+    #printResult{
+      height: 60px;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      border-bottom: none;
+      width: 240px;
+      font-size: 24px;
+      overflow-y: visible;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: right;
+      align-items: center;
+      padding-right: 10px;
+    }
+    .buttons{
+      background-color: rgba(0, 0, 0, 0.1);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(5, 60px);
+      width: 240px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+    }
+    button{
+      font-size: 16px;
+      background-color: rgb(253, 253, 253);
+      border: none;
+      margin: 1px;
+    }
+    button:hover{ 
+      cursor: pointer;
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+    button:nth-last-of-type(5){
+      grid-column: 1 / 3;
+      grid-row: 4;
+    }
+    button:nth-last-of-type(2){
+      grid-column: 1 / 4;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="printResult"></div>
+    <div class="buttons"></div>
+  </div>
+  <script>
+    const container = document.querySelector('.container');
+    const numbers = [];
+    let result = undefined;
+
+    // 0. 버튼 생성
+    document.addEventListener('DOMContentLoaded', () => {
+      for (let item of [7, 8, 9, '+', 4, 5, 6, '-', 1, 2, 3, '*', 0, '.', '/', '=', 'C']) {
+        document.querySelector('.buttons').innerHTML += `<button type="button" value="${item + ''}">${item}</button>`;
+      }
+    });
+    // getElementById
+    // getElementsByClassName => querySelector
+    /*document.getElementById('container').addEventListener('click', e => {
+      console.log(e);
+      insert(e);
+    })*/
+
+    // 1. 입력에 따라 적절한 메서드 실행
+    container.addEventListener('click', e => {
+      switch (e.target.value) {
+        case undefined:
+          return;
+        case '=':
+          calculate();
+          return;
+        case 'C':
+          result = undefined;
+          clear();
+          return;
+        default:
+          insert(e.target.value);
+      }
+    });
+
+    // 메서드 1. 계산
+    function calculate() {
+      // 수식이 입력되지 않으면 아무 일도 하지 않음
+      if (numbers.length == 0) {
+        return;
+      }
+
+      // 마지막 입력을 숫자로 변환
+      // 숫자가 아니면 오류 처리
+      let lastNumber = Number(numbers.pop());
+      if (isNaN(lastNumber)) {
+        alert('완성되지 않은 수식입니다.');
+        return;
+      }
+      numbers.push({
+        value: lastNumber,
+        oper: ''
+      });
+
+      // 숫자가 하나뿐이면 그 값을 결과로 취급
+      if (numbers.length == 1) {
+        result = numbers.value;
+        clear();
+        return;
+      }
+
+      // 곱셈, 나눗셈부터 계산하여 temp에 저장
+      let temp = [], last = {
+        value: numbers[0].value,
+        oper: numbers[0].oper
+      }, item;
+      for (let i = 1; i < numbers.length; i++) {
+        item = numbers[i];
+        switch (last.oper) {
+          case '*':
+            last.value *= item.value;
+            last.oper = item.oper;
+            break;
+          case '/':
+            if (item.value == 0) {
+              alert('0으로 나눌 수 없습니다.');
+              last = numbers.pop();
+              numbers.push(String(last.value));
+              return;
+            }
+            last.value /= item.value;
+            last.oper = item.oper;
+            break;
+          default:
+            temp.push(last);
+            last = {
+              value: item.value,
+              oper: item.oper
+            };
+        }
+
+        if (i == numbers.length - 1) {
+          temp.push(last);
+        }
+      }
+
+      // 덧셈, 뺄셈 계산
+      let answer = temp.shift();
+      while (temp.length > 0) {
+        let item = temp.shift();
+        if (answer.oper == '+') answer.value += item.value;
+        else answer.value -= item.value;
+        answer.oper = item.oper;
+      }
+
+      // 결과를 result에 넣고 결과 표시
+      result = answer.value;
+      clear();
+    }
+
+    // 메서드 2. printResult를 result 혹은 빈칸으로 초기화
+    function clear() {
+      numbers.splice(0, numbers.length);
+      printExpr();
+    }
+    
+    // 메서드 3. 값 입력
+    function insert(v) {
+      let temp = numbers.pop();
+      switch (v) {
+        case '+': case '-': case '*': case '/':
+          if (temp == undefined) {
+            if (result == undefined) {
+              return;
+            }
+            temp = {
+              value: result,
+              oper: ''
+            };
+          } else if (typeof temp == 'string') {
+            let currNum = Number(temp);
+            if (isNaN(currNum)) {
+              alert('수식이 올바르지 않습니다.');
+              printExpr();
+              return;
+            }
+            temp = {
+              value: currNum,
+              oper: ''
+            };
+          }
+
+          temp.oper = v;
+          break;
+        default:
+          if (typeof temp == 'string') {
+            if (!isNaN(Number(temp + v))) {
+              temp += v;
+            }
+          } else {
+            if (temp != undefined) {
+              numbers.push(temp);
+            }
+            temp = (v == '.') ? '0.' : v;
+          }
+      }
+
+      numbers.push(temp);
+      printExpr();
+    }
+
+    // 메서드 4. printResult로 출력
+    function printExpr() {
+      let input = '';
+      if (numbers.length == 0) {
+        input = (result == undefined) ? '' : result;
+      } else {
+        for (let item of numbers) {
+          if (typeof item == 'object') {
+            input += item.value;
+            input += item.oper;
+          } else {
+            input += item;
+          }
+        }
+      }
+      document.getElementById('printResult').innerText = input;
+    }
+  </script>
+</body>
+</html>

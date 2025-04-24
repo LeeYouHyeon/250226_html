@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    @font-face {
+      font-family: "TitanOne-Regular";
+      src: url(../fonts/Titan_One/TitanOne-Regular.ttf);
+    }
+    body{
+      background-color: black;
+      color: white;
+      padding-top: 40px
+    }
+    .title{
+      font-family: "TitanOne-Regular";
+    }
+    header{
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    header>div{
+      margin-bottom: 20px;
+    }
+    header>.squadName{
+      font-size: 60px;
+      text-shadow:
+        0 0 5px rgb(64, 255, 239),
+        0 0 10px rgb(128, 255, 223),
+        0 0 15px rgb(192, 255, 207),
+        0 0 20px rgb(0, 255, 191)
+    }
+    header>.squadInfo{
+      font-weight: 600;
+      font-size: 16px;
+      text-shadow:
+      0 0 5px rgb(64, 255, 239),
+      0 0 10px rgb(128, 255, 223),
+      0 0 15px rgb(192, 255, 207),
+      0 0 20px rgb(0, 255, 191)
+    }
+    section{
+      display: flex;
+      justify-content: space-evenly;
+      padding: 0 10%;
+    }
+    section>div{
+      text-shadow: 0px 0px 20px red;
+      font-size: 20px;
+    }
+    .member>.name{
+      font-size: 28px;
+    }
+  </style>
+</head>
+<body>
+  <header></header>
+  <section></section>
+  <script>
+    document.addEventListener('DOMContentLoaded', getJSON); // 문서가 켜지자마자 작성됨을 강조
+    function getJSON() {
+      fetch('https://mdn.github.io/learning-area/javascript/oojs/json/superheroes.json')
+      .then(resp => resp.json())
+      .then(json => {
+        console.log(json);
+        document.querySelector('header').innerHTML += `
+        <div class="squadName title">${json.squadName}</div>
+        <div class="squadInfo">HoneTown:${json.homeTown} // Formed:${json.formed}</div>
+        `;
+
+        for (let member of json.members) {
+          let input = '<div class="member">'
+          input += `<div class="name title">${member.name}</div>`;
+          input += `<div class="identity">SecretIdentity : ${member.secretIdentity}</div>`;
+          input += `<div class="age">Age : ${member.age}</div>`;
+          input += '<div class="superpowers">Superpowers : <ul>';
+          for (let power of member.powers) {
+            input += `<li>${power}</li>`;
+          }
+          input += '</ul></div>';
+          document.querySelector('section').innerHTML += input;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
