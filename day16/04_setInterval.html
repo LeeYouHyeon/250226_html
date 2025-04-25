@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    h3{
+      background-color: brown;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    setInterval(callback function, interval duration); <br>
+    duration을 주기로 callback function을 호출
+  </h1>
+  <h3 id="h3">
+    setInterval
+  </h3>
+  <button type="button" id="start">start</button>
+  <button type="button" id="end">end</button>
+  <a href="05_location.html">05_location</a>
+  <script>
+    let intervalObj;
+
+    document.getElementById('start').addEventListener('click', () => {
+      intervalObj = setInterval(changeColor, 500);
+    });
+    document.getElementById('end').addEventListener('click', () => {
+      clearInterval(intervalObj);
+    });
+
+    function changeColor() {
+      let h3 = document.getElementById('h3');
+      h3.style.color = (h3.style.color == 'white') ? 'black' : 'white';
+    }
+  </script>
+</body>
+</html>

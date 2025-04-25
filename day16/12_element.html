@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    element 생성 방법
+  </h1>
+  <ul>
+    <li>
+      <'li>값'<'/li> : innerHTML로 직접 태그를 추가하는 방법
+    </li>
+    <li>
+      createElement : element 생성
+      <br>appendChild : 다른 element나 body의 자식으로 추가
+    </li>
+  </ul>
+
+  <button type="button" id="addAllUl">ul에 li 한 번에 추가</button>
+  <button type="button" id="addOneUl">ul에 li 하나씩 추가</button>
+  <button type="button" id="ulClear">ul 초기화</button>
+  <button type="button" id="addAllOl">ol에 li 한 번에 추가</button>
+  <button type="button" id="addOneOl">ol에 li 하나씩 추가</button>
+  <button type="button" id="olClear">ol 초기화</button>
+  <hr>
+  <ul id="ul"></ul>
+  <hr>
+  <ol id="ol"></ol>
+
+  <script>
+    const datas = ['HTML', 'CSS', 'JavaScript', 'SQL', 'JAVA'];
+    const ul = document.getElementById('ul');
+    const ol = document.getElementById('ol');
+
+    document.getElementById('addAllUl').onclick = () => {
+      ul.innerHTML = '';
+      datas.forEach(v => {
+        let li = document.createElement('li');
+        li.innerText = v;
+        ul.appendChild(li);
+      });
+    };
+    document.getElementById('addOneUl').onclick = () => {
+      if (ul.childElementCount >= datas.length) return;
+      let li = document.createElement('li');
+      li.innerText = datas[ul.childElementCount];
+      ul.appendChild(li);
+    };
+    document.getElementById('ulClear').onclick = () => {
+      ul.innerHTML = '';
+    };
+
+    document.getElementById('addAllOl').onclick = () => {
+      ul.innerHTML = '';
+      datas.forEach(v => {
+        let li = document.createElement('li');
+        li.innerText = v;
+        ol.appendChild(li);
+      });
+    };
+    document.getElementById('addOneOl').onclick = () => {
+      if (ol.childElementCount >= datas.length) return;
+      let li = document.createElement('li');
+      li.innerText = datas[ol.childElementCount];
+      ol.appendChild(li);
+    };
+    document.getElementById("olClear").onclick = () => {
+      ol.innerHTML = '';
+    };
+  </script>
+</body>
+</html>

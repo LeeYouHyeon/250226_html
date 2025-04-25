@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .abc{
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>
+    classList : 리턴 타입이 DOMTokenList 객체
+    <br>별도의 메서드 사용이 가능
+  </h1>
+  <ul id="ul" class="ul a list">
+    <li>
+      element class는 여러 개의 값이 올 수 있는 속성
+    </li>
+    <li>
+      자주 사용하는 메서드 : add(), contains(), toggle(), remove()
+    </li>
+    <li>
+      자바스크립트에서 스타일을 지정할 경우
+      <br>tag.style.** : 지정할 스타일의 양이 적으면 사용 가능
+      <br>보통 class로 미리 스타일을 전부 지정하고 클래스를 추가, 삭제, 토글하는 형식으로 사용
+    </li>
+  </ul>
+  <button id="btn">UI 변경</button>
+  <script>
+    const ul = document.getElementById('ul');
+    console.log(ul);
+    console.log(ul.classList);
+    ul.classList.add('abc');
+    console.log(ul.classList);
+    ul.classList.remove('abc');
+    console.log(ul.classList);
+    ul.classList.remove('abc');
+    console.log(ul.classList);
+
+    // toggle : 있으면 삭제, 없으면 넣기
+    ul.classList.toggle('abc');
+    console.log(ul.classList);
+    ul.classList.toggle('abc');
+    console.log(ul.classList);
+    ul.classList.toggle('abc');
+    console.log(ul.classList);
+
+    console.log(ul.classList.contains('abc'));
+    console.log('---------------');
+    document.getElementById('btn').onclick = () => {
+      ul.classList.toggle('abc');
+      console.log(ul.classList);
+    }
+  </script>
+</body>
+</html>

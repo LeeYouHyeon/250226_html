@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1 id="h1">
+    DOM(Document Object Model) : html 문서 객체 모델
+  </h1>
+  <ul>
+    <li class="list">
+      html 하위에 있는 모든 태그들(element) / 속성(attribute) = 프로퍼티 (property)를 가지고 있는 문서 객체
+    </li>
+    <li class="list">
+      element를 가져올 때 getElementBy Id, ClassName, TagName
+    </li>
+    <li>
+      getElementById : 단일 element로 반환
+    </li>
+    <li>
+      getElementsByClassName, getElementsByTagName : 여러 elements 반환
+      <br> => HTMLCollection 타입
+    </li>
+    <li>
+      HTMLCollection 타입 : index를 사용하여 선택 가능
+    </li>
+  </ul>
+  <script>
+    const h1 = document.getElementById('h1');
+    console.log(h1);
+
+    const list = document.getElementsByClassName('list');
+    console.log(list[1]);
+
+    const ul = document.getElementsByTagName('ul');
+    console.log(ul); //HTMLCollection
+    console.log(ul[0].children); // HTMLCollection
+    console.log(ul[0].children[4]);
+
+    // h, span처럼 단일 태그(하위요소)는 자식을 인지하지 않음
+  </script>
+</body>
+</html>

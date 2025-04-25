@@ -1,0 +1,133 @@
+button {
+  border: none;
+  border-radius: 50px;
+}
+
+.container {
+  width: 450px;
+}
+
+.container>.printResult {
+  height: 200px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  width: 430px;
+  overflow-y: visible;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.container>.printResult>.expression {
+  height: 100px;
+  width: 410px;
+
+  font-size: 40px;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.container>.printResult>.intermediate {
+  height: 50px;
+  width: 410px;
+
+  font-size: 24px;
+  color: dimgray;
+
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.container>.printResult>.icons {
+  width: 430px;
+  height: 50px;
+  position: relative;
+}
+
+.container>.printResult>.icons>button {
+  background-color: transparent;
+  position: absolute;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container>.printResult>.icons>button:hover {
+  background-color: rgba(0, 0, 0, 0.1);;
+}
+
+.container>.printResult>.icons>.logBtn {
+  left: 15px;
+  bottom: 13px;
+}
+
+.container>.printResult>.icons>.backspace {
+  color: forestgreen;
+  right: 15px;
+}
+
+.buttons {
+  padding: 15px;
+  background-color: rgba(240, 240, 240, 0.5);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 100px);
+  width: 400px;
+}
+
+.buttons>button {
+  font-size: 32px;
+  margin: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.numBtn {
+  background-color: rgba(255, 255, 255, 0.7);
+}
+
+.charBtn {
+  background-color: rgba(180, 180, 180, 0.2);
+}
+
+.red {
+  color: crimson;
+}
+
+#equalBtn {
+  font-size: 40px;
+  background-color: forestgreen;
+  color: white;
+}
+
+#equalBtn:hover {
+  background-color: rgb(30, 124, 30);
+}
+
+.logs {
+  position: absolute;
+  left: 500px;
+  top: 10px;
+}
+
+.logs>button {
+  font-size: 20px;
+  background-color: rgb(230, 230, 230);
+  padding: 5px 10px;
+  margin-bottom: 5px;
+}
+
+.logs>button:hover {
+  background-color: rgb(200, 200, 200);
+}
+
+.invisible{
+  display: none;
+}

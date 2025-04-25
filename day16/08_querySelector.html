@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    querySelector(), querySelectorAll()
+    <br>element를 querySelector 형태로 인지
+  </h1>
+  <ul>
+    <li>
+      html node 객체로 리턴
+    </li>
+    <li>
+      getElementBy* : HTMLCollection 타입으로 리턴
+    </li>
+    <li>
+      querySelector* : nodeList 형태로 리턴
+    </li>
+    <li>
+      querySelectorAll : nodeList도 배열처럼 사용 가능
+    </li>
+    <li>
+      querySelector : 구체적인 element 접근이 가능
+    </li>
+    <li>
+      getElementBy** : 편리한 속성 접근이 장점
+    </li>
+  </ul>
+  <script>
+    // querySelector : 처음 만나는 객체
+    // querySelectorAll : 모든 객체
+    const li = document.querySelector('li');
+    console.log(li);
+
+    const lis = document.querySelectorAll('li');
+    console.log(lis);
+  </script>
+</body>
+</html>

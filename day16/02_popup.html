@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h1>
+    window 메서드 종류
+  </h1>
+  <ul>
+    <li>
+      alert() / prompt() input 포함 / confirm() 확인/취소
+    </li>
+    <li>
+      window.open('url', window_name, option(size, scroll, ...));
+    </li>
+    <li>
+      window.close(); : 창 닫기
+    </li>
+    <li>
+      setInterval(function, millisecond); <br>
+      millisecond를 주기로 하여 지속적으로 function을 실행
+    </li>
+    <li>
+      setTimeout(function, millisecond); <br>
+      일정 시간 후에 function 실행
+    </li>
+  </ul>
+  <button type="button" onclick="openWindow()">팝업 열기</button>
+  <button type="button" onclick="closeWindow()">팝업 닫기</button>
+  <button type="button" onclick="alertEx()">alert</button>
+  <button type="button" onclick="promptEx()">prompt</button>
+  <button type="button" onclick="confirmEx()">confirm</button>
+  <h3 id="h3"></h3>
+  <a href="03_setTimeout.html">03_setTimeout</a>
+  <script>
+    function alertEx() {
+      alert('alert 창입니다.');
+    }
+    function promptEx() {
+      let name = prompt('이름을 입력해주세요.');
+      document.getElementById('h3').innerText = name;
+    }
+    function confirmEx() {
+      let con = confirm('확인하시겠습니까?');
+      document.getElementById('h3').innerText = con ? '확인' : '취소';
+    }
+
+    let popup;
+    function openWindow() {
+      popup = window.open('../day15/02_todoList.html', 'myPop', 'width=400, height=500');
+    }
+    function closeWindow() {
+      if (popup) {
+        popup.close();
+      }
+    }
+  </script>
+</body>
+</html>
