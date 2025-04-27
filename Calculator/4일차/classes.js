@@ -69,11 +69,11 @@ class Expr {
         }
         break;
       default:
-        if (this.last instanceof MyNumber && last.oper == undefined) {
-          this.last.value += v;
+        if (this.last instanceof MyNumber && this.last.oper == undefined) {
+          this.last.value += n;
         } else {
           if (this.last instanceof Expr && this.last.oper == undefined) this.last.oper = '×';
-          this.numbers.push(new MyNumber(v));
+          this.numbers.push(new MyNumber(n));
         }
     }
   }

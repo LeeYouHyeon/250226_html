@@ -80,7 +80,7 @@ function calculate(target, lastOper, firstSign = true) {
       if (number.numbers.length == 0) {
         throw incomplete;
       }
-      numCopy.push(new yNumber(calculate(number.numbers, number.last.oper, number.firstSign), number.oper));
+      numCopy.push(new MyNumber(calculate(number.numbers, number.last.oper, number.firstSign), number.oper));
     } else {
       numCopy.push(number.evaluated);
     }
