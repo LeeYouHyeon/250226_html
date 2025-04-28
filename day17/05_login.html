@@ -5,62 +5,57 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-
+<!-- https://uxkm.io/publishing/css/03-cssMiddleclass/10-css_attr_rule#gsc.tab=0 -->
   <style>
     body {
       background-color: rgb(37, 62, 204);
     }
 
     .container {
-      background-color: rgb(94, 235, 188);
-
-      width: 500px;
-      padding: 15px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
 
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
+      width: 500px;
+      padding: 15px 10px;
       border-radius: 10px;
+
+      background-color: rgb(94, 235, 188);
     }
 
     .container>input {
       width: 85%;
       height: 40px;
-      
       margin: 10px;
       padding-left: 10px;
-
-      font-size: 16px;
-      line-height: 20px;
-
       border: none;
       border-radius: 5px;
+
+      font-size: 16px;
+
       outline: none;
     }
 
     .container>button {
-      background-color: rgb(8, 80, 38);
-      color: white;
-
       width: calc(85% + 15px);
       height: 44px;
-
       margin: 10px;
+      border-radius: 5px;
 
       font-size: 16px;
 
-      border-radius: 5px;
+      color: white;
+      background-color: rgb(8, 80, 38);
     }
 
     .container>button[disabled] {
-      background-color: rgb(16, 71, 39);
       color: gray;
+      background-color: rgb(16, 71, 39);
     }
 
     .container>button:hover {
@@ -72,22 +67,22 @@
     }
 
     .container>#warning {
-      color: rgb(177, 16, 16);
-
       height: 30px;
+
+      font-size: 16px;
 
       text-align: center;
 
-      font-size: 16px;
+      color: rgb(177, 16, 16);
     }
 
     .container>a {
-      color: black;
-      
       margin-top: 10px;
       margin-bottom: 5px;
 
       text-decoration: none;
+
+      color: black;
     }
 
     .container>a:hover {
