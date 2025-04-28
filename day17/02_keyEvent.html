@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Key Event</title>
+</head>
+<body>
+  <h1>
+    keyboard event
+  </h1>
+  <ul>
+    <li>
+      keydown : 키를 누르는 순간. 일부 특수입력을 무시
+    </li>
+    <li>
+      keypress : keydown과 동일하나 Ctrl, Alt, CapsLock, 방향키 등등 텍스트로 인지하지 못하는 모든 키들을 무시
+    </li>
+    <li>
+      keyup : 키를 떼는 순간. 모든 입력을 전부 인지함
+    </li>
+  </ul>
+  <!-- 
+    nbsp : 탭
+  -->
+  <h1>
+    e.type : <span id="type1"></span> &nbsp;
+    e.key : <span id="key1"></span> &nbsp;
+    e.code : <span id="code1"></span> &nbsp;
+  </h1>
+  <h1>
+    e.type : <span id="type2"></span> &nbsp;
+    e.key : <span id="key2"></span> &nbsp;
+    e.code : <span id="code2"></span> &nbsp;
+  </h1>
+  <h1>
+    e.type : <span id="type3"></span> &nbsp;
+    e.key : <span id="key3"></span> &nbsp;
+    e.code : <span id="code3"></span> &nbsp;
+  </h1>
+  <h1>
+    <input type="text" id="str">
+  </h1>
+
+  <script>
+    const type1 = document.getElementById('type1');
+    const key1 = document.getElementById('key1');
+    const code1 = document.getElementById('code1');
+    const type2 = document.getElementById('type2');
+    const key2 = document.getElementById('key2');
+    const code2 = document.getElementById('code2');
+    const type3 = document.getElementById('type3');
+    const key3 = document.getElementById('key3');
+    const code3 = document.getElementById('code3');
+
+    document.getElementById('str').addEventListener('keydown', e => {
+      type1.innerText = e.type;
+      key1.innerText = e.key;
+      code1.innerText = e.code;
+    });
+    document.getElementById('str').addEventListener('keypress', e => {
+      type2.innerText = e.type;
+      key2.innerText = e.key;
+      code2.innerText = e.code;
+    });
+    document.getElementById('str').addEventListener('keyup', e => {
+      type3.innerText = e.type;
+      key3.innerText = e.key;
+      code3.innerText = e.code;
+    });
+  </script>
+</body>
+</html>

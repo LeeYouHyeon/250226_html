@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    button{
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+  <button type="button" id="makeBtn">Create element</button>
+  <div id="zone"></div>
+  <h3 id="print"></h3>
+  <script>
+    let count = 0;
+    // Create element 버튼을 클릭하면  #zone 영역에 새 버튼이 생성
+    document.getElementById('makeBtn').addEventListener('click', () => {
+      count++
+      document.getElementById('zone').innerHTML += `<button type="button" id="btn${count}" class="newBtn">버튼 ${count}</button>`;
+    });
+
+    // newBtn이 클릭되면 <h3>newBtn이 클릭되었습니다.</h3>
+    document.addEventListener('click', e => {
+      if (e.target.classList.contains('newBtn')) {
+        document.getElementById('print').innerText = `${e.target.id.substring(3)}번 버튼이 클릭되었습니다.`;
+      }
+    });
+  </script>
+</body>
+</html>
