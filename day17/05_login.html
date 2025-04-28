@@ -13,63 +13,81 @@
 
     .container {
       background-color: rgb(94, 235, 188);
+
       width: 500px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 15px 10px;
+
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
-      padding: 15px 10px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
       border-radius: 10px;
     }
 
     .container>input {
-      margin: 10px;
       width: 85%;
       height: 40px;
+      
+      margin: 10px;
+      padding-left: 10px;
+
       font-size: 16px;
+      line-height: 20px;
+
       border: none;
       border-radius: 5px;
-      line-height: 20px;
-      padding-left: 10px;
       outline: none;
     }
 
     .container>button {
-      margin: 10px;
-      width: calc(85% + 15px);
-      height: 44px;
-      font-size: 16px;
-      border-radius: 5px;
       background-color: rgb(8, 80, 38);
       color: white;
-    }
-    .container>button[disabled] {
-      color: gray;
-      background-color: rgb(16, 71, 39);
+
+      width: calc(85% + 15px);
+      height: 44px;
+
+      margin: 10px;
+
+      font-size: 16px;
+
+      border-radius: 5px;
     }
 
-    .container>button:hover{
+    .container>button[disabled] {
+      background-color: rgb(16, 71, 39);
+      color: gray;
+    }
+
+    .container>button:hover {
       cursor: pointer;
     }
-    .container>button[disabled]:hover{
+
+    .container>button[disabled]:hover {
       cursor: auto;
     }
 
     .container>#warning {
       color: rgb(177, 16, 16);
-      font-size: 16px;
+
       height: 30px;
+
       text-align: center;
+
+      font-size: 16px;
     }
 
     .container>a {
       color: black;
-      text-decoration: none;
+      
       margin-top: 10px;
       margin-bottom: 5px;
+
+      text-decoration: none;
     }
 
     .container>a:hover {
