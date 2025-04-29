@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" placeholder="사업자번호 입력">
+  <button type="button" id="btn">검색</button>
+  <div class="result"></div>
+  <script>
+    document.getElementById('btn').addEventListener('click', () => {
+      $(document).ready(function () {
+        $.ajax({
+          url: 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst?serviceKey=fND4xf6Sobrivx8mMI4MQTFyTNxmaysW5saMwVE/AxTWb6W/ajqBRzW/J52b+2CK+kjpqWhMkN7YM7vDehS82Q==&numOfRows=10&pageNo=1&base_date=20250428&base_time=0630&nx=55&ny=127',
+          type: 'POST',
+          data: JSON.stringify({
+            "b_no": [document.querySelector('input').value.split('-').join('')]
+          }),
+          dataType: 'JSON',
+          contentType: "application/json",
+          accept: "application/json",
+          success: function (result) {
+            document.querySelector('.result').innerHTML = dataHTML(result);
+          },
+          error: function (result) {
+            console.log(result.responseText);
+          }
+        })
+      })
+    });
+
+    function dataHTML(obj) {
+      let answer = '';
+
+      for (const key in obj) {
+        answer += `<li>${key} : `;
+        
+        if (Array.isArray(obj[key])) {
+          answer += '[';
+          answer += '<ol>';
+          for (const item of obj[key]) {
+            answer += dataHTML(obj[key]);
+          }
+          answer += '</ol>]';
+        } else if (typeof obj[key] == 'object') {
+          answer += `{<ul>${dataHTML(obj[key])}</ul>}`;
+        } else {
+          answer += obj[key];
+        }
+
+        answer += '</li>';
+      }
+
+      return answer;
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-3.5.2.js"></script>
+</body>
+
+</html>

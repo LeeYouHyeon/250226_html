@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+<!-- https://uxkm.io/publishing/css/03-cssMiddleclass/10-css_attr_rule#gsc.tab=0 -->
+  <style>
+    body {
+      background-color: rgb(37, 62, 204);
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+
+      width: 500px;
+      padding: 15px 10px;
+      border-radius: 10px;
+
+      background-color: rgb(94, 235, 188);
+    }
+
+    .container>input {
+      width: 85%;
+      height: 40px;
+      margin: 10px;
+      padding-left: 10px;
+      border: none;
+      border-radius: 5px;
+
+      font-size: 16px;
+
+      outline: none;
+    }
+
+    .container>button {
+      width: calc(85% + 15px);
+      height: 44px;
+      margin: 10px;
+      border-radius: 5px;
+
+      font-size: 16px;
+
+      color: white;
+      background-color: rgb(8, 80, 38);
+    }
+    .container>button:hover {
+      cursor: pointer;
+    }
+
+    .container>button[disabled] {
+      color: gray;
+      background-color: rgb(16, 71, 39);
+    }
+    .container>button[disabled]:hover {
+      cursor: auto;
+    }
+
+    .container>#warning {
+      height: 30px;
+
+      font-size: 16px;
+
+      text-align: center;
+
+      color: rgb(177, 16, 16);
+    }
+
+    .container>a {
+      margin-top: 10px;
+      margin-bottom: 5px;
+
+      text-decoration: none;
+
+      color: black;
+    }
+
+    .container>a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <input type="text" id="id" name="id" placeholder="아이디">
+    <input type="password" id="pw" name="pw" placeholder="비밀번호">
+    <button type="button" disabled>로그인</button>
+    <h4 id="warning"></h4>
+    <a href="">비밀번호를 잊어버리셨나요?</a>
+  </div>
+  <script>
+    let warning = '아이디가 8글자 이상이어야 합니다.';
+    const warningBox = document.getElementById('warning');
+    const loginBtn = document.querySelector('.container>button');
+    // event input
+    // id : 8글자 이상
+    // pw : 영문자, 숫자, 특수문자 각각 포함, 총 8글자 이상
+    document.addEventListener('input', () => {
+      const id = document.getElementById('id').value;
+      const pw = document.getElementById('pw').value;
+
+      if (id.length < 8) warning = '아이디가 8글자 이상이어야 합니다.';
+      else if (pw.length < 8) warning = '비밀번호가 8글자 이상이어야 합니다.';
+      else if (!/[a-zA-z]/.test(pw)) warning = '비밀번호가 문자를 포함해야 합니다.';
+      else if (!/[0-9]/.test(pw)) warning = '비밀번호가 숫자를 포함해야 합니다.';
+      else if (!/\W/.test(pw)) warning = '비밀번호가 특수문자를 포함해야 합니다.';
+      else warning = '';
+
+      loginBtn.disabled = warning.length > 0;
+    });
+
+    loginBtn.addEventListener('mouseover', () => {
+      warningBox.innerText = warning;
+    });
+    loginBtn.addEventListener('mouseout', () => {
+      warningBox.innerText = '';
+    });
+    loginBtn.addEventListener('click', () => {
+      location.href = 'https://www.naver.com/';
+    });
+  </script>
+</body>
+
+</html>

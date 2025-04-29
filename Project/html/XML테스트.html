@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://code.jquery.com/jquery-migrate-3.5.2.js"></script>
+  <script>
+    let link = 'http://www.kopis.or.kr/openApi/restful/pblprfr?service=17beea38263f4378901270b9bcdc9ce6&stdate=20230601&eddate=20230630&cpage=1&rows=10&prfstate=02&signgucode=11&signgucodesub=1111&kidstate=Y';
+    let data = [];
+
+    $(document).ready(function() {
+      $.ajax({
+        url: link,
+        type: 'GET',
+        dataType: 'xml',
+        success: function(result) {
+          data.push(new DOMParser().parseFromString(result.text, 'application/xml'));
+        },
+        error: console.log
+      })
+    });
+  </script>
+</body>
+</html>
