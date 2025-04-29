@@ -1,28 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
   <script src="https://code.jquery.com/jquery-migrate-3.5.2.js"></script>
   <script>
-    let link = 'http://www.kopis.or.kr/openApi/restful/pblprfr?service=17beea38263f4378901270b9bcdc9ce6&stdate=20230601&eddate=20230630&cpage=1&rows=10&prfstate=02&signgucode=11&signgucodesub=1111&kidstate=Y';
-    let data = [];
+    const keys = ['mt20id', 'prfnm', 'prfpdfrom', 'prfpdto', 'fcltynm', 'poster', 'area', 'genrenm', 'openrun', 'prfstate'];
+    class Perform {
+      constructor(list) {
+        this.mt20id = list[0];
+        this.prfnm = list[1];
+        this.prfpdfrom = list[2];
+        this.prfpdto = list[3];
+        this.fcltynm = list[4];
+        this.poster = list[5];
+        this.area = list[6];
+        this.genrenm = list[7];
+        this.openrun = list[8];
+        this.prfstate = list[9];
+      }
+    }
 
-    $(document).ready(function() {
+    let link = 'http://www.kopis.or.kr/openApi/restful/pblprfr?service=17beea38263f4378901270b9bcdc9ce6&stdate=20230601&eddate=20230630&cpage=1&rows=10&prfstate=02&signgucode=11&signgucodesub=1111&kidstate=Y';
+    let performs = [];
+
+    $(document).ready(function () {
       $.ajax({
         url: link,
         type: 'GET',
         dataType: 'xml',
-        success: function(result) {
-          data.push(new DOMParser().parseFromString(result.text, 'application/xml'));
+        success: function (xml) {
+          $(xml).find('db').each((i, e) => {
+            const values = [];
+            for (const key of keys) {
+              values.push($(e).find(key).text());
+            }
+            performs.push(new Perform(values));
+          })
         },
         error: console.log
       })
     });
   </script>
 </body>
+
 </html>
